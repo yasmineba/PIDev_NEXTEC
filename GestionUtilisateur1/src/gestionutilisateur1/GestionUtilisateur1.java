@@ -12,9 +12,13 @@ import gestionutilisateur1.service.ArticleService;
 import gestionutilisateur1.service.Imprimer;
 import gestionutilisateur1.service.UserService;
 import gestionutilisateur1.utils.MyConnexion;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.sql.Date;
 import java.time.Month;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.print.PrintException;
 
 
 
@@ -38,7 +42,7 @@ public class GestionUtilisateur1 {
         
        //us.ajouter(u);
        //us.supprimer(15);
-        //System.out.println(us.afficher());
+        System.out.println(us.afficher());
         //us.modifier(12, u);
         //System.out.println(us.findById(10));
        // System.out.println(us.findByName("dehmani"));
@@ -53,18 +57,26 @@ public class GestionUtilisateur1 {
         //System.out.println(us.sortById());
        // System.out.println(us.sortByNom());
         //System.out.println(us.checklogin("dahmoun", "19223a7bbd7325516f069df18b50"));
-        new Imprimer();
-        
-        
-        //as.ajouter(a);
-        //as.modifier(0, a);
-        //as.supprimer(1);
-         //System.out.println(as.afficher());
-         //System.out.println(as.findById(3));
-        // System.out.println(as.findByTitre("foot"));
-        // System.out.println(as.findByNbrLike(5));
-          //System.out.println(as.sortByIdArticle());
-         //System.out.println(as.sortByNbrLike());
+        try {
+            us.BasicPrint();
+         } catch (PrintException ex) {
+            Logger.getLogger(GestionUtilisateur1.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GestionUtilisateur1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+          
+            
+            //as.ajouter(a);
+            //as.modifier(0, a);
+            //as.supprimer(1);
+            //System.out.println(as.afficher());
+            //System.out.println(as.findById(3));
+            // System.out.println(as.findByTitre("foot"));
+            // System.out.println(as.findByNbrLike(5));
+            //System.out.println(as.sortByIdArticle());
+            //System.out.println(as.sortByNbrLike());
          
          
     }

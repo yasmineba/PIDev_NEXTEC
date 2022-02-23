@@ -10,6 +10,9 @@ import gestionutilisateur1.entity.User;
 import gestionutilisateur1.utils.MyConnexion;
 import gestionutilisateur1.service.CryptWithMD5;
 import static gestionutilisateur1.service.CryptWithMD5.cryptWithMD5;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,8 +25,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import javafx.print.PrinterJob;
-import static jdk.nashorn.internal.objects.NativeArray.some;
+import javax.print.Doc;
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintException;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.SimpleDoc;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.event.PrintJobEvent;
+import javax.print.event.PrintJobListener;
 
 
 
@@ -231,9 +243,117 @@ public class UserService implements IService <User> {
         }
         return false;
         
-        
-    }
+     }
     
+     public void BasicPrint() throws PrintException, IOException{
+         // On donne la type MIME d'impression
+  DocFlavor flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
+
+  // On peut prendre tous les services disponibles
+  //PrintService[] services = PrintServiceLookup.lookupPrintServices(flavor, null);
+
+  PrintService service = PrintServiceLookup.lookupDefaultPrintService();
+
+  PrintRequestAttributeSet pref = new HashPrintRequestAttributeSet();
+  // On peut ouvrir la boite de dialogue avec aucune préférences
+  //PrintService service = ServiceUI.printDialog(null, 200, 200, services, null, flavor, pref);
+
+  if (service == null) {
+   System.out.println("Impression annulée");
+   System.exit(0);
+  }
+
+  // La chaine à imprimer
+  InputStream is = new ByteArrayInputStream("Super texte".getBytes());
+
+  /* On crée un document et l'impression */
+  Doc doc = new SimpleDoc(is, flavor, null);
+  DocPrintJob job = service.createPrintJob();
+
+  // On ajoute un Job Listener pour savoir si le texte à été imprimé
+  PrintJobWatcher printJobWatcher = new PrintJobWatcher();
+  job.addPrintJobListener(printJobWatcher);
+
+  // impression
+  job.print(doc, pref);
+
+  /*
+   * processus bloquant... on attend que l'impression se termine
+   */
+  printJobWatcher.waitForDone();
+
+  is.close();
+
+ }
+}
+
+class PrintJobWatcher implements PrintJobListener {
+
+ boolean done = false;
+
+ // processus bloquant
+ public synchronized void waitForDone() {
+  try {
+   // on attend tant que l'impression n'est pas terminée
+   while (!done)
+    wait();
+  } catch (InterruptedException e) {}
+ }
+
+ @Override
+ public void printDataTransferCompleted(PrintJobEvent arg0) {
+  System.out.println("Donnée transférée");
+ }
+
+ @Override
+ public void printJobCanceled(PrintJobEvent arg0) {
+  System.out.println("Impression annulée");
+  notifyDone();
+ }
+
+ @Override
+ public void printJobRequiresAttention(PrintJobEvent arg0) {
+  System.out.println("Erreur... (Pas de papier)");
+ }
+
+ @Override
+ public void printJobCompleted(PrintJobEvent evt) {
+  System.out.println("Texte imprimé avec succès");
+  notifyDone();
+ }
+
+ @Override
+ public void printJobNoMoreEvents(PrintJobEvent arg0) {
+  System.out.println("Texte imprimé avec succès (sans vérification)");
+  notifyDone();
+
+ }
+
+ @Override
+ public void printJobFailed(PrintJobEvent evt) {
+  System.out.println("Erreur lors de l'impression");
+  notifyDone();
+ }
+
+ void notifyDone() {
+  synchronized(this) {
+   done = true;
+   System.out.println("Impression terminée !");
+   this.notify();
+  }
+ }
+
+    
+
+     }
+
+
+     
+         
+     
      
     
-}
+     
+     
+    
+

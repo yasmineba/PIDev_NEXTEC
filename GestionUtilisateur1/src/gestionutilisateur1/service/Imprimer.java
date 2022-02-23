@@ -28,9 +28,7 @@ class MonDessin extends JPanel  {
     MonDessin() {
 	setPreferredSize(new Dimension(180, 120));
     }
-    public void paintComponent(Graphics g) {
-	g.drawOval(50, 20, 80, 80);
-    }
+    
 }
 public class Imprimer extends JFrame implements  ActionListener {  
     MonDessin dessin = new MonDessin();
