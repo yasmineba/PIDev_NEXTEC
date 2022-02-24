@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pidev.models;
+package models;
 
 import java.util.Date;
 import lombok.*;
@@ -25,6 +25,7 @@ public class Utilisateur {
     private String email;
     private String telephone;
     private String adresse;
+    private String genre;
 
     private String username;
     private String password;
@@ -42,7 +43,11 @@ public class Utilisateur {
         this.role = role;
     }
 
-    public Utilisateur(int id, String nom, String prenom, String adresse, String email,String telephone, String date_naissance) {
+    public Utilisateur(int id) {
+        this.id = id;
+    }
+
+    public Utilisateur(int id, String nom, String prenom, String adresse, String email,String telephone,String genre, String date_naissance,String role) {
         this.id = id;
         this.telephone = telephone;
         this.nom = nom;
@@ -50,6 +55,8 @@ public class Utilisateur {
         this.date_naissance = date_naissance;
         this.email = email;
         this.adresse = adresse;
+        this.role=role;
+        this.genre=genre;
     }
        public Utilisateur( String nom, String prenom, String adresse, String email,String telephone, String date_naissance) {
       
