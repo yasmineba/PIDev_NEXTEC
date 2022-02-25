@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pidev.models;
-import com.pidev.servicesImp.ServiceParticipation;
+package models;
+import services.ServiceParticipation;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;

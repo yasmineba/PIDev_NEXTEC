@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pidev.models;
+package models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,5 +26,12 @@ public class Commentaire {
     
     private int id_user;
     private int id_form;
+
+    public Commentaire(String comments, int id_user, int id_form) {
+        this.comments = comments;
+        this.id_user = id_user;
+        this.id_form = id_form;
+    }
+    
    
 }
