@@ -3,14 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/interfaces/I_intervenant.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/ServiceIntervenant.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/ServiceEvenement.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/ethlete/Ethlete.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/models/Evenement.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/interfaces/I_evenement.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/models/Intervenant.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/utils/MaConnexion.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceAffectationFormateur.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererFormation.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererAff.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Reponse_Form.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/ParticipationController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/DashboardController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Commentaire.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/ethlete/PIDEV.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceFormation.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceCommentaireImp.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/ParticipationAdminController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/Dashboard.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceFormateur.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererFormateurController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererFormationController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceReponseImp.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceParticipation.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/StatistiquesController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Utilisateur.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/participation.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/participationAdmin.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/statistiques.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/style.css</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererFormateur.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/AffectationFormateur.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererAffController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/ethlete/PIDEVBIS.java</file>
         </group>
     </open-files>
 </project-private>
