@@ -143,7 +143,7 @@ public class UserService implements IService <User> {
             Statement st=cnx.createStatement();
             String query="select * from user where id="+id;
             ResultSet rs=st.executeQuery(query);
-            while(rs.next()){
+            if(rs.next()){
                 
                 u.setAdresse(rs.getString("adresse"));
                 u.setDate_naissance(rs.getDate("date_naissance"));
@@ -155,6 +155,9 @@ public class UserService implements IService <User> {
                 u.setPrenom(rs.getString("prenom"));
                 u.setUsername(rs.getString("username"));
                 u.setRole(Role.valueOf(rs.getString("role")));
+            }else{
+                System.out.println("user n existe pas");
+                
               
             }
         } catch (SQLException ex) {
@@ -167,49 +170,116 @@ public class UserService implements IService <User> {
     public List<User> findByName(String name){
         List<User> users=afficher();
         List<User> resultat=users.stream().filter(user->name.equals(user.getNom())).collect(Collectors.toList());
+        if(resultat.isEmpty()){
+            System.out.println("l utilisateur n existe pas");
+        }else{
+            System.out.println("l utilisateur existe");
+        }
         //resultat.forEach(System.out::println);
         return resultat;
     }
+    
 
     public List<User> findByPrenom(String prenom){
         List<User> users=afficher();
         List<User> resultat=users.stream().filter(user->prenom.equals(user.getPrenom())).collect(Collectors.toList());
+        if(resultat.isEmpty()){
+            System.out.println("l utilisateur n existe pas");
+        }else{
+            System.out.println("l utilisateur existe");
+        }
         return resultat;
     }
     
      public List<User> findByRole(Role role){
          List<User> users=afficher();
          List<User> resultat=users.stream().filter(user->role.equals(user.getRole())).collect(Collectors.toList());
+         
+         if(resultat.isEmpty()){
+            System.out.println("l utilisateur n existe pas");
+        }else{
+            System.out.println("l utilisateur existe");
+        }
          return resultat;
      }
     
      public List<User> findByDate(Date date){
          List<User> users=afficher();
          List<User> resultat=users.stream().filter(user->date.toString().equals(user.getDate_naissance().toString())).collect(Collectors.toList());
+         if(resultat.isEmpty()){
+            System.out.println("l utilisateur n existe pas");
+        }else{
+            System.out.println("l utilisateur existe");
+        }
          return resultat;
      }
      
      public List<User> findByEmail(String email){
          List<User> users = afficher();
          List<User> resultat=users.stream().filter(user->email.equals(user.getEmail())).collect(Collectors.toList());
+         if(resultat.isEmpty()){
+            System.out.println("l utilisateur n existe pas");
+        }else{
+            System.out.println("l utilisateur existe");
+        }
          return resultat;
      }
-     
-     public List<User> findByUsername(String username){
-         List<User> users = afficher();
-         List<User> resultat=users.stream().filter(user->username.equals(user.getUsername())).collect(Collectors.toList());
-         return resultat;
+     public boolean usernameExist(String username){
+        
+          try {
+            Statement st=cnx.createStatement();
+            String query="select * from user where username='"+username+"'";
+            ResultSet rs=st.executeQuery(query);
+            return rs.next();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+        
+     }
+     public User findByUsername(String username){
+         User u=new User();
+         try {
+            Statement st=cnx.createStatement();
+            String query="select * from user where username='"+username+"'";
+            ResultSet rs=st.executeQuery(query);
+            if(rs.next()){
+                u.setAdresse(rs.getString("adresse"));
+                u.setDate_naissance(rs.getDate("date_naissance"));
+                u.setEmail(rs.getString("email"));
+                u.setId(rs.getLong("id"));
+                u.setNom(rs.getString("nom"));
+                u.setNumTel(rs.getInt("num_tel"));
+                u.setPassword(cryptWithMD5(rs.getString("password")));
+                u.setPrenom(rs.getString("prenom"));
+                u.setUsername(rs.getString("username"));
+                u.setRole(Role.valueOf(rs.getString("role")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return u;
      }
      
      public List<User> findByNum(int numtel){
          List<User> users=afficher();
          List<User> resultat=users.stream().filter(user->numtel==user.getNumTel()).collect(Collectors.toList());
+         if(resultat.isEmpty()){
+            System.out.println("l utilisateur n existe pas");
+        }else{
+            System.out.println("l utilisateur existe");
+        }
          return resultat;
      }
      
      public List<User> findByAdresse(String adresse){
          List<User> users=afficher();
          List<User> resultat=users.stream().filter(user->adresse.equals(user.getAdresse())).collect(Collectors.toList());
+         if(resultat.isEmpty()){
+            System.out.println("l utilisateur n existe pas");
+        }else{
+            System.out.println("l utilisateur existe");
+        }
          return resultat;
      }
      
@@ -245,104 +315,7 @@ public class UserService implements IService <User> {
         
      }
     
-     public void BasicPrint() throws PrintException, IOException{
-         // On donne la type MIME d'impression
-  DocFlavor flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
-
-  // On peut prendre tous les services disponibles
-  //PrintService[] services = PrintServiceLookup.lookupPrintServices(flavor, null);
-
-  PrintService service = PrintServiceLookup.lookupDefaultPrintService();
-
-  PrintRequestAttributeSet pref = new HashPrintRequestAttributeSet();
-  // On peut ouvrir la boite de dialogue avec aucune préférences
-  //PrintService service = ServiceUI.printDialog(null, 200, 200, services, null, flavor, pref);
-
-  if (service == null) {
-   System.out.println("Impression annulée");
-   System.exit(0);
-  }
-
-  // La chaine à imprimer
-  InputStream is = new ByteArrayInputStream("Super texte".getBytes());
-
-  /* On crée un document et l'impression */
-  Doc doc = new SimpleDoc(is, flavor, null);
-  DocPrintJob job = service.createPrintJob();
-
-  // On ajoute un Job Listener pour savoir si le texte à été imprimé
-  PrintJobWatcher printJobWatcher = new PrintJobWatcher();
-  job.addPrintJobListener(printJobWatcher);
-
-  // impression
-  job.print(doc, pref);
-
-  /*
-   * processus bloquant... on attend que l'impression se termine
-   */
-  printJobWatcher.waitForDone();
-
-  is.close();
-
- }
-}
-
-class PrintJobWatcher implements PrintJobListener {
-
- boolean done = false;
-
- // processus bloquant
- public synchronized void waitForDone() {
-  try {
-   // on attend tant que l'impression n'est pas terminée
-   while (!done)
-    wait();
-  } catch (InterruptedException e) {}
- }
-
- @Override
- public void printDataTransferCompleted(PrintJobEvent arg0) {
-  System.out.println("Donnée transférée");
- }
-
- @Override
- public void printJobCanceled(PrintJobEvent arg0) {
-  System.out.println("Impression annulée");
-  notifyDone();
- }
-
- @Override
- public void printJobRequiresAttention(PrintJobEvent arg0) {
-  System.out.println("Erreur... (Pas de papier)");
- }
-
- @Override
- public void printJobCompleted(PrintJobEvent evt) {
-  System.out.println("Texte imprimé avec succès");
-  notifyDone();
- }
-
- @Override
- public void printJobNoMoreEvents(PrintJobEvent arg0) {
-  System.out.println("Texte imprimé avec succès (sans vérification)");
-  notifyDone();
-
- }
-
- @Override
- public void printJobFailed(PrintJobEvent evt) {
-  System.out.println("Erreur lors de l'impression");
-  notifyDone();
- }
-
- void notifyDone() {
-  synchronized(this) {
-   done = true;
-   System.out.println("Impression terminée !");
-   this.notify();
-  }
- }
-
+     
     
 
      }

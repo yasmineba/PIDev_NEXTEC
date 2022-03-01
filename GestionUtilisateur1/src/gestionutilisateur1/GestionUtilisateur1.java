@@ -9,9 +9,11 @@ import gestionutilisateur1.entity.Article;
 import gestionutilisateur1.entity.Role;
 import gestionutilisateur1.entity.User;
 import gestionutilisateur1.service.ArticleService;
-import gestionutilisateur1.service.Imprimer;
+import gestionutilisateur1.service.CryptWithMD5;
 import gestionutilisateur1.service.UserService;
+import gestionutilisateur1.utils.Mailapi;
 import gestionutilisateur1.utils.MyConnexion;
+import gestionutilisateur1.utils.Smsapi;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.sql.Date;
@@ -35,16 +37,21 @@ public class GestionUtilisateur1 {
     public static void main(String[] args) {
          UserService us=new UserService();
          Date d =Date.valueOf(LocalDate.of(2000, Month.MARCH, 17));
-         User u=new User("dehmani","temani",d,"mohameddehmani@gmail.com","dah","admiinnslm1",58760718,"kef",Role.FORMATEUR);
+         User u=new User("ahmed","temani",d,"mohameddehmani@gmail.com","dah","admiinnslm1",58760718,"kef",Role.FORMATEUR);
        
-         Article a= new Article("tenis","tenis","tenisbravo","dd",9);
+         Article a= new Article("tenis","tenisbravo","dd");
          ArticleService as=new ArticleService();
-        
+         //System.out.println(us.afficher());
+         //System.out.println(us.findByEmail("fdgfd").isEmpty());
+         
+         
+         
+        //System.out.println(as.afficher());
        //us.ajouter(u);
        //us.supprimer(15);
-        System.out.println(us.afficher());
+       // System.out.println(us.afficher());
         //us.modifier(12, u);
-        //System.out.println(us.findById(10));
+       // System.out.println(us.findById(120));
        // System.out.println(us.findByName("dehmani"));
        // System.out.println(us.findByPrenom("dahmoun"));
         //System.out.println(us.findByRole(Role.FORMATEUR));
@@ -55,16 +62,11 @@ public class GestionUtilisateur1 {
         //System.out.println(us.findByAdresse("kef"));
        // System.out.println(us.sortByDate());
         //System.out.println(us.sortById());
-       // System.out.println(us.sortByNom());
-        //System.out.println(us.checklogin("dahmoun", "19223a7bbd7325516f069df18b50"));
-        try {
-            us.BasicPrint();
-         } catch (PrintException ex) {
-            Logger.getLogger(GestionUtilisateur1.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(GestionUtilisateur1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
+       //System.out.println(us.sortByNom());
+      //System.out.println(us.checklogin("dahmoun", "19223a7bbd7325516f069df18b50"));
+     Mailapi.send("temanimohameddahmani@gmail.com", "meddahmani123456789", "moatez.oueslati@esprit.tn", "test java", "test");
+       
+    //  Smsapi.sendSMS("", "");
             
           
             

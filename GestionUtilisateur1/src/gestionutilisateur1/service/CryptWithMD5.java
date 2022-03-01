@@ -5,10 +5,17 @@
  */
 package gestionutilisateur1.service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
@@ -35,4 +42,9 @@ public class CryptWithMD5 {
 
 
    }
+   
+   
+               
+     
+    
 }
