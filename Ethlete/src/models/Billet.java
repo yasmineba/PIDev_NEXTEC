@@ -5,6 +5,8 @@
  */
 package models;
 
+import java.sql.Date;
+
 /**
  *
  * @author 21624
@@ -13,9 +15,9 @@ public class Billet {
     private int id_billet;
     private int id_event;
     private float prix;
-    private String date_achat;
+    private Date date_achat;
 
-    public Billet(int id_billet, int id_event, float prix, String date_achat) {
+    public Billet(int id_billet, int id_event, float prix, Date date_achat) {
         this.id_billet = id_billet;
         this.id_event = id_event;
         this.prix = prix;
@@ -23,7 +25,7 @@ public class Billet {
         
     }
 
-    public Billet(int id_event, float prix, String date_achat) {
+    public Billet(int id_event, float prix, Date date_achat) {
         this.id_event = id_event;
         this.prix = prix;
         this.date_achat = date_achat;
@@ -56,11 +58,11 @@ public class Billet {
         this.prix = prix;
     }
 
-    public String getDate_achat() {
+    public Date getDate_achat() {
         return date_achat;
     }
 
-    public void setDate_achat(String date_achat) {
+    public void setDate_achat(Date date_achat) {
         this.date_achat = date_achat;
     }
     

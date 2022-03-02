@@ -15,27 +15,27 @@ public class Intervenant {
     private String prenom;
     private String email;    
     private int telephone;
-    private int id_typeint;
+    private String poste;
 
-    public Intervenant(int id_inter, String nom, String prenom, String email, int telephone, int id_typeint) {
+    public Intervenant(int id_inter, String nom, String prenom, String email, int telephone, String id_typeint) {
         this.id_inter = id_inter;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.telephone = telephone;
-        this.id_typeint = id_typeint;
+        this.poste = id_typeint;
     }
     public Intervenant(int id_inter) {
         this.id_inter = id_inter;
     }
 
 
-    public Intervenant(String nom, String prenom, String email, int telephone, int id_typeint) {
+    public Intervenant(String nom, String prenom, String email, int telephone, String id_typeint) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.telephone = telephone;
-        this.id_typeint = id_typeint;
+        this.poste = id_typeint;
     }
 
     public Intervenant() {
@@ -81,21 +81,21 @@ public class Intervenant {
         this.telephone = telephone;
     }
 
-    public int getId_typeint() {
-        return id_typeint;
+    public String getPoste() {
+        return poste;
     }
 
-    public void setId_typeint(int id_typeint) {
-        this.id_typeint = id_typeint;
+    public void setPoste(String id_typeint) {
+        this.poste = id_typeint;
     }
 
     @Override
     public String toString() {
-        return "Intervenant{" + "id_inter=" + id_inter + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", telephone=" + telephone + ", id_typeint=" + id_typeint + '}';
+        return "Intervenant{" + "id_inter=" + id_inter + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", telephone=" + telephone + ", poste=" + poste + '}';
     }
     
     public String concat(){
-        return id_inter + "/@/" + nom + "/@/" + prenom + "/@/" + email + "/@/" + telephone + "/@/" + id_typeint ;
+        return id_inter + "/@/" + nom + "/@/" + prenom + "/@/" + email + "/@/" + telephone + "/@/" + poste ;
     }
    
 

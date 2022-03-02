@@ -13,18 +13,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import models.Billet;
+import util.DataSource;
 
 /**
  *
  * @author 21624
  */
 public class ServiceBillet implements I_billet {
-    Connection cnx = utils.MaConnexion.getInstance().getCnx();
+    Connection cnx = DataSource.getInstance().getCnx();
 
     @Override
     public boolean ajouterBillet(Billet B) {
         
-            Connection cnx = utils.MaConnexion.getInstance().getCnx();
+
 
         String request ="INSERT INTO `billets`(`id_event`, `prix`,`date_achat`) VALUES ('"+B.getId_event()+"',"+B.getPrix()+",NOW())";
            try {
@@ -50,7 +51,7 @@ public class ServiceBillet implements I_billet {
 
             //SOB HEDHA FI HEDHA
             while(rs.next()){
-             billets.add(new Billet(rs.getInt("id_billet"),rs.getInt("id_event"),rs.getFloat("prix"),rs.getString("date_achat")));
+             billets.add(new Billet(rs.getInt("id_billet"),rs.getInt("id_event"),rs.getFloat("prix"),rs.getDate("date_achat")));
             }
 
         } catch (SQLException e) {
@@ -62,7 +63,7 @@ public class ServiceBillet implements I_billet {
 
     @Override
     public boolean modifierEvenement(Billet B) {
- String req = "UPDATE `billet` SET `id_event`='"+B.getId_event()+"',`prix`="+B.getPrix()+" ,`date_achat`='"+B.getDate_achat()+"' WHERE id_inter = "+B.getId_billet()+"";
+ String req = "UPDATE `billets` SET `id_event`='"+B.getId_event()+"',`prix`="+B.getPrix()+" ,`date_achat`='"+B.getDate_achat()+"' WHERE id_billet = "+B.getId_billet()+"";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(req) == 1)
@@ -75,7 +76,20 @@ public class ServiceBillet implements I_billet {
 
     @Override
     public boolean supprimerEvenement(Billet B) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+ String req = "DELETE FROM `billets` WHERE id_billet = "+B.getId_billet()+" ";
+
+        try {
+            Statement st = cnx.createStatement();
+            if (st.executeUpdate(req) == 1)
+                return true;
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     }
     
-}
+

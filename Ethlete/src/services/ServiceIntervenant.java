@@ -16,17 +16,18 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import models.Intervenant;
+import util.DataSource;
 
 /**
  *
  * @author 21624
  */
 public class ServiceIntervenant implements I_intervenant{
-    Connection cnx = utils.MaConnexion.getInstance().getCnx();
+    Connection cnx = DataSource.getInstance().getCnx();
 
     @Override
     public boolean ajouterIntervenant(Intervenant I) {
-        String request ="INSERT INTO `intervenant`(`nom`, `prenom`, `email`, `telephone` , `id_typeint`) VALUES ('"+I.getNom()+"','"+I.getPrenom()+"','"+I.getEmail()+"',"+I.getTelephone()+" ,"+I.getId_typeint()+")";
+        String request ="INSERT INTO `intervenant`(`nom`, `prenom`, `email`, `telephone` , `id_typeint`) VALUES ('"+I.getNom()+"','"+I.getPrenom()+"','"+I.getEmail()+"',"+I.getTelephone()+" ,'"+I.getPoste()+"')";
            try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(request) == 1)
@@ -52,7 +53,7 @@ public class ServiceIntervenant implements I_intervenant{
 
             //SOB HEDHA FI HEDHA
             while(rs.next()){
-                intervenants.add(new Intervenant(rs.getInt("id_inter"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getInt("telephone"),rs.getInt("id_typeint")));
+                intervenants.add(new Intervenant(rs.getInt("id_inter"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getInt("telephone"),rs.getString("id_typeint")));
             }
 
         } catch (SQLException e) {
@@ -66,7 +67,7 @@ public class ServiceIntervenant implements I_intervenant{
 
     @Override
     public boolean modifierIntervenant(Intervenant I) {
-           String req = "UPDATE `intervenant` SET `nom`='"+I.getNom()+"',`prenom`='"+I.getPrenom()+"',`email`='"+I.getEmail()+"',`telephone`="+I.getTelephone()+" ,`id_typeint`='"+I.getId_typeint()+"' WHERE id_inter = "+I.getId_inter()+"";
+           String req = "UPDATE `intervenant` SET `nom`='"+I.getNom()+"',`prenom`='"+I.getPrenom()+"',`email`='"+I.getEmail()+"',`telephone`="+I.getTelephone()+" ,`id_typeint`='"+I.getPoste()+"' WHERE id_inter = "+I.getId_inter()+"";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(req) == 1)
@@ -103,7 +104,7 @@ String req = "DELETE FROM `intervenant` WHERE id_inter = "+I.getId_inter()+" ";
     List<Intervenant> strList = initialList.stream()
                            .map( Intervenant::concat )
                            .filter(pt -> pt.toLowerCase().contains(input.toLowerCase()))
-                           .map(pt -> new Intervenant(Integer.parseInt(pt.split("/@/")[0]),pt.split("/@/")[1],pt.split("/@/")[2],pt.split("/@/")[3],Integer.parseInt(pt.split("/@/")[4]),Integer.parseInt(pt.split("/@/")[5])))
+                           .map(pt -> new Intervenant(Integer.parseInt(pt.split("/@/")[0]),pt.split("/@/")[1],pt.split("/@/")[2],pt.split("/@/")[3],Integer.parseInt(pt.split("/@/")[4]),(pt.split("/@/")[5])))
                            .collect( Collectors.toList() );
         
         return strList;

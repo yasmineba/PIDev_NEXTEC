@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="494.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ParticipationController">
+     <children>
+       <Pane prefHeight="55.0" prefWidth="1102.0" style="-fx-background-color: #2D75E8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="110.0" layoutY="5.0" text="Gestion De Participation" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+          
+         </children>
+      </Pane>
+
+
+     
+      
+
+      
+      <TableView fx:id="formations" layoutX="68.0" layoutY="57.0" prefHeight="271.0" prefWidth="551.0">
+         <columns>
+                     <!--<TableColumn fx:id="id_formation" prefWidth="109.0" text="ID" visible="true" />-->
+
+            <TableColumn fx:id="nom" prefWidth="109.0" text="Nom" />
+            <TableColumn fx:id="debut" prefWidth="116.0" text="Date de début" />
+            <TableColumn fx:id="fin" prefWidth="98.0" text="Date de fin" />
+                     <TableColumn fx:id="dis" prefWidth="137.0" text="Dispositif" />
+            <TableColumn fx:id="prog" prefWidth="92.7999267578125" text="programme" />
+
+
+         </columns>
+      </TableView>
+      
+      
+      <Button fx:id="participer" layoutX="649.0" layoutY="177.0" mnemonicParsing="false" onAction="#participerForm" text="Participer" />
+      <ComboBox fx:id="filtrer" layoutX="649.0" layoutY="270.0" onAction="#filter" prefWidth="150.0" promptText="Filtrer par" />
+      <Button fx:id="supp" disable="true" layoutX="646.0" layoutY="86.0" mnemonicParsing="false" onAction="#supprimerpart" text="SupprimerParticipation" textFill="#c61818" />
+      <TextArea fx:id="comment" layoutX="428.0" layoutY="357.0" prefHeight="68.0" prefWidth="172.0" />
+      <Label layoutX="314.0" layoutY="381.0" text="Commenter" />
+      <Button fx:id="comments" layoutX="617.0" layoutY="392.0" mnemonicParsing="false" onAction="#commenter" text="commenter" />
+      <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="20.0" layoutY="514.0" onAction="#retour" ripplerFill="#c33535" text="&lt;----" textOverrun="CENTER_ELLIPSIS" />
+     </children>
+</AnchorPane>
