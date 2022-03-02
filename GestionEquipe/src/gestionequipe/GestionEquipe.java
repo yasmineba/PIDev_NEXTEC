@@ -5,11 +5,11 @@
  */
 package gestionequipe;
 
-import COM.PIDEV.service.ServiceAvis;
-import COM.PIDEV.service.ServiceEquipe;
-import COM.PIDEV.service.ServiceInvitation;
-import COM.PIDEV.models.Equipe;
-import COM.PIDEV.models.Invitation;
+import services.ServiceAvis;
+import services.ServiceEquipe;
+import services.ServiceInvitation;
+import models.Equipe;
+import models.Invitation;
 
 /**
  *
@@ -25,11 +25,10 @@ public class GestionEquipe {
         
         Equipe u=new Equipe("lefriki",1);
        // us.ajouter(u);
-        ServiceInvitation ss=new ServiceInvitation();
+        ServiceAvis ss=new ServiceAvis();
                 ServiceAvis ss1=new ServiceAvis();
        // System.out.println(us.paginateEquipes(1, 1));
         System.out.println(ss.afficher());
-
         //System.out.println(ss1.sortBynote());
     
     }

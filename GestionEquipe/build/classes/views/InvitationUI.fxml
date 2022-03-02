@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="COM.PIDEV.view.InvitationUIController">
+     <children>
+      <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="878.0">
+         <children>
+            <Label layoutX="32.0" layoutY="114.0" text="nom equipe" />
+            <Button layoutX="235.0" layoutY="297.0" mnemonicParsing="false" onAction="#ajouter_inv" text="envoyer" />
+            <TableView fx:id="invitations" layoutX="330.0" layoutY="57.0" prefHeight="319.0" prefWidth="286.0">
+               <columns>
+                  <TableColumn fx:id="etat" prefWidth="285.0" text="Etat" />
+               </columns>
+            </TableView>
+            <Button layoutX="97.0" layoutY="297.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+            <ComboBox fx:id="list" layoutX="141.0" layoutY="120.0" prefWidth="150.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

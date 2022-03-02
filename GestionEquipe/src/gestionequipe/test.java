@@ -7,12 +7,9 @@ package gestionequipe;
 
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -23,7 +20,7 @@ public class test extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("../COM/PIDEV/view/GestionAvis.fxml"));
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("../COM/PIDEV/view/GestionEquipe.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         
