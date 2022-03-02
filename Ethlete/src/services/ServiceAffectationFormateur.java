@@ -65,7 +65,7 @@ Properties props = new Properties();
           Session session = Session.getDefaultInstance(props,    
            new javax.mail.Authenticator() {    
            protected PasswordAuthentication getPasswordAuthentication() {    
-           return new PasswordAuthentication("moatezoues123@gmail.com","moumou123456789");  
+           return new PasswordAuthentication("moatezoues123@gmail.com","******");  
            }    
           });    
   
