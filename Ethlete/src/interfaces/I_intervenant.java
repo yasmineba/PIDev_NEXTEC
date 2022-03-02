@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import static java.util.Collections.list;
 import java.util.List;
 import models.Intervenant;
 /**
@@ -24,4 +25,9 @@ public interface I_intervenant {
 
     //delete
     public boolean supprimerIntervenant(Intervenant I);
+    
+    
+   public List<Intervenant> rechercherIntervenant(List<Intervenant> initialList, String input);
+   public List<Intervenant> sortByNom();
+   
 }

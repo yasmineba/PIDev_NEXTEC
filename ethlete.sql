@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : Dim 20 fév. 2022 à 18:17
+-- Généré le : mer. 02 mars 2022 à 20:25
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.11
 
@@ -38,20 +38,36 @@ CREATE TABLE `affectation_formateur` (
 --
 
 INSERT INTO `affectation_formateur` (`formateur_id`, `formation_id`, `reponse`) VALUES
-(1, 2, 1),
-(1, 2, 1),
-(1, 2, 1);
+(9, 6, 1),
+(7, 6, 2),
+(1, 6, 1),
+(7, 16, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `affectation_intervenant`
+-- Structure de la table `avis`
 --
 
-CREATE TABLE `affectation_intervenant` (
-  `id_inter` int(11) NOT NULL,
-  `id_eve` int(11) NOT NULL
+CREATE TABLE `avis` (
+  `id_avis` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `note` enum('1','2','3','4','5') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `avis`
+--
+
+INSERT INTO `avis` (`id_avis`, `id_user`, `note`) VALUES
+(1, 1, '5'),
+(2, 1, '5'),
+(3, 1, '5'),
+(4, 1, '5'),
+(5, 1, '5'),
+(6, 1, '5'),
+(7, 1, '5'),
+(8, 1, '5');
 
 -- --------------------------------------------------------
 
@@ -62,9 +78,28 @@ CREATE TABLE `affectation_intervenant` (
 CREATE TABLE `billets` (
   `id_billet` int(11) NOT NULL,
   `id_event` int(11) NOT NULL,
-  `date_achat` date NOT NULL,
-  `heure_achat` date NOT NULL
+  `prix` float NOT NULL,
+  `date_achat` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categorie`
+--
+
+CREATE TABLE `categorie` (
+  `idcateg` int(11) NOT NULL,
+  `nomcateg` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `categorie`
+--
+
+INSERT INTO `categorie` (`idcateg`, `nomcateg`) VALUES
+(15, 'accessoires'),
+(16, 'accessoires');
 
 -- --------------------------------------------------------
 
@@ -73,11 +108,11 @@ CREATE TABLE `billets` (
 --
 
 CREATE TABLE `commande` (
-  `idc` int(50) NOT NULL,
-  `quantitec` int(50) NOT NULL,
-  `idf` int(11) NOT NULL,
-  `idp` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idcom` int(11) NOT NULL,
+  `idp` int(11) NOT NULL,
+  `quantite` int(11) NOT NULL,
+  `datecom` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -92,6 +127,18 @@ CREATE TABLE `commentaire` (
   `contenu` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `commentaire`
+--
+
+INSERT INTO `commentaire` (`id_commentaire`, `id_formation`, `id_participant`, `contenu`) VALUES
+(2, 6, 7, 'c nullllllll'),
+(3, 6, 9, 'chay '),
+(4, 6, 7, 'moatez'),
+(5, 6, 7, 'null'),
+(6, 6, 7, 'behya 3al5r'),
+(7, 6, 7, 'c ull');
+
 -- --------------------------------------------------------
 
 --
@@ -99,8 +146,11 @@ CREATE TABLE `commentaire` (
 --
 
 CREATE TABLE `competition` (
-  `nb_equipes` int(11) NOT NULL,
-  `id_competition` int(11) NOT NULL
+  `id_competition` int(11) NOT NULL,
+  `nb_equipe` int(11) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  `adresse` varchar(50) NOT NULL,
+  `nom` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -115,6 +165,13 @@ CREATE TABLE `equipe` (
   `id_responsable` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `equipe`
+--
+
+INSERT INTO `equipe` (`id_equipe`, `nom_equipe`, `id_responsable`) VALUES
+(2, 'lefriki11', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -126,10 +183,21 @@ CREATE TABLE `evenement` (
   `nom_event` varchar(30) NOT NULL,
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL,
-  `type` varchar(50) NOT NULL,
+  `id_typeE` varchar(50) NOT NULL,
   `id_formation` int(11) DEFAULT NULL,
-  `id_compet` int(11) NOT NULL
+  `id_inter` int(11) DEFAULT NULL,
+  `id_compet` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `evenement`
+--
+
+INSERT INTO `evenement` (`id_event`, `nom_event`, `date_debut`, `date_fin`, `id_typeE`, `id_formation`, `id_inter`, `id_compet`) VALUES
+(2, 'league', '2012-02-02', '2012-02-02', 'Formation', 6, 6, NULL),
+(3, 'league1', '2012-02-02', '2012-02-02', 'Formation', 6, 6, NULL),
+(4, 'league1', '2012-02-02', '2012-02-02', 'Formation', 6, 6, NULL),
+(5, 'league1', '2012-02-02', '2012-02-02', 'Formation', 6, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -140,8 +208,8 @@ CREATE TABLE `evenement` (
 CREATE TABLE `formation` (
   `id_formation` int(11) NOT NULL,
   `nom_formation` varchar(30) NOT NULL,
-  `date_debut` varchar(10) NOT NULL,
-  `date_fin` varchar(10) NOT NULL,
+  `date_debut` date NOT NULL,
+  `date_fin` date NOT NULL,
   `dispositif` enum('En_Ligne','Presentiel') NOT NULL,
   `programme` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -151,8 +219,10 @@ CREATE TABLE `formation` (
 --
 
 INSERT INTO `formation` (`id_formation`, `nom_formation`, `date_debut`, `date_fin`, `dispositif`, `programme`) VALUES
-(2, 'form1', '15/02/2022', '15/02/2022', 'En_Ligne', 'moatez111111111111111111111111111'),
-(3, 'aorm2', '10/02/2022', '15/02/2022', 'Presentiel', 'moatez111111111111111111111111111');
+(6, 'formation33', '2022-02-03', '2022-02-17', 'Presentiel', 'qqqq'),
+(10, 'form3', '2012-02-02', '2012-02-02', 'En_Ligne', 'moatez111111111111111111111111111'),
+(14, 'formation2', '2022-02-03', '2022-02-17', 'Presentiel', 'qqqq'),
+(16, 'formation356', '2022-02-03', '2022-02-17', 'Presentiel', 'qqqq');
 
 -- --------------------------------------------------------
 
@@ -166,8 +236,9 @@ CREATE TABLE `fournisseur` (
   `prenomf` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `telf` int(50) NOT NULL,
-  `adresse` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `adresse` varchar(50) NOT NULL,
+  `idp` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -179,10 +250,18 @@ CREATE TABLE `intervenant` (
   `id_inter` int(11) NOT NULL,
   `nom` varchar(30) NOT NULL,
   `prenom` varchar(30) NOT NULL,
-  `poste` enum('invité','sponsor','organisateur') NOT NULL,
   `email` varchar(50) NOT NULL,
-  `telephone` varchar(8) NOT NULL
+  `telephone` varchar(8) NOT NULL,
+  `id_typeint` enum('invité','sponsor','organisateur') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `intervenant`
+--
+
+INSERT INTO `intervenant` (`id_inter`, `nom`, `prenom`, `email`, `telephone`, `id_typeint`) VALUES
+(2, 'Ben 55Abda', 'Yasmine', 'benabda@gmail.com', '27156643', 'sponsor'),
+(3, 'Ben 55Abda', 'Yasmine', 'benabda@gmail.com', '27156643', 'sponsor');
 
 -- --------------------------------------------------------
 
@@ -192,21 +271,31 @@ CREATE TABLE `intervenant` (
 
 CREATE TABLE `invitation` (
   `id_invitation` int(11) NOT NULL,
-  `etat` varchar(50) NOT NULL,
+  `etat` enum('accepté','non_consulté','refusé') NOT NULL,
   `id_eq` int(11) DEFAULT NULL,
   `id_joueur` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `invitation`
+--
+
+INSERT INTO `invitation` (`id_invitation`, `etat`, `id_eq`, `id_joueur`) VALUES
+(1, 'non_consulté', 2, 1),
+(2, 'non_consulté', 2, 1),
+(3, 'non_consulté', 2, 1),
+(4, 'non_consulté', 2, 1);
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `journée`
+-- Structure de la table `journe`
 --
 
-CREATE TABLE `journée` (
-  `id_journée` int(11) NOT NULL,
-  `numJournée` int(11) NOT NULL,
-  `date_journée` date NOT NULL,
+CREATE TABLE `journe` (
+  `id_journe` int(11) NOT NULL,
+  `numJourne` int(11) NOT NULL,
+  `date_journe` varchar(255) NOT NULL,
   `id_competition` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -217,10 +306,10 @@ CREATE TABLE `journée` (
 --
 
 CREATE TABLE `match` (
-  `Equipe1` int(11) NOT NULL,
-  `Equipe2` int(11) NOT NULL,
-  `etat` enum('en cours','fini','non commencé') NOT NULL DEFAULT 'non commencé',
-  `id_journée` int(11) NOT NULL
+  `id_match` int(11) NOT NULL,
+  `Equipe1` int(255) NOT NULL,
+  `Equipe2` int(255) NOT NULL,
+  `etat` enum('en cours','fini','non commencé') NOT NULL DEFAULT 'non commencé'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -232,7 +321,7 @@ CREATE TABLE `match` (
 CREATE TABLE `participation` (
   `id_participant` int(11) NOT NULL,
   `formation_id` int(11) NOT NULL,
-  `date_participation` varchar(10) NOT NULL
+  `date_participation` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -240,8 +329,10 @@ CREATE TABLE `participation` (
 --
 
 INSERT INTO `participation` (`id_participant`, `formation_id`, `date_participation`) VALUES
-(1, 3, ''),
-(3, 2, '');
+(9, 6, '2022-02-02'),
+(6, 6, '2022-02-10'),
+(7, 10, '2022-02-28'),
+(7, 14, '2022-03-01');
 
 -- --------------------------------------------------------
 
@@ -251,10 +342,28 @@ INSERT INTO `participation` (`id_participant`, `formation_id`, `date_participati
 
 CREATE TABLE `produit` (
   `idp` int(11) NOT NULL,
-  `nomp` varchar(50) NOT NULL,
-  `categorie` varchar(50) NOT NULL,
-  `prix` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `nomp` varchar(40) NOT NULL,
+  `prix` float NOT NULL,
+  `idcateg` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `produit`
+--
+
+INSERT INTO `produit` (`idp`, `nomp`, `prix`, `idcateg`) VALUES
+(51, 'necklace', 78, 15);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `raison`
+--
+
+CREATE TABLE `raison` (
+  `idRaison` int(11) NOT NULL,
+  `raisontxt` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -265,8 +374,10 @@ CREATE TABLE `produit` (
 CREATE TABLE `reclamation` (
   `idr` int(11) NOT NULL,
   `contenu` text NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL,
+  `daterec` date NOT NULL,
+  `idRaison` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -314,8 +425,11 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `email`, `telephone`, `adresse`, `username`, `password`, `genre`, `role`, `id_equipe`) VALUES
-(1, 'moatez', 'moatez', '2022-02-02', 'moatez@gmail.com', '12345678', 'moatez', NULL, NULL, 'homme', NULL, NULL),
-(3, 'moatez', 'moatez', '2022-02-09', 'moatez@gmail.com', '12345678', 'moatez', NULL, NULL, 'homme', NULL, NULL);
+(1, 'moatez', 'moatez', '2022-02-02', 'moatez.oueslati@esprit.tn', '12345678', 'moatez', 'a', NULL, 'homme', 'ROLE_FORMATEUR', NULL),
+(3, 'moatez', 'moatez', '2022-02-09', 'moatez.oueslati@esprit.tn', '12345678', 'moatez', 'a', NULL, 'homme', 'ROLE_FORMATEUR', NULL),
+(6, 'laamiri', 'anas', '2022-02-09', 'moatez@gmail.com', '12345678', 'moatez', 'a', NULL, 'homme', 'ROLE_FORMATEUR', NULL),
+(7, 'yasmine.benabda@esprit.tn', 'yasmine.benabda@esprit.tn', '2022-02-02', 'yasmine.benabda@esprit.tn', '12345678', 'yasmine.benabda@esprit.tn', 'yasmine.benabda@esprit.tn', 'yasmine.benabda@esprit.tn', 'homme', 'ROLE_FORMATEUR', NULL),
+(9, 'dahmoun', 'dahmoun', '2022-02-16', 'dahmoun', '45698721', 'dahmoun', 'a', NULL, 'homme', 'ROLE_FORMATEUR', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -330,11 +444,11 @@ ALTER TABLE `affectation_formateur`
   ADD KEY `fk_reponse` (`reponse`);
 
 --
--- Index pour la table `affectation_intervenant`
+-- Index pour la table `avis`
 --
-ALTER TABLE `affectation_intervenant`
-  ADD KEY `fk_inter` (`id_inter`),
-  ADD KEY `fk_form` (`id_eve`);
+ALTER TABLE `avis`
+  ADD PRIMARY KEY (`id_avis`),
+  ADD KEY `fk_user` (`id_user`);
 
 --
 -- Index pour la table `billets`
@@ -344,20 +458,25 @@ ALTER TABLE `billets`
   ADD KEY `fk_billet_evenement` (`id_event`);
 
 --
+-- Index pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`idcateg`);
+
+--
 -- Index pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD PRIMARY KEY (`idc`),
-  ADD KEY `fk_fourn` (`idf`),
-  ADD KEY `fk_prod` (`idp`);
+  ADD PRIMARY KEY (`idcom`),
+  ADD KEY `idp` (`idp`);
 
 --
 -- Index pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
   ADD PRIMARY KEY (`id_commentaire`),
-  ADD KEY `fk_part` (`id_participant`),
-  ADD KEY `fk_form` (`id_formation`);
+  ADD KEY `fk_form` (`id_formation`),
+  ADD KEY `fk_part` (`id_participant`);
 
 --
 -- Index pour la table `competition`
@@ -390,7 +509,9 @@ ALTER TABLE `formation`
 -- Index pour la table `fournisseur`
 --
 ALTER TABLE `fournisseur`
-  ADD PRIMARY KEY (`idf`);
+  ADD PRIMARY KEY (`idf`),
+  ADD UNIQUE KEY `telf` (`telf`,`adresse`),
+  ADD KEY `idp` (`idp`);
 
 --
 -- Index pour la table `intervenant`
@@ -407,17 +528,17 @@ ALTER TABLE `invitation`
   ADD KEY `fk_joueur` (`id_joueur`);
 
 --
--- Index pour la table `journée`
+-- Index pour la table `journe`
 --
-ALTER TABLE `journée`
-  ADD PRIMARY KEY (`id_journée`),
-  ADD KEY `fk_jour_com` (`id_competition`);
+ALTER TABLE `journe`
+  ADD PRIMARY KEY (`id_journe`),
+  ADD KEY `fk_idcj` (`id_competition`);
 
 --
 -- Index pour la table `match`
 --
 ALTER TABLE `match`
-  ADD KEY `fk_jour` (`id_journée`),
+  ADD PRIMARY KEY (`id_match`),
   ADD KEY `fk_eq1` (`Equipe1`),
   ADD KEY `fk_eq2` (`Equipe2`);
 
@@ -432,14 +553,23 @@ ALTER TABLE `participation`
 -- Index pour la table `produit`
 --
 ALTER TABLE `produit`
-  ADD PRIMARY KEY (`idp`);
+  ADD PRIMARY KEY (`idp`),
+  ADD KEY `idcateg` (`idcateg`);
+
+--
+-- Index pour la table `raison`
+--
+ALTER TABLE `raison`
+  ADD PRIMARY KEY (`idRaison`),
+  ADD KEY `raisontxt` (`raisontxt`);
 
 --
 -- Index pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
   ADD PRIMARY KEY (`idr`),
-  ADD KEY `id` (`id`);
+  ADD KEY `id` (`id`),
+  ADD KEY `idRaison` (`idRaison`);
 
 --
 -- Index pour la table `reponse`
@@ -459,22 +589,34 @@ ALTER TABLE `utilisateur`
 --
 
 --
+-- AUTO_INCREMENT pour la table `avis`
+--
+ALTER TABLE `avis`
+  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT pour la table `billets`
 --
 ALTER TABLE `billets`
-  MODIFY `id_billet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_billet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `idcateg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `idc` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcom` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  MODIFY `id_commentaire` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_commentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `competition`
@@ -486,19 +628,19 @@ ALTER TABLE `competition`
 -- AUTO_INCREMENT pour la table `equipe`
 --
 ALTER TABLE `equipe`
-  MODIFY `id_equipe` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_equipe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `formation`
 --
 ALTER TABLE `formation`
-  MODIFY `id_formation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_formation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `fournisseur`
@@ -507,10 +649,46 @@ ALTER TABLE `fournisseur`
   MODIFY `idf` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `intervenant`
+--
+ALTER TABLE `intervenant`
+  MODIFY `id_inter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `invitation`
+--
+ALTER TABLE `invitation`
+  MODIFY `id_invitation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `journe`
+--
+ALTER TABLE `journe`
+  MODIFY `id_journe` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `match`
+--
+ALTER TABLE `match`
+  MODIFY `id_match` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `idp` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT pour la table `raison`
+--
+ALTER TABLE `raison`
+  MODIFY `idRaison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `reclamation`
+--
+ALTER TABLE `reclamation`
+  MODIFY `idr` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `reponse`
@@ -522,7 +700,7 @@ ALTER TABLE `reponse`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Contraintes pour les tables déchargées
@@ -532,36 +710,34 @@ ALTER TABLE `utilisateur`
 -- Contraintes pour la table `affectation_formateur`
 --
 ALTER TABLE `affectation_formateur`
-  ADD CONSTRAINT `fk_formateur` FOREIGN KEY (`formateur_id`) REFERENCES `utilisateur` (`id`),
-  ADD CONSTRAINT `fk_formation` FOREIGN KEY (`formation_id`) REFERENCES `formation` (`id_formation`),
-  ADD CONSTRAINT `fk_reponse` FOREIGN KEY (`reponse`) REFERENCES `reponse` (`id_reponse`);
+  ADD CONSTRAINT `fk_formateur` FOREIGN KEY (`formateur_id`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_formation` FOREIGN KEY (`formation_id`) REFERENCES `formation` (`id_formation`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_reponse` FOREIGN KEY (`reponse`) REFERENCES `reponse` (`id_reponse`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `affectation_intervenant`
+-- Contraintes pour la table `avis`
 --
-ALTER TABLE `affectation_intervenant`
-  ADD CONSTRAINT `fk_env` FOREIGN KEY (`id_eve`) REFERENCES `evenement` (`id_event`),
-  ADD CONSTRAINT `fk_int` FOREIGN KEY (`id_inter`) REFERENCES `intervenant` (`id_inter`);
+ALTER TABLE `avis`
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `billets`
 --
 ALTER TABLE `billets`
-  ADD CONSTRAINT `fk_billet_event` FOREIGN KEY (`id_event`) REFERENCES `evenement` (`id_event`);
+  ADD CONSTRAINT `fk_billet_event` FOREIGN KEY (`id_event`) REFERENCES `evenement` (`id_event`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD CONSTRAINT `fk_fourn` FOREIGN KEY (`idf`) REFERENCES `fournisseur` (`idf`),
-  ADD CONSTRAINT `fk_prod` FOREIGN KEY (`idp`) REFERENCES `produit` (`idp`);
+  ADD CONSTRAINT `fk_commande` FOREIGN KEY (`idp`) REFERENCES `produit` (`idp`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  ADD CONSTRAINT `fk_form` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id_formation`),
-  ADD CONSTRAINT `fk_part` FOREIGN KEY (`id_participant`) REFERENCES `utilisateur` (`id`);
+  ADD CONSTRAINT `fk_form` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id_formation`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_part` FOREIGN KEY (`id_participant`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `equipe`
@@ -573,8 +749,14 @@ ALTER TABLE `equipe`
 -- Contraintes pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  ADD CONSTRAINT `fk_comp` FOREIGN KEY (`id_compet`) REFERENCES `competition` (`id_competition`),
-  ADD CONSTRAINT `fk_formationn` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id_formation`);
+  ADD CONSTRAINT `fk_comp` FOREIGN KEY (`id_compet`) REFERENCES `competition` (`id_competition`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_formationn` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id_formation`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `fournisseur`
+--
+ALTER TABLE `fournisseur`
+  ADD CONSTRAINT `fk_fournisseur` FOREIGN KEY (`idp`) REFERENCES `produit` (`idp`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `invitation`
@@ -584,24 +766,37 @@ ALTER TABLE `invitation`
   ADD CONSTRAINT `fk_joueur` FOREIGN KEY (`id_joueur`) REFERENCES `utilisateur` (`id`);
 
 --
--- Contraintes pour la table `journée`
+-- Contraintes pour la table `journe`
 --
-ALTER TABLE `journée`
-  ADD CONSTRAINT `fk_jour_com` FOREIGN KEY (`id_competition`) REFERENCES `competition` (`id_competition`);
+ALTER TABLE `journe`
+  ADD CONSTRAINT `fk_idcj` FOREIGN KEY (`id_competition`) REFERENCES `competition` (`id_competition`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `match`
 --
 ALTER TABLE `match`
-  ADD CONSTRAINT `fk_eq1` FOREIGN KEY (`Equipe1`) REFERENCES `equipe` (`id_equipe`),
-  ADD CONSTRAINT `fk_eq2` FOREIGN KEY (`Equipe2`) REFERENCES `equipe` (`id_equipe`);
+  ADD CONSTRAINT `fk_eq1` FOREIGN KEY (`Equipe1`) REFERENCES `equipe` (`id_equipe`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_eq2` FOREIGN KEY (`Equipe2`) REFERENCES `equipe` (`id_equipe`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `participation`
 --
 ALTER TABLE `participation`
-  ADD CONSTRAINT `fk_formation_part` FOREIGN KEY (`formation_id`) REFERENCES `formation` (`id_formation`),
-  ADD CONSTRAINT `fk_participant` FOREIGN KEY (`id_participant`) REFERENCES `utilisateur` (`id`);
+  ADD CONSTRAINT `fk_formation_part` FOREIGN KEY (`formation_id`) REFERENCES `formation` (`id_formation`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_participant` FOREIGN KEY (`id_participant`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `produit`
+--
+ALTER TABLE `produit`
+  ADD CONSTRAINT `fk_produit` FOREIGN KEY (`idcateg`) REFERENCES `categorie` (`idcateg`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `reclamation`
+--
+ALTER TABLE `reclamation`
+  ADD CONSTRAINT `fk_raison` FOREIGN KEY (`idRaison`) REFERENCES `raison` (`idRaison`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_user_rec` FOREIGN KEY (`id`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `utilisateur`

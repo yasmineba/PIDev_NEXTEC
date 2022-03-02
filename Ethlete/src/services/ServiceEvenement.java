@@ -8,11 +8,13 @@ package services;
 import java.util.ArrayList;
 import interfaces.I_evenement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import models.Evenement;
+import util.DataSource;
 
 /**
  *
@@ -20,16 +22,57 @@ import models.Evenement;
  */
 public class ServiceEvenement implements I_evenement{
      //var
-    Connection cnx = utils.MaConnexion.getInstance().getCnx();
+    Connection cnx = DataSource.getInstance().getCnx();
 
+    
     @Override
-    public boolean ajouterEvenement(Evenement E) {
-        String request = "INSERT INTO `evenement`(`nom_event`, `date_debut`, `date_fin`, `type`) VALUES ('"+E.getNom_event()+"',"+E.getDate_debut()+","+E.getDate_fin()+",'"+E.getType()+"')";
+    public boolean ajouterEvenement(Evenement t) {
+         String request;
+                PreparedStatement pst=null;
+
+      // request = "INSERT INTO `evenement`(`nom_event`, `date_debut`, `date_fin`,  `id_typeE` , `id_formation` ,`id_inter` ,`id_compet` ) VALUES ('"+E.getNom_event()+"',"+E.getDate_debut()+","+E.getDate_fin()+",'"+E.getTypeE()+"',"+E.getId_formation()+","+E.getId_inter()+" ,"+null+")";
+      
+        
+        
         try {
-            Statement st = cnx.createStatement();
-            if (st.executeUpdate(request) == 1)
-                    return true;
-            return false;
+            String req1;
+     
+   if(t.getTypeE().equals("Formation"))
+   {
+       req1 = "INSERT INTO evenement (nom_event,date_debut,date_fin,id_typeE,id_formation,id_inter) VALUES (?,?,"
+                    + "?,?,?,?)";
+        pst = cnx.prepareStatement(req1); 
+       pst.setString(1,t.getNom_event());
+
+              pst.setDate(2,   t.getDate_debut());          
+            pst.setDate(3,   t.getDate_fin());
+
+            pst.setString(4, t.getTypeE());
+            pst.setInt(5,t.getId_formation());
+                        pst.setInt(6,t.getId_inter());
+   
+   }
+   else 
+   {  req1 = "INSERT INTO evenement (nom_event,date_debut,date_fin,id_typeE,id_compet,id_inter) VALUES (?,?,"
+                    + "?,?,?,?)";
+        pst = cnx.prepareStatement(req1); 
+       pst.setString(1,t.getNom_event());
+
+              pst.setDate(2,   t.getDate_debut());          
+            pst.setDate(3,   t.getDate_fin());
+
+            pst.setString(4, t.getTypeE());
+            pst.setInt(5,t.getId_compet());
+                        pst.setInt(6,t.getId_inter());
+
+   }
+    pst.executeUpdate();
+System.out.println("Evenement ajouté");
+          
+           
+           
+                                       return true;
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,7 +95,7 @@ public class ServiceEvenement implements I_evenement{
 
             //SOB HEDHA FI HEDHA
             while(rs.next()){
-                evenements.add(new Evenement(rs.getInt("id_event"),rs.getString("nom_event"),rs.getDate("date_debut"),rs.getDate("date_fin"),rs.getString("type")));
+                evenements.add(new Evenement(rs.getInt("id_event"),rs.getString("nom_event"),rs.getDate("date_debut"),rs.getDate("date_fin"),rs.getString("id_typeE"),rs.getInt("id_formation"),rs.getInt("id_inter"),rs.getInt("id_compet")));
             }
 
         } catch (SQLException e) {
@@ -65,7 +108,7 @@ public class ServiceEvenement implements I_evenement{
     @Override
     public boolean modifierEvenement(Evenement E) {
 
-           String req = "UPDATE `evenement` SET `nom_event`='"+E.getNom_event()+"',`date_debut`='"+E.getDate_debut()+"',`date_fin`="+E.getDate_fin()+",`type`='"+E.getType()+"' WHERE id = "+E.getId_event()+" ";
+           String req = "UPDATE `evenement` SET `nom_event`='"+E.getNom_event()+"',`date_debut`='"+E.getDate_debut()+"',`date_fin`='"+E.getDate_fin()+"',`id_typeE`='"+E.getTypeE()+"',`id_inter`="+E.getId_inter()+" WHERE id_event = "+E.getId_event()+" ";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(req) == 1)
@@ -79,7 +122,7 @@ public class ServiceEvenement implements I_evenement{
 
     @Override
     public boolean supprimerEvenement(Evenement E) {
-   String req = "DELETE FROM `evenement` WHERE id = "+E.getId_event()+" ";
+   String req = "DELETE FROM `evenement` WHERE id_event = "+E.getId_event()+" ";
 
         try {
             Statement st = cnx.createStatement();

@@ -22,10 +22,26 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 import models.AffectationFormateur;
+import models.Avis;
+import models.Billet;
+import models.Categorie;
 import models.Commentaire;
+import models.Equipe;
+import models.Evenement;
+import models.Intervenant;
+import models.Invitation;
+import models.Produit;
 import models.Reponse_Form;
+import services.ServiceAvis;
+import services.ServiceBillet;
 import services.ServiceCommentaireImp;
+import services.ServiceEquipe;
+import services.ServiceEvenement;
+import services.ServiceIntervenant;
+import services.ServiceInvitation;
 import services.ServiceReponseImp;
+import services.ServicesCategorie;
+import services.ServicesProduit;
 
 /**
  *
@@ -109,7 +125,59 @@ ServiceAffectationFormateur af=new ServiceAffectationFormateur();
  //d1.affectation_formateur(f, u);
 //System.out.println(d1.consulter_formateurs_par_formation());
  //s1.imprimer_liste_participant_par_form();
+/*ServiceBillet sb=new ServiceBillet();
+ServiceEvenement se=new ServiceEvenement();
+ServiceIntervenant si=new ServiceIntervenant();
+Evenement E = new Evenement(1,"lea2gue1",Date.valueOf("2012-02-02"),Date.valueOf("2012-02-02"),"Formation",6,6,0);
+//se.ajouterEvenement(E);
+//se.modifierEvenement(E);
+//se.supprimerEvenement(E);
+ Billet B = new Billet(3,2,4.5f,Date.valueOf("2021-03-02"));
+  Billet B1 = new Billet(2,2,4.5f,Date.valueOf("2021-03-02"));
 
+ //sb.ajouterBillet(B);
+ //sb.modifierEvenement(B);
+ sb.supprimerEvenement(B);
+ Intervenant I = new Intervenant(1,"Ben 55Abda","Yasmine","benabda@gmail.com",27156643,"sponsor");
+ 
+si.ajouterIntervenant(I);
+//si.modifierIntervenant(I);
+si.supprimerIntervenant(I);*/
+ ServiceEquipe us=new ServiceEquipe();
+
+        Equipe u1=new Equipe(1,"lefriki121",1);
+        //us.ajouter(u1);
+        us.supprimer(1);
+       // us.ajouter(u);
+        ServiceAvis ss=new ServiceAvis();
+                ServiceAvis ss1=new ServiceAvis();
+                Avis av=new Avis(1,5);
+                ss1.ajouter(av);
+       // System.out.println(us.paginateEquipes(1, 1));
+        System.out.println(ss.afficher());
+        //System.out.println(ss1.sortBynote());
+        ServiceInvitation si=new ServiceInvitation();
+        Invitation i=new Invitation("non_consulté",2,1);
+        si.ajouter(i);
+         ServicesProduit sp1 = new ServicesProduit();
+          Categorie cg1 = new Categorie("accessoires");
+       ServicesCategorie scg  = new ServicesCategorie();
+      // scg.ajouterCategorie(cg1);
+      //scg.ajouterCategorie(cg1);  // ajouter
+      
+      
+      //System.out.println(scg.afficherCategorie());
+      
+      Categorie cg2 = new Categorie(3,"Bureatique");
+       //Produit p1 = new Produit("bracelet",15,8);
+      
+       //sp.ajouterProduit(p1);  // ajouter
+       
+       
+       //System.out.println(sp.afficherProduits());
+       
+         Produit p2 = new Produit("necklace",78,15);
+         sp1.ajouterProduit(p2);
 
     }
     
