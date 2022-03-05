@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="654.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GererAffController">
+<AnchorPane id="AnchorPane" prefHeight="518.0" prefWidth="1281.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GererAffController">
      
    
     
@@ -22,6 +23,11 @@
                   <Font size="30.0" />
                </font>
             </Label>
+            <ImageView fitHeight="72.0" fitWidth="55.0" layoutX="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@2038022.png" />
+               </image>
+            </ImageView>
           
          </children>
       </Pane>
@@ -42,7 +48,7 @@
       
 
       
-      <TableView fx:id="formations" layoutX="594.0" layoutY="57.0" prefHeight="271.0" prefWidth="325.0">
+      <TableView fx:id="formations" layoutX="722.0" layoutY="55.0" prefHeight="271.0" prefWidth="334.0">
          <columns>
                      <!--<TableColumn fx:id="id_formation" prefWidth="109.0" text="ID" visible="true" />-->
 
@@ -56,7 +62,7 @@
          </columns>
       </TableView>
       
-          <TableView fx:id="affectations" layoutX="919.0" layoutY="57.0" prefHeight="271.0" prefWidth="116.0">
+          <TableView fx:id="affectations" layoutX="1050.0" layoutY="55.0" prefHeight="271.0" prefWidth="116.0">
          <columns>
                      <!--<TableColumn fx:id="id_formation" prefWidth="109.0" text="ID" visible="true" />-->
 
@@ -68,17 +74,23 @@
          </columns>
       </TableView>
       
-      <Text layoutX="24.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les Formateurs" />
-      <Text layoutX="472.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les Formations" />
+      <Text fill="#893a89" layoutX="14.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les Formateurs" wrappingWidth="115.99998474121094">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Text>
+      <Text fill="#893a89" layoutX="585.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les Formations">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Text>
     
     
-            <Button fx:id="btnInsert" layoutX="586.0" layoutY="366.0" mnemonicParsing="false" onAction="#AjouterAffectation" prefHeight="41.0" prefWidth="181.0" text="AjouterAffectation" />
-      <Button fx:id="aff" layoutX="334.0" layoutY="371.0" mnemonicParsing="false" onAction="#afficherAff" text="Afficher Ses Affectations" />
-      <Button fx:id="suppAff" layoutX="141.0" layoutY="371.0" mnemonicParsing="false" onAction="#suppAff" text="supprimeraffectation" />
-      <Button fx:id="afficherform" layoutX="912.0" layoutY="387.0" mnemonicParsing="false" onAction="#AfficherFormation" text="Afficher Formation" />
-      <Button fx:id="AfficherFormateur" layoutX="1035.0" layoutY="78.0" mnemonicParsing="false" onAction="#AfficherFormateur" text="AfficherFormateurParFormation" />
-      <Button fx:id="afficheForm" layoutX="24.0" layoutY="351.0" mnemonicParsing="false" onAction="#afficheForm" text="AfficherFormateur" />
-      <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="47.0" layoutY="597.0" onAction="#retour" ripplerFill="#c33535" text="&lt;----" textOverrun="CENTER_ELLIPSIS" />
+            <JFXButton fx:id="btnInsert" layoutX="683.0" layoutY="351.0" mnemonicParsing="false" onAction="#AjouterAffectation" prefHeight="41.0" prefWidth="181.0" text="AjouterAffectation" />
+      <JFXButton fx:id="aff" layoutX="299.0" layoutY="351.0" mnemonicParsing="false" onAction="#afficherAff" text="Afficher Ses Affectations" />
+      <JFXButton fx:id="suppAff" layoutX="150.0" layoutY="351.0" mnemonicParsing="false" onAction="#suppAff" text="supprimeraffectation" textFill="#d05555" />
+      <JFXButton fx:id="afficherform" layoutX="1108.0" layoutY="351.0" mnemonicParsing="false" onAction="#AfficherFormation" text="Afficher Formation" />
+      <JFXButton fx:id="AfficherFormateur" layoutX="864.0" layoutY="351.0" mnemonicParsing="false" onAction="#AfficherFormateur" text="AfficherFormateurParFormation" />
+      <JFXButton fx:id="afficheForm" layoutX="24.0" layoutY="351.0" mnemonicParsing="false" onAction="#afficheForm" text="AfficherFormateur" textFill="#158039" />
+      <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="45.0" layoutY="410.0" onAction="#retour" ripplerFill="#c33535" text="&lt;----" textOverrun="CENTER_ELLIPSIS" />
 
   
    </children>

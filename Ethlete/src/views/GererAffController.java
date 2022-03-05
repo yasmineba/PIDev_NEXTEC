@@ -29,6 +29,7 @@ import javax.swing.JOptionPane;
 import models.AffectationFormateur;
 import models.Formation;
 import models.Reponse_Form;
+import models.User;
 import models.Utilisateur;
 import services.ServiceAffectationFormateur;
 import services.ServiceFormateur;
@@ -43,13 +44,13 @@ import services.ServiceReponseImp;
 public class GererAffController implements Initializable {
 
      @FXML
-    private TableView<Utilisateur> formateurs;
+    private TableView<User> formateurs;
     @FXML
-    private TableColumn<Utilisateur, String> nom_f;
+    private TableColumn<User, String> nom_f;
     @FXML
-    private TableColumn<Utilisateur, String> prenom;
+    private TableColumn<User, String> prenom;
     @FXML
-    private TableColumn<Utilisateur, String> Email;
+    private TableColumn<User, String> Email;
     @FXML
     private TableView<Formation> formations;
     @FXML
@@ -104,12 +105,12 @@ nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formati
 		formations.setItems(list);
 	}
      public void showFormateur() {
-	ObservableList<Utilisateur> list =FXCollections.observableArrayList( sf1.afficher());
+	ObservableList<User> list =FXCollections.observableArrayList( sf1.afficher());
                 //id_formation.setCellValueFactory(new PropertyValueFactory<Formation, Integer>("id_formation"));
 
-nom_f.setCellValueFactory(new PropertyValueFactory<Utilisateur, String>("nom"));
-		prenom.setCellValueFactory(new PropertyValueFactory<Utilisateur, String>("prenom"));
-                Email.setCellValueFactory(new PropertyValueFactory<Utilisateur, String>("email"));
+nom_f.setCellValueFactory(new PropertyValueFactory<User, String>("nom"));
+		prenom.setCellValueFactory(new PropertyValueFactory<User, String>("prenom"));
+                Email.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
 		//prog.setCellValueFactory(new PropertyValueFactory<Formation, String>("programme"));
 		//dis.setCellValueFactory(new PropertyValueFactory<Formation, String>("dispositif"));
 		formateurs.setItems(list);
@@ -117,7 +118,7 @@ nom_f.setCellValueFactory(new PropertyValueFactory<Utilisateur, String>("nom"));
       @FXML
     void AjouterAffectation(ActionEvent event) {
       Formation f=formations.getSelectionModel().getSelectedItem();
-      Utilisateur form=formateurs.getSelectionModel().getSelectedItem();
+      User form=formateurs.getSelectionModel().getSelectedItem();
 System.out.println(f.toString());
 System.out.println(form.toString());
 
@@ -129,9 +130,9 @@ System.out.println(form.toString());
     
     @FXML
     void afficherAff(ActionEvent event) {
-              Utilisateur u=formateurs.getSelectionModel().getSelectedItem();
+              User u=formateurs.getSelectionModel().getSelectedItem();
 
-        ObservableList<Formation> list =FXCollections.observableArrayList(af.consulter_toutes_affectation1(u.getId()));
+        ObservableList<Formation> list =FXCollections.observableArrayList(af.consulter_toutes_affectation1((int) u.getId()));
                 //id_formation.setCellValueFactory(new PropertyValueFactory<Formation, Integer>("id_formation"));
 
 nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formation"));
@@ -175,7 +176,7 @@ ServiceAffectationFormateur af=new ServiceAffectationFormateur();
     
     @FXML
     void suppAff(ActionEvent event) {
-              Utilisateur u=formateurs.getSelectionModel().getSelectedItem();
+              User u=formateurs.getSelectionModel().getSelectedItem();
 af.annuler_toute_affectation(u);
          JOptionPane.showMessageDialog(null,"succés" );
 
@@ -195,18 +196,18 @@ showFormation() ;
     
     @FXML
     void AfficherFormateur(ActionEvent event) {
-         Map<Formation,List<Utilisateur>> map1=af.consulter_formateurs_par_formation();
+         Map<Formation,List<User>> map1=af.consulter_formateurs_par_formation();
 
       Formation f=formations.getSelectionModel().getSelectedItem();
       for(Formation c:map1.keySet())
       {     if(c.getId_formation()==f.getId_formation())
  System.out.println(map1.get(c));
-      ObservableList<Utilisateur> list =FXCollections.observableArrayList( map1.get(c));
+      ObservableList<User> list =FXCollections.observableArrayList( map1.get(c));
                 //id_formation.setCellValueFactory(new PropertyValueFactory<Formation, Integer>("id_formation"));
 
-nom_f.setCellValueFactory(new PropertyValueFactory<Utilisateur, String>("nom"));
-		prenom.setCellValueFactory(new PropertyValueFactory<Utilisateur, String>("prenom"));
-                Email.setCellValueFactory(new PropertyValueFactory<Utilisateur, String>("email"));
+nom_f.setCellValueFactory(new PropertyValueFactory<User, String>("nom"));
+		prenom.setCellValueFactory(new PropertyValueFactory<User, String>("prenom"));
+                Email.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
 		//prog.setCellValueFactory(new PropertyValueFactory<Formation, String>("programme"));
 		//dis.setCellValueFactory(new PropertyValueFactory<Formation, String>("dispositif"));
 		formateurs.setItems(list);

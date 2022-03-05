@@ -20,10 +20,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Properties;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import models.User;
+import models.Utilisateur;
 import util.DataSource;
 
 /**
@@ -48,8 +59,56 @@ public class ServiceInvitation implements IService1 <Invitation> {
             
             st.executeUpdate(query1);
             System.out.println("invitation ajoutée avec success");
-        } catch (SQLException ex) {
+            
+        
+             try {     ServiceEquipe eq=new ServiceEquipe();
+            User resp=eq.find_responsable((int)t.getId_eq());
+                        String to = resp.getEmail();
+
+            Properties props = new Properties();    
+          props.put("mail.smtp.host", "smtp.gmail.com");    
+          props.put("mail.smtp.socketFactory.port", "465");    
+          props.put("mail.smtp.socketFactory.class",    
+                    "javax.net.ssl.SSLSocketFactory");    
+          props.put("mail.smtp.auth", "true");    
+          props.put("mail.smtp.port", "465");    
+          //get Session   
+          Session session = Session.getDefaultInstance(props,    
+           new javax.mail.Authenticator() {    
+           protected PasswordAuthentication getPasswordAuthentication() {    
+           return new PasswordAuthentication("anas.laamiri@esprit.tn","*****");  
+           }    
+          });    
+  
+   //Compose the message  
+    
+    MimeMessage message = new MimeMessage(session);       
+                 message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+                  message.setSubject("Nouvelle Affectation chez Ethlete");    
+           message.setText("Bonjour madame/mr"+resp.getNom()+"Bonjour,vous êtes invités à consulter votre compte vous avez une nouvelle affectation On attend toujours votre"
+                   + "réponse\n Merci");    
+           //send message  
+           Transport.send(message);  
+                   System.out.println("message sent successfully");    
+  
+     System.out.println("message sent successfully...");  
+             } 
+             
+             catch (MessagingException mex) {mex.printStackTrace();}  
+             
+          
+            
+   
+          
+          
+            
+            
+            
+            
+        }catch (SQLException ex) {
             Logger.getLogger(ServiceInvitation.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
         }}
 
     @Override

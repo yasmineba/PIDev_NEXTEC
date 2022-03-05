@@ -51,13 +51,13 @@ public class Impression implements Printable {
               
 ServiceParticipation s1= new ServiceParticipation();
 JLabel j = new JLabel();
-Map<Formation, List<Utilisateur>> map1=new HashMap();
+Map<Formation, List<User>> map1=new HashMap();
 map1=s1.consulter_particiapnts_par_formation();
                 /* On écrit une ligne en noir de taille 14 */
                 graphics.setFont(new Font("Arial", Font.PLAIN, 14));
                 graphics.setColor(Color.BLACK);
                 int i=0;
-                List<Utilisateur> list=new ArrayList();
+                List<User> list=new ArrayList();
                 for(Formation f:map1.keySet())
                 { i+=40;
                     

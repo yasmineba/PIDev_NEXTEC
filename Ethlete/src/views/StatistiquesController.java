@@ -39,6 +39,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import models.Formation;
+import models.User;
 import models.Utilisateur;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
@@ -107,11 +108,11 @@ nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formati
     private void consulterStat(ActionEvent event) throws IOException {
         
            Formation f=formations.getSelectionModel().getSelectedItem();
-            Map<Formation, List<Utilisateur>> map1=new HashMap();
+           Map<Formation, List<User>> map1=new HashMap();
 
             map1=sp.consulter_particiapnts_par_formation();
             
-        List<Utilisateur> list=map1.get(f);
+        List<User> list=map1.get(f);
             DefaultCategoryDataset dataset1=new DefaultCategoryDataset();
 for(Formation f1:map1.keySet())
     
@@ -125,13 +126,21 @@ for(Formation f1:map1.keySet())
         p.setRangeGridlinePaint(Color.gray);
         p.setBackgroundPaint(Color.white); 
        ChartPanel linechartPanel= new ChartPanel(chart1);
-          File file1=new File("./image.jpg");
+          File file1=new File("./stat.jpg");
     ChartUtilities.saveChartAsJPEG(file1, chart1, 450, 300);
       JFrame applicationFrame = new JFrame();
         applicationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //applicationFrame.getContentPane().add(viewerComponentPanel);
            
-    
+    JDialog ratioHommeFemmeJdialog = new JDialog();
+            ratioHommeFemmeJdialog.setTitle("NB Participants");
+              final ChartPanel cPanel = new ChartPanel(chart1);
+    ChartUtilities.saveChartAsJPEG(file1, chart1, 450, 300);
+
+            ratioHommeFemmeJdialog.getContentPane().add(cPanel, CENTER);
+
+            ratioHommeFemmeJdialog.pack();
+            ratioHommeFemmeJdialog.setVisible(true);
     
     }
     
@@ -139,12 +148,12 @@ for(Formation f1:map1.keySet())
     void hommefemme(ActionEvent event) throws IOException {
  int nbh=0;
         int nbf=0;
-                 Map<Formation,List<Utilisateur>> map1=sp.consulter_particiapnts_par_formation();
+                 Map<Formation,List<User>> map1=sp.consulter_particiapnts_par_formation();
 
                    Formation f=formations.getSelectionModel().getSelectedItem();
                    System.out.println(map1);
                     System.out.println(f);
-                    List <Utilisateur> list=new ArrayList();
+                    List <User> list=new ArrayList();
             for (Formation c:map1.keySet())
             {if(c.getId_formation()==f.getId_formation())
             {list= sp.chercher_part_formations_Part(f);
@@ -179,13 +188,12 @@ DefaultPieDataset pieDataset = new DefaultPieDataset();
          false);
         //JFreeChart chart2=ChartFactory.createMultiplePieChart3D("f", dataset1, TableOrder.BY_ROW, true, true, true);
      // JFreeChart chart1=ChartFactory.createStackedBarChart("Graphe 1.2 : Recouverts=f(nom)", "Nom", "Reouverts", dataset1, PlotOrientation.VERTICAL, true, true, false);
-    File file1=new File("./image4.jpeg");
+    File file1=new File("./HF+"+f.getNom_formation()+".jpeg");
     ChartUtilities.saveChartAsJPEG(file1, chart2, 450, 300);
-    ImageIcon img1=new ImageIcon("./image4.jpeg");
+    ImageIcon img1=new ImageIcon("./HF.jpeg");
   
              final JFreeChart pieChart = ChartFactory.createPieChart("Ratio H/F", pieDataset, true, false, false);
             final ChartPanel cPanel = new ChartPanel(pieChart);
-            File file2=new File("./image"+f.getNom_formation()+".jpg");
     ChartUtilities.saveChartAsJPEG(file1, pieChart, 450, 300);
 
             ratioHommeFemmeJdialog.getContentPane().add(cPanel, CENTER);
@@ -197,7 +205,64 @@ DefaultPieDataset pieDataset = new DefaultPieDataset();
 
 
       @FXML
-    void age(ActionEvent event)  {
+    void age(ActionEvent event) throws IOException  {
+        int nbjeune=0;
+        int nbagéé=0;
+        String s;
+                 Map<Formation,List<User>> map1=sp.consulter_particiapnts_par_formation();
+
+                   Formation f=formations.getSelectionModel().getSelectedItem();
+                   System.out.println(map1);
+                    System.out.println(f);
+                    List <User> list=new ArrayList();
+            for (Formation c:map1.keySet())
+            {if(c.getId_formation()==f.getId_formation())
+            {list= sp.chercher_part_formations_Part(f);
+            
+            
+            for (int i=0;i<list.size();i++)
+{ 
+    s=list.get(i).getDate_naissance().toString().substring(0, 4);
+    if(2022-Integer.valueOf(s)>30)
+    nbagéé++;
+else
+    nbjeune++;
+
+}
+            }
+
+
+            }
+                
+                
+                
+
+DefaultPieDataset pieDataset = new DefaultPieDataset();
+
+            pieDataset.setValue("Agée", nbagéé);
+            pieDataset.setValue("Jeune", nbjeune);
+        JDialog ratioHommeFemmeJdialog = new JDialog();
+            ratioHommeFemmeJdialog.setTitle("Ratio H/F");
+ JFreeChart chart2 = ChartFactory.createPieChart(      
+         "Statistiques par genre",   // chart title 
+         pieDataset,          // data    
+         true,             // include legend   
+         true, 
+         false);
+        //JFreeChart chart2=ChartFactory.createMultiplePieChart3D("f", dataset1, TableOrder.BY_ROW, true, true, true);
+     // JFreeChart chart1=ChartFactory.createStackedBarChart("Graphe 1.2 : Recouverts=f(nom)", "Nom", "Reouverts", dataset1, PlotOrientation.VERTICAL, true, true, false);
+    File file1=new File("./Age+"+f.getNom_formation()+".jpeg");
+    ChartUtilities.saveChartAsJPEG(file1, chart2, 450, 300);
+   // ImageIcon img1=new ImageIcon("./HF.jpeg");
+  
+             final JFreeChart pieChart = ChartFactory.createPieChart("Ratio H/F", pieDataset, true, false, false);
+            final ChartPanel cPanel = new ChartPanel(pieChart);
+    ChartUtilities.saveChartAsJPEG(file1, pieChart, 450, 300);
+
+            ratioHommeFemmeJdialog.getContentPane().add(cPanel, CENTER);
+
+            ratioHommeFemmeJdialog.pack();
+            ratioHommeFemmeJdialog.setVisible(true);
        
 
     }

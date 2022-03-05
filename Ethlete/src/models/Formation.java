@@ -62,7 +62,9 @@ public class Formation {
         this.dispositif = type;
     }
 
- 
+  public String concat(){
+        return id_formation + "/@/" + nom_formation + "/@/" + date_debut + "/@/" + date_fin + "/@/" + dispositif + "/@/" + programme ;
+    }
     
 
 }

@@ -31,6 +31,7 @@ import javafx.stage.StageStyle;
 import models.Commentaire;
 import models.Formation;
 import models.Reponse_Form;
+import models.User;
 import models.Utilisateur;
 import services.ServiceAffectationFormateur;
 import services.ServiceCommentaireImp;
@@ -46,13 +47,13 @@ import services.ServiceParticipation;
 public class ParticipationAdminController implements Initializable {
 
      @FXML
-    private TableView<Utilisateur> formateurs;
+    private TableView<User> formateurs;
     @FXML
-    private TableColumn<Utilisateur, String> nom_f;
+    private TableColumn<User, String> nom_f;
     @FXML
-    private TableColumn<Utilisateur, String> prenom;
+    private TableColumn<User, String> prenom;
     @FXML
-    private TableColumn<Utilisateur, String> Email;
+    private TableColumn<User, String> Email;
     @FXML
     private TableView<Formation> formations;
     @FXML
@@ -98,21 +99,21 @@ nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formati
 
     @FXML
     private void lister(ActionEvent event) {
-   Map<Formation,List<Utilisateur>> map1=sp.consulter_particiapnts_par_formation();
+   Map<Formation,List<User>> map1=sp.consulter_particiapnts_par_formation();
 
                    Formation f=formations.getSelectionModel().getSelectedItem();
               
-                    List <Utilisateur> list=new ArrayList();
+                    List <User> list=new ArrayList();
             for (Formation c:map1.keySet())
             {if(c.getId_formation()==f.getId_formation())
             {list=sp.chercher_part_formations_Part(f);
             
        }     }
-            		ObservableList<Utilisateur> list1 =FXCollections.observableArrayList( list);
+            		ObservableList<User> list1 =FXCollections.observableArrayList( list);
                         
-                        nom_f.setCellValueFactory(new PropertyValueFactory<Utilisateur, String>("nom"));
-		prenom.setCellValueFactory(new PropertyValueFactory<Utilisateur, String>("prenom"));
-                Email.setCellValueFactory(new PropertyValueFactory<Utilisateur, String>("email"));
+                        nom_f.setCellValueFactory(new PropertyValueFactory<User, String>("nom"));
+		prenom.setCellValueFactory(new PropertyValueFactory<User, String>("prenom"));
+                Email.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
 		
 		formateurs.setItems(list1);}
        @FXML
@@ -131,7 +132,7 @@ nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formati
     void comment(ActionEvent event) {
         System.out.println("1");
                          Formation f=formations.getSelectionModel().getSelectedItem();
-  Utilisateur u=new Utilisateur();
+  User u=new User();
         cmt.setText("");
         List<Commentaire> comments=new ArrayList();
                 System.out.println("1");

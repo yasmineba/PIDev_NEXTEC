@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import t2s.son.LecteurTexte;
 
 /**
  *
@@ -24,7 +25,7 @@ public class PIDEVBIS extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-       FXMLLoader loader =new FXMLLoader(getClass().getResource("../views/Dashboard.fxml"));
+       FXMLLoader loader =new FXMLLoader(getClass().getResource("../views/Authentification.fxml"));
 
      Parent root=loader.load();
      Scene scene=new Scene(root);
@@ -46,7 +47,6 @@ public class PIDEVBIS extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        System.out.print("ss");
-    }
+      }
     
 }

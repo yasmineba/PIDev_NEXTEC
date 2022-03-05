@@ -29,6 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import models.AffectationFormateur;
 import models.Formation;
+import models.User;
 import models.Utilisateur;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
@@ -46,7 +47,7 @@ public class GererFormateurController implements Initializable {
    ServiceAffectationFormateur af=new ServiceAffectationFormateur();
             ServiceFormation sf=new ServiceFormation();
             ServiceFormateur sf1=new ServiceFormateur();
-              Utilisateur u=new Utilisateur(7);
+              User u=new User(1);
 
       @FXML
     private TableView<Formation> formations;
@@ -89,7 +90,7 @@ public class GererFormateurController implements Initializable {
         showFormation() ;
     }    
    public void showFormation() {
-        ObservableList<Formation> list =FXCollections.observableArrayList(af.consulter_toutes_affectation1(u.getId()));
+        ObservableList<Formation> list =FXCollections.observableArrayList(af.consulter_toutes_affectation1((int) u.getId()));
                 //id_formation.setCellValueFactory(new PropertyValueFactory<Formation, Integer>("id_formation"));
 
 nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formation"));
@@ -101,7 +102,7 @@ nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formati
     @FXML
     private void filter(ActionEvent event) {
         List<AffectationFormateur> list =new ArrayList();
-        list=af.afficher_aff_pre(u.getId());
+        list=af.afficher_aff_pre((int) u.getId());
         
         ObservableList<Formation> list1 =null;
         

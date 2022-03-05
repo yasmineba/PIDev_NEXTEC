@@ -24,12 +24,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.TreeSet;
@@ -320,11 +320,22 @@ TreeSet<Formation> list = this.afficher().stream()
                  document.add(new Paragraph("Vous trouverz ci-joint le programme de cette formation du"+f.getDate_debut()+"à"+f.getDate_fin()));
             document.add(new Paragraph(f.getProgramme()));
             document.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
          }
-         
+             public List<Formation> rechercherIntervenant(List<Formation> initialList, String input) {
+    List<Formation> strList = initialList.stream()
+                           .map( Formation::concat )
+                           .filter(pt -> pt.toLowerCase().contains(input.toLowerCase()))
+                           .map(pt -> new Formation(Integer.parseInt(pt.split("/@/")[0]),pt.split("/@/")[1],    Date.valueOf(pt.split("/@/")[2])
+,    Date.valueOf(pt.split("/@/")[3])
+,pt.split("/@/")[4],pt.split("/@/")[5]))
+                           .collect( Collectors.toList() );
+        
+        return strList;
+    }    
          
         
 }

@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import models.Commentaire;
 import models.Formation;
+import models.User;
 import models.Utilisateur;
 import services.ServiceCommentaireImp;
 import services.ServiceFormateur;
@@ -39,7 +40,7 @@ public class ParticipationController implements Initializable {
             ServiceFormation sf=new ServiceFormation();
 ServiceParticipation sp=new ServiceParticipation();
 ServiceFormateur sf1=new ServiceFormateur();
-Utilisateur u=new Utilisateur(7);
+User u=new User(1);
 @FXML
     private Button supp;
       @FXML
@@ -133,7 +134,7 @@ sp.annuler_participation_précise(u, f);
     void commenter(ActionEvent event) {
         Formation f=formations.getSelectionModel().getSelectedItem();
 ServiceCommentaireImp sc=new ServiceCommentaireImp();
-sc.ajouter(new Commentaire(comment.getText(),u.getId(),f.getId_formation()));
+sc.ajouter(new Commentaire(comment.getText(), (int) u.getId(),f.getId_formation()));
          JOptionPane.showMessageDialog(null,"Commentaire Envoyé" );
 
 

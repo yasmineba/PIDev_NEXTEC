@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import models.User;
+import models.Utilisateur;
 import util.DataSource;
 
 /**
@@ -74,6 +76,13 @@ public class ServiceEquipe implements IService1 <Equipe> {
         } catch (SQLException ex) {
             Logger.getLogger(ServiceEquipe.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public User find_responsable(int id){
+    ServiceResponsable sr = new ServiceResponsable();
+    Equipe e = findByID_equipe(id);
+    User res = sr.afficher_part().stream().filter(s->s.getId()==e.getId_responsable()).findFirst().get();
+    return res;
+
     }
 
     @Override

@@ -8,11 +8,15 @@ package views;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.qoppa.pdfViewerFX.PDFViewer;
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 import java.io.File;
 import models.Formation;
 import services.ServiceFormation;
 import java.net.URL;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -21,17 +25,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.ChoiceBoxTableCell;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javax.swing.JFrame;
@@ -95,6 +107,10 @@ public class GererFormationController implements Initializable {
     private JFXButton closeButton;
     @FXML
     private JFXTextField search;
+    @FXML
+    private Pagination paginate;
+    @FXML
+    private JFXButton test;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -104,19 +120,44 @@ public class GererFormationController implements Initializable {
 
         showFormation();
        System.out.println(paginateProducts(2,2)); 
-        
+        //       paginate.setPageFactory(this::createPage);    
+        formations.setEditable(true);
+        nom.setEditable(true);
+        nom.setCellFactory(TextFieldTableCell.forTableColumn());
+                prog.setEditable(true);
+
+        prog.setCellFactory(TextFieldTableCell.forTableColumn());
+                             prog.setOnEditCommit(           
+t -> t.getTableView().getItems().get(t.getTablePosition().getRow()).setProgramme(t.getNewValue())
+
+);
+                        dis.setEditable(true);
+                        nom.setOnEditCommit(           
+t -> t.getTableView().getItems().get(t.getTablePosition().getRow()).setNom_formation(t.getNewValue())
+
+);
+dis.setCellFactory(ComboBoxTableCell.forTableColumn("En_Ligne","Présentiel"));
+                         dis.setOnEditCommit(           
+t -> t.getTableView().getItems().get(t.getTablePosition().getRow()).setDispositif(t.getNewValue())
+
+);
+//debut.setCellFactory(TextFieldTableCell.forTableColumn());
        
     }    
 
     @FXML
     private void ModifierFormation(ActionEvent event) {
         Formation f=formations.getSelectionModel().getSelectedItem();
-      
-f.setDate_debut(Date.valueOf(tfdebut.getValue()));
-f.setNom_formation(tfnom.getText());
+
+
+
+    
+
+//f.setDate_debut(Date.valueOf(tfdebut.getValue()));
+/*f.setNom_formation(tfnom.getText());
 f.setProgramme(tfprog.getText());
-f.setDispositif(tfdispo.getValue());
-f.setDate_fin(Date.valueOf(tffin.getValue()));
+f.setDispositif(tfdispo.getValue());*/
+//f.setDate_fin(Date.valueOf(tffin.getValue()));
  sf.modifier(f);
        JOptionPane.showMessageDialog(null,"Formation modifié" );
   showFormation() ;
@@ -155,19 +196,57 @@ nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formati
 	}
     @FXML
     public void AjouterFormation(ActionEvent event)
-    {if(ctrl())
-    {Formation f=new Formation(tfnom.getText(),Date.valueOf(tfdebut.getValue()),Date.valueOf(tffin.getValue()),tfdispo.getValue(),tfprog.getText());
+    {if (tfnom.getText().equals("") || tfdebut.getValue().toString().equals("")|| tffin.getValue().toString().equals("")|| tfdispo.getValue().toString().equals("")
+            || tfprog.getText().equals(""))
+        
+              JOptionPane.showMessageDialog(null,"il ya des champs vides" );
+    else 
+    {  if(!ctrl_unique())
+        
+        
+        JOptionPane.showMessageDialog(null, "Nom existe déjà");
+    else 
+    {  if(!ctrl_date())
+        
+        
+        JOptionPane.showMessageDialog(null, "Date fin est inférieur à la date début");
+     else
+    {
+    
+    Formation f=new Formation(tfnom.getText(),Date.valueOf(tfdebut.getValue()),Date.valueOf(tffin.getValue()),tfdispo.getValue(),tfprog.getText());
     
     sf.ajouter(f);
       JOptionPane.showMessageDialog(null,"Formation Ajouté" );
     showFormation() ;
     }
-    else
-        JOptionPane.showMessageDialog(null, "date fin inf a date debut");
     
     }
+    
+    }
+
+        
+        
+     
+        
+    
+    }
+    public boolean ctrl_unique()
+    {int i=0;
+    List<Formation> list2=new ArrayList();
+    list2=sf.afficher();
+    boolean exist=false;
+    
+for(i=0;i<list2.size();i++)
+{if(list2.get(i).getNom_formation().equals(tfnom.getText()))
+    return false;
+
+}
+return true;
+      
+    }
+
   
-public boolean ctrl()
+public boolean ctrl_date()
 {String d=tfdebut.getValue().toString();String f=tffin.getValue().toString();
      String[] d1=d.split("-");
      String[] f1=f.split("-");
@@ -183,7 +262,7 @@ public boolean ctrl()
       Formation f=formations.getSelectionModel().getSelectedItem();
       sf.supprimer(f);
          JOptionPane.showMessageDialog(null,"Formation supprimé" );
-         System.out.println( ctrl());
+        // System.out.println( ctrl());
     showFormation() ;
       
     }
@@ -253,7 +332,6 @@ sf.generer_pdf(f);
      Stage stage = (Stage) closeButton.getScene().getWindow();
     stage.close();  }
 
-    @FXML
     private void rechercher(ActionEvent event) {
         FilteredList<Formation> filteredData = new FilteredList<>(FXCollections.observableList(sf.afficher()));
         formations.setItems(filteredData);
@@ -275,6 +353,56 @@ public List<Formation> paginateProducts( int num,int size) {
     return sf.afficher()
             .stream()         .skip(SKIP_COUNT)         .limit(size).collect(Collectors.toList());  
 }    
-  
+
+    @FXML
+    private void rechercheTextChanged(KeyEvent event) {
+                updateList(sf.rechercherIntervenant(sf.afficher(), search.getText()));
+
+    }
+   private void updateList(List<Formation> theList){
+       ObservableList<Formation> list =FXCollections.observableArrayList();
+        list.clear();
+        theList.stream().forEach(p -> list.add(p));
+     
+nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formation"));
+		debut.setCellValueFactory(new PropertyValueFactory<Formation, Date>("date_debut"));
+		fin.setCellValueFactory(new PropertyValueFactory<Formation, Date>("date_fin"));
+		prog.setCellValueFactory(new PropertyValueFactory<Formation, String>("programme"));
+		dis.setCellValueFactory(new PropertyValueFactory<Formation, String>("dispositif"));
+        
+        formations.setItems(list);
+    }
     
+   
+    private Node createPage(int pageIndex) {
+        int fromIndex = pageIndex * 2;
+              ObservableList<Formation> list =FXCollections.observableArrayList(sf.afficher());
+
+        int toIndex = Math.min(fromIndex + 2, list.size());
+        formations.setItems(FXCollections.observableArrayList(list.subList(fromIndex, toIndex)));
+        return formations;
+    }
+
+    @FXML
+    private void test(ActionEvent event) {
+        
+        
+        
+    try{  final String m="hello";
+        
+       Voice v;
+       VoiceManager vm=VoiceManager.getInstance();
+       v=vm.getVoice(m);
+
+       v.allocate();
+      
+            v.speak(tfnom.getText());}
+        catch(Exception e)
+        {System.out.println("erreur");
+      
+        }
+    
+    
+    }
+   
 }
