@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/GUI/FXMLadminController.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/utils/Mailapi.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/service/UserService.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/GUI/FXMLarticleadminController.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/GUI/FXMLajouterarticleController.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/entity/User.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/GUI/AuthentificationController.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/GUI/UpdateProfilController.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/service/ArticleService.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/GUI/FXMLarticleController.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/GUI/FXMLforgotpasswordController.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/GestionUtilisateur1.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/entity/Role.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/service/IService.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/entity/Article.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/GUI/UpdateProfil.fxml</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/NewFXMain.java</file>
+            <file>file:/C:/Users/MSI/Desktop/PI/GestionUtilisateur1/src/gestionutilisateur1/utils/Smsapi.java</file>
+        </group>
+    </open-files>
 </project-private>

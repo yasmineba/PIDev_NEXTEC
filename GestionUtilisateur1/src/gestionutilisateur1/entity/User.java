@@ -133,10 +133,17 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", date_naissance=" + date_naissance + ", email=" + email + ", username=" + username + ", password=" + password + ", numTel=" + numTel + ", adresse=" + adresse + ", role=" + role + '}'+"\n";
     }
+
+    
+    
+
+    
+    
     
     
     

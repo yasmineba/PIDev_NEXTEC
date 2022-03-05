@@ -314,6 +314,22 @@ public class UserService implements IService <User> {
         return false;
         
      }
+     
+     public  boolean isAddressValid(String address) {
+        // Find the separator for the domain name
+        int pos = address.indexOf('@');
+
+        // If the address does not contain an '@', it's not valid
+        if (pos == -1) {
+            return false;
+        }
+        return true;
+        
+     }
+     
+     
+     
+     
     
      
     

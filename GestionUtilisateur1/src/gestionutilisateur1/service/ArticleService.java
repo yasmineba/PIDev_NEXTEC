@@ -37,7 +37,7 @@ public class ArticleService implements IService<Article> {
         try {
             Statement st;
             st=cnx.createStatement();
-            String query="INSERT INTO `article`( `titre`, `contenu`, `description`, `nbrLike`) VALUES ('"+t.getTitre()+"','"+t.getContenu()+"','"+t.getDescription()+"','"+t.getNbrLike()+"')";
+            String query="INSERT INTO `article`( `titre`, `contenu`, `description`, `nbrLike`, `idUser`) VALUES ('"+t.getTitre()+"','"+t.getContenu()+"','"+t.getDescription()+"','"+t.getNbrLike()+"','"+t.getIdUser()+"')";
             st.executeUpdate(query);
             System.out.println("article ajouter avec success");
         } catch (SQLException ex) {
@@ -94,6 +94,7 @@ public class ArticleService implements IService<Article> {
                 
                 a.setTitre(rs.getString("titre"));
                 a.setNbrLike(rs.getInt("nbrLike"));
+                a.setIdUser(rs.getInt("idUser"));
                 la.add(a);
                 
             }
@@ -118,6 +119,7 @@ public class ArticleService implements IService<Article> {
                 a.setIdAticle(rs.getLong("idArticle"));
                 
                 a.setNbrLike(rs.getInt("nbrLike"));
+                a.setIdUser(rs.getLong("idUser"));
             }else{
                 System.out.println("article n existe pas");
               

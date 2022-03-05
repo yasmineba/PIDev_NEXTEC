@@ -9,6 +9,7 @@ import gestionutilisateur1.entity.Role;
 import gestionutilisateur1.entity.User;
 import gestionutilisateur1.service.UserService;
 import static java.awt.PageAttributes.MediaType.C;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.time.Instant;
@@ -17,14 +18,20 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.Observable;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import static javafx.print.Paper.C;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -38,6 +45,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import static javafx.scene.input.KeyCode.C;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
@@ -84,7 +92,6 @@ public class FXMLadminController implements Initializable {
     private TableColumn<User, String> email_col;
     @FXML
     private TableColumn<User, String> username_col;
-    @FXML
     private TableColumn<User, String> password_col;
     @FXML
     private TableColumn<User, String> add_col;
@@ -124,7 +131,7 @@ public class FXMLadminController implements Initializable {
         
         email_col.setCellValueFactory(new PropertyValueFactory<>("Email"));
         username_col.setCellValueFactory(new PropertyValueFactory<>("Username"));
-        password_col.setCellValueFactory(new PropertyValueFactory<>("Password"));
+        
         add_col.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         
         date_col.setCellValueFactory(new PropertyValueFactory<>("date_naissance"));
@@ -167,6 +174,9 @@ public class FXMLadminController implements Initializable {
         }
         if(us.usernameExist(usernametf.getText())){
             errors.append("- Username already exist");
+        }
+         if (us.isAddressValid(emailtf.getText())){
+             errors.append("- Please enter a valid email\n");   
         }
         if(errors.length()>0){
             Alert alert =new Alert(Alert.AlertType.ERROR);
@@ -282,9 +292,6 @@ public class FXMLadminController implements Initializable {
             refreshlist();
     }
 
-    @FXML
-    private void imprimer(ActionEvent event) {
-    }
 
     
     @FXML
@@ -365,6 +372,25 @@ public class FXMLadminController implements Initializable {
             ObservableList<User> tri2=FXCollections.observableArrayList();
             tri2=FXCollections.observableArrayList(us.sortByDate());
             tableviewuser.setItems(tri2);
+        }
+    }
+
+    @FXML
+    private void consulterArticle(ActionEvent event) {
+          try {
+            Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+            Parent root=FXMLLoader.load(getClass().getResource("/gestionutilisateur1/GUI/FXMLarticleadmin.fxml"));
+            Stage stage =new Stage();
+            
+            Scene scene = new Scene(root);
+            
+            stage.setTitle("Dashbord Admin");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

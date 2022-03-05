@@ -17,6 +17,7 @@ import java.sql.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -133,6 +134,7 @@ public class AuthentificationController implements Initializable {
     private JFXButton signupbtn;
     @FXML
     private Button btnfp;
+    public static long idglobal;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -316,6 +318,7 @@ private void resetSignUpTF() {
         if(us.checklogin(loginTF.getText(), CryptWithMD5.cryptWithMD5(passwordTF.getText()))){
             //7ell interface
             User u=us.findByUsername(loginTF.getText());
+            idglobal=u.getId();
             if(u.getRole().equals(Role.ADMIN)){
                 try {
             Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -334,13 +337,41 @@ private void resetSignUpTF() {
         }
                 
             }
-           /* else if(u.getRole().equals(Role.JOUEUR)){
-                        System.out.println("bienveunue joueur");
+            else if(u.getRole().equals(Role.JOUEUR)){
+                       try {
+            Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+            Parent root=FXMLLoader.load(getClass().getResource("/gestionutilisateur1/GUI/FXMLajouterarticle.fxml"));
+            Stage stage =new Stage();
+            
+            Scene scene = new Scene(root);
+            
+            stage.setTitle("Article");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
                         }
             else if(u.getRole().equals(Role.FORMATEUR)){
-                        System.out.println("bienveunue formateur");
-                        }
-            else if(u.getRole().equals(Role.JOUEUR)){
+                         try {
+            Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+            Parent root=FXMLLoader.load(getClass().getResource("/gestionutilisateur1/GUI/UpdateProfil.fxml"));
+            Stage stage =new Stage();
+            
+            Scene scene = new Scene(root);
+            
+            stage.setTitle("Dashbord Admin");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        } 
+          /*  else if(u.getRole().equals(Role.JOUEUR)){
                         System.out.println("bienveunue joueur");
                         }*/
         }
@@ -354,6 +385,12 @@ private void resetSignUpTF() {
 
     @FXML
     private void performeSignup(MouseEvent event) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
+                + "[a-zA-Z0-9_+&*-]+)*@"
+                + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
+                + "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
         StringBuilder errors=new StringBuilder();
         if(nomtf.getText().trim().isEmpty()){
             errors.append("- Please enter a First Name\n");//string s --- s+="erreur"
@@ -365,6 +402,10 @@ private void resetSignUpTF() {
         if(emailTF.getText().trim().isEmpty()){
             errors.append("- Please enter a Email\n");
         }
+        if (pat.matcher(emailTF.getText()).matches() == false){
+            errors.append("- please enter a valid email");
+        }
+        
         if(usernametf.getText().trim().isEmpty()){
             errors.append("- Please enter a Username\n");
         }
@@ -388,6 +429,7 @@ private void resetSignUpTF() {
         if(us.usernameExist(usernametf.getText())){
             errors.append("- Username already exist");
         }
+       
         if(errors.length()>0){
             Alert alert =new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errors");
@@ -404,7 +446,7 @@ private void resetSignUpTF() {
             u.setPassword(passwordPF.getText());
             u.setPrenom(prenomtf.getText());
             u.setUsername(usernametf.getText());
-            u.setRole(Role.ADMIN);
+            u.setRole(Role.JOUEUR);
             us.ajouter(u);
             TrayNotification tray = new TrayNotification();
             

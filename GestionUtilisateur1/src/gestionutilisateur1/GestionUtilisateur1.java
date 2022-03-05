@@ -39,7 +39,7 @@ public class GestionUtilisateur1 {
          Date d =Date.valueOf(LocalDate.of(2000, Month.MARCH, 17));
          User u=new User("ahmed","temani",d,"mohameddehmani@gmail.com","dah","admiinnslm1",58760718,"kef",Role.FORMATEUR);
        
-         Article a= new Article("tenis","tenisbravo","dd");
+       //  Article a= new Article("tenis","tenisbravo","dd");
          ArticleService as=new ArticleService();
          //System.out.println(us.afficher());
          //System.out.println(us.findByEmail("fdgfd").isEmpty());
@@ -64,9 +64,11 @@ public class GestionUtilisateur1 {
         //System.out.println(us.sortById());
        //System.out.println(us.sortByNom());
       //System.out.println(us.checklogin("dahmoun", "19223a7bbd7325516f069df18b50"));
-     Mailapi.send("temanimohameddahmani@gmail.com", "meddahmani123456789", "moatez.oueslati@esprit.tn", "test java", "test");
+      // Mailapi.send("temanimohameddahmani@gmail.com", "meddahmani123456789", "moatez.oueslati@esprit.tn", "test java", "test");
        
-    //  Smsapi.sendSMS("", "");
+       //Smsapi.sendSMS("", "");
+       
+       
             
           
             

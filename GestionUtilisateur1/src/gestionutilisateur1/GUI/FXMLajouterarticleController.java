@@ -50,7 +50,7 @@ public class FXMLajouterarticleController implements Initializable {
 
     @FXML
     private void ajouterarticle(ActionEvent event) {
-        Article a=new Article(tftitre.getText(),tfcontenu.getText(),tfsujet.getText());
+        Article a=new Article(AuthentificationController.idglobal,tftitre.getText(),tfcontenu.getText(),tfsujet.getText(),0);
         as.ajouter(a);
         TrayNotification tray = new TrayNotification();
             

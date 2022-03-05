@@ -19,6 +19,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -47,6 +51,14 @@ public class FXMLarticleadminController implements Initializable {
     @FXML
     private void supprimer(ActionEvent event) {
         as.supprimer(listviewarticle.getSelectionModel().getSelectedItem().getIdAticle());
+         TrayNotification tray = new TrayNotification();
+            
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Delete Success");
+            tray.setMessage("Article is deleted");
+            tray.setNotificationType(NotificationType.WARNING);
+            tray.showAndDismiss(Duration.millis(1000));
         refreshlist();
     }
     public void refreshlist(){

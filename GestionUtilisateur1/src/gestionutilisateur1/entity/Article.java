@@ -12,6 +12,8 @@ package gestionutilisateur1.entity;
 public class Article {
     
     private long idAticle;
+        private long idUser;
+
     private String titre;
     private String contenu;
     private String description;
@@ -21,21 +23,24 @@ public class Article {
     public Article() {
     }
 
-    public Article(String titre, String contenu, String description) {
+    public Article(long idUser, String titre, String contenu, String description, int nbrLike) {
+        this.idUser = idUser;
         this.titre = titre;
         this.contenu = contenu;
         this.description = description;
-       
-    }
-
-    public Article(long idAticle, String titre, String contenu, String description, int nbrLike) {
-        this.idAticle = idAticle;
-        this.titre = titre;
-        this.contenu = contenu;
-        this.description = description;
-        
         this.nbrLike = nbrLike;
     }
+
+    public Article(long idAticle, long idUser, String titre, String contenu, String description, int nbrLike) {
+        this.idAticle = idAticle;
+        this.idUser = idUser;
+        this.titre = titre;
+        this.contenu = contenu;
+        this.description = description;
+        this.nbrLike = nbrLike;
+    }
+
+   
 
     public long getIdAticle() {
         return idAticle;
@@ -79,10 +84,27 @@ public class Article {
         this.nbrLike = nbrLike;
     }
 
+    public long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
+    }
+
     @Override
     public String toString() {
-        return  titre + "\n" + description + "\n" + contenu + "\nnbrLike=" + nbrLike + "\n";
+        return "Article{" + "idAticle=" + idAticle + ", idUser=" + idUser + ", titre=" + titre + ", contenu=" + contenu + ", description=" + description + ", nbrLike=" + nbrLike + '}';
     }
+
+    
+
+    
+    
+    
+
+   
+    
     
     
 }
