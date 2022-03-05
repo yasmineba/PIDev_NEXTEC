@@ -25,6 +25,7 @@ import lombok.NoArgsConstructor;
 import javax.mail.*;  
 import javax.mail.internet.*;  
 import javax.activation.*;  
+import models.User;
 /**
  *
  * @author pc
@@ -34,7 +35,7 @@ public class ServiceAffectationFormateur {
     Connection cnx = DataSource.getInstance().getCnx();
     ServiceReponseImp serR=new ServiceReponseImp();
 
-    public void affectation_formateur(Formation f  , Utilisateur u){
+    public void affectation_formateur(Formation f  , User u){
         
         
          try {
@@ -43,7 +44,7 @@ Reponse_Form rep=serR.consulter_rep_non_cons();
              
             String req = "INSERT INTO affectation_formateur (formateur_id,formation_id,reponse) VALUES (?,?,?)";
                                 PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setInt(1, u.getId());
+            pst.setInt(1, (int) u.getId());
                        pst.setInt(2,f.getId_formation());
                        
                        pst.setInt(3,rep.getId_reponse());
@@ -53,7 +54,7 @@ Reponse_Form rep=serR.consulter_rep_non_cons();
             
             
             ServiceFormateur sf1=new ServiceFormateur();
-            String to = sf1.findbyId(u.getId()).getEmail();//change accordingly  
+            String to = sf1.findbyId((int) u.getId()).getEmail();//change accordingly  
 Properties props = new Properties();    
           props.put("mail.smtp.host", "smtp.gmail.com");    
           props.put("mail.smtp.socketFactory.port", "465");    
@@ -74,7 +75,7 @@ Properties props = new Properties();
     MimeMessage message = new MimeMessage(session);    
            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
            message.setSubject("Nouvelle Affectation chez Ethlete");    
-           message.setText("Bonjour madame/mr"+sf1.findbyId(u.getId()).getNom()+"Bonjour,vous êtes invités à consulter votre compte vous avez une nouvelle affectation On attend toujours votre"
+           message.setText("Bonjour madame/mr"+sf1.findbyId((int) u.getId()).getNom()+"Bonjour,vous êtes invités à consulter votre compte vous avez une nouvelle affectation On attend toujours votre"
                    + "réponse\n Merci");    
            //send message  
            Transport.send(message);    
@@ -94,11 +95,11 @@ Properties props = new Properties();
         }
         }
     
-    public void annuler_toute_affectation(Utilisateur f)
+    public void annuler_toute_affectation(User f)
     {try {
              String req = "DELETE FROM affectation_formateur WHERE formateur_id=?";
             PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setInt(1,f.getId());
+            pst.setInt(1, (int) f.getId());
             pst.executeUpdate();
             System.out.println("Affectation supprimée de  !"+f.getNom());
         } catch (SQLException ex) {
@@ -106,11 +107,11 @@ Properties props = new Properties();
         }
     }
     
-      public void annuler_affectation_précise(Utilisateur f,Formation f1)
+      public void annuler_affectation_précise(User f,Formation f1)
     {try {
              String req = "DELETE FROM affectation_formateur WHERE formateur_id=? and formation_id=?";
             PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setInt(1,f.getId());            pst.setInt(1,f1.getId_formation());
+            pst.setInt(1, (int) f.getId());            pst.setInt(1,f1.getId_formation());
 
             pst.executeUpdate();
             System.out.println("Affectation supprimée de  !"+f.getNom());
@@ -150,7 +151,7 @@ Properties props = new Properties();
             System.out.println(ex.getMessage());
         }}
        
-          public void accpter_affectation(Utilisateur f,Formation f1)
+          public void accpter_affectation(User f,Formation f1)
           {  
         String s="confirmé";
         
@@ -164,14 +165,14 @@ Properties props = new Properties();
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setInt(1,rep.getId_reponse());
             pst.setInt(2, f1.getId_formation());
-              pst.setInt(3, f.getId());
+              pst.setInt(3, (int) f.getId());
             pst.executeUpdate();
             System.out.println("Affectation modifiée !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
           }
-             public void refuser_affectation(Utilisateur f,Formation f1)
+             public void refuser_affectation(User f,Formation f1)
           {  String s="refusé";
         
             
@@ -182,7 +183,7 @@ Properties props = new Properties();
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setInt(1,rep.getId_reponse());
             pst.setInt(2, f1.getId_formation());
-              pst.setInt(3, f.getId());
+              pst.setInt(3, (int) f.getId());
             pst.executeUpdate();
             System.out.println("Affectation modifiée !");
         } catch (SQLException ex) {
@@ -190,12 +191,12 @@ Properties props = new Properties();
         }
           }
              
-             public AffectationFormateur ConsulterAffectation_precise(Utilisateur f,Formation f1)
+             public AffectationFormateur ConsulterAffectation_precise(User f,Formation f1)
              {AffectationFormateur AF=new AffectationFormateur() ;
          try{    String req = "SELECT * FROM affectation_formateur where formation_id=? and formateur_id=?  ";
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setInt(1,f1.getId_formation());
-                        pst.setInt(2,f.getId());
+                        pst.setInt(2, (int) f.getId());
 
             ResultSet rs = pst.executeQuery();
             while(rs.next()) {
@@ -247,16 +248,16 @@ return map;
     
     
     
-      public Map<Formation, List<Utilisateur>> consulter_formateurs_par_formation()
+      public Map<Formation, List<User>> consulter_formateurs_par_formation()
               {ServiceFormateur sf1=new ServiceFormateur();
              Map<Integer, List<AffectationFormateur>> map=this.formateur_par_Affectaion();
-            Map<Formation, List<Utilisateur>> map1=new HashMap();
+            Map<Formation, List<User>> map1=new HashMap();
                        ServiceFormation sf=new ServiceFormation();
 
 
             for(Integer x:map.keySet())
             {
-                  List<Utilisateur> list = new ArrayList<>();
+                  List<User> list = new ArrayList<>();
                 for(int i=0;i<map.get(x).size();i++)
                 
             {list.add(sf1.findbyId(map.get(x).get(i).getFormateur_idt()));}
@@ -295,19 +296,19 @@ return map;
 
  return list;
  }
-     public AffectationFormateur ConsulterAffectation_precise1(Utilisateur f,Formation f1)
+     public AffectationFormateur ConsulterAffectation_precise1(User f,Formation f1)
      {AffectationFormateur AF=new AffectationFormateur() ;
      AF=this.afficher().stream().filter(e->e.getFormateur_idt()==f.getId()).filter(e->e.getFormation_id()==f1.getId_formation()).findFirst().get();
      return AF;
      }
-      public List<Utilisateur> consulter_toutes_affectation2(int id_formation)
+      public List<User> consulter_toutes_affectation2(int id_formation)
       {ServiceFormateur sf=new ServiceFormateur();
-       List<Utilisateur> list = new ArrayList<>();
+       List<User> list = new ArrayList<>();
       List<Integer> ListFormateurs=this.afficher().stream().filter(e->e.getFormation_id()==id_formation).map(f->f.getFormateur_idt()).collect(Collectors.toList());
      
       for(Integer x:ListFormateurs)
       {int s=x;
-      Utilisateur formateur=sf.afficher().stream().filter(e -> e.getId()== s).findFirst().get();
+      User formateur=sf.afficher().stream().filter(e -> e.getId()== s).findFirst().get();
       list.add(formateur);
       }
       return list;

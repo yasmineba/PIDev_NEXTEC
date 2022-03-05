@@ -14,16 +14,22 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import models.Role;
+import models.User;
+import static services.CryptWithMD5.cryptWithMD5;
 
 /**
  *
  * @author pc
  */
-public class ServiceFormateur implements IService <Utilisateur> {
+public class ServiceFormateur implements IService <User> {
 
     public ServiceFormateur() {
     }
@@ -95,12 +101,12 @@ String req1 = "INSERT INTO utilisateur (nom, prenom,adresse,email,telephone,date
   
 //list de tous les formateurs
     @Override
-    public List<Utilisateur> afficher() {
-             List<Utilisateur> formateurs = new ArrayList<>();
+    public List<User> afficher() {
+             List<User> formateurs = new ArrayList<>();
        
             
        
-            formateurs=this.afficher_part().stream().filter(e->e.getRole().equals("ROLE_FORMATEUR")).collect(Collectors.toList());
+            formateurs=this.afficher_part().stream().filter(e->e.getRole().toString().equals("FORMATEUR")).collect(Collectors.toList());
             
 
             
@@ -112,56 +118,65 @@ String req1 = "INSERT INTO utilisateur (nom, prenom,adresse,email,telephone,date
     }
 
     @Override
-    public void modifier(Utilisateur t) {
+    public void modifier(User t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     //consulterformateur
-    public Utilisateur consulte_formateur(int id)
+    public User consulte_formateur(int id)
     {
-        Utilisateur u=new Utilisateur();
+        User u=new User();
         u=this.afficher().stream().filter(e->e.getId()==id).findFirst().get();
         return u;
     }
 
-    @Override
-    public void ajouter(Utilisateur t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void supprimer(Utilisateur t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    public List<Utilisateur> afficher_part() {
-List<Utilisateur> list = new ArrayList<>();
-             List<Utilisateur> formateurs = new ArrayList<>();
-        try {String s="ROLE_FORMATEUR";
-            String req = "SELECT * FROM utilisateur ";
-            PreparedStatement pst = cnx.prepareStatement(req);
-            ResultSet rs = pst.executeQuery();
-            while(rs.next()) {
-                list.add(new Utilisateur(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(7),rs.getString(5),rs.getString(6)
-                ,rs.getString(10),rs.getString(4),rs.getString(11))
-                
-                );
-            }
-            
-       
-           
-            
-
-            
-            
-            
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        return list;
-    }
-    public Utilisateur findbyId(int id)
+  
+    
+    
+   
+    public User findbyId(int id)
     {return this.afficher_part().stream().filter(e->e.getId()==id).findFirst().get();
     }
+
+  
+     public List<User> afficher_part() {
+        List<User> lu=new ArrayList<>();
+        try {
+            Statement st=cnx.createStatement();
+            String query="select * from user";
+            ResultSet rs=st.executeQuery(query);
+            while(rs.next()){
+                User u =new User();
+                u.setAdresse(rs.getString("adresse"));
+                u.setDate_naissance(rs.getDate("date_naissance"));
+                u.setEmail(rs.getString("email"));
+                u.setId(rs.getLong("id"));
+                u.setNom(rs.getString("nom"));
+                u.setNumTel(rs.getInt("num_tel"));
+                u.setPassword(cryptWithMD5(rs.getString("password")));
+                u.setPrenom(rs.getString("prenom"));
+                u.setUsername(rs.getString("username"));
+                u.setRole(Role.valueOf(rs.getString("role")));
+                u.setGenre(rs.getString("genre"));
+                lu.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lu;
+    }
+
+    @Override
+    public void ajouter(User t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void supprimer(User t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    
  }
 
     

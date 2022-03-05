@@ -12,6 +12,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -30,6 +32,11 @@
                </font>
             </Label>
             <CheckBox fx:id="selectAll" layoutX="929.0" layoutY="11.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="94.0" text="Select All" />
+            <ImageView fitHeight="43.0" fitWidth="55.0" layoutX="32.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icone_formation_v2.png" />
+               </image>
+            </ImageView>
           
          </children>
       </Pane>
@@ -65,7 +72,7 @@
             </Label>
          </children>
       </VBox>
-      <TableView fx:id="formations" layoutX="425.0" layoutY="67.0" prefHeight="319.0" prefWidth="636.0">
+      <TableView fx:id="formations" layoutX="425.0" layoutY="112.0" prefHeight="319.0" prefWidth="636.0">
          <columns>
                      <!--<TableColumn fx:id="id_formation" prefWidth="109.0" text="ID" visible="true" />-->
 
@@ -87,13 +94,18 @@
       <DatePicker fx:id="tffin" layoutX="109.0" layoutY="145.0" />
       <ComboBox fx:id="tfdispo" layoutX="109.0" layoutY="195.0" prefWidth="150.0" visibleRowCount="2" />
       <Button fx:id="afficher" layoutX="118.0" layoutY="380.0" mnemonicParsing="false" onAction="#AfficherFormation" text="Afficher Formation" />
-      <ComboBox fx:id="tftri" layoutX="937.0" layoutY="437.0" onAction="#trierForm" prefWidth="150.0" />
-      <Text layoutX="858.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trier par" />
-      <Button fx:id="pdf" layoutX="695.0" layoutY="448.0" mnemonicParsing="false" onAction="#consulterpdf" text="ConsulterPDF" />
+      <ComboBox fx:id="tftri" layoutX="923.0" layoutY="442.0" onAction="#trierForm" prefWidth="150.0" />
+      <Text layoutX="847.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trier par" />
+      <Button fx:id="pdf" layoutX="518.0" layoutY="441.0" mnemonicParsing="false" onAction="#consulterpdf" text="ConsulterPDF" />
       <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="14.0" layoutY="555.0" onAction="#retour" ripplerFill="#c33535" text="&lt;----" textOverrun="CENTER_ELLIPSIS" />
-      <Button layoutX="143.0" layoutY="468.0" mnemonicParsing="false" text="Rechercher" />
-      <JFXTextField fx:id="search" layoutX="286.0" layoutY="465.0" />
-      <Pagination layoutX="392.0" layoutY="367.0" prefHeight="75.0" prefWidth="655.0" />
+      <JFXTextField fx:id="search" layoutX="866.0" layoutY="64.0" onKeyTyped="#rechercheTextChanged" promptText="Recherche" />
+      <Pagination fx:id="paginate" layoutX="671.0" layoutY="415.0" prefHeight="75.0" prefWidth="128.0" />
+      <ImageView fitHeight="55.0" fitWidth="128.0" layoutX="959.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="test" layoutX="273.0" layoutY="527.0" onAction="#test" text="test" />
    </children>
    <stylesheets>
       <URL value="@style.css" />

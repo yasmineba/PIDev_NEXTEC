@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GererFormateurController">
+<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="672.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GererFormateurController">
      <children>
        <Pane prefHeight="55.0" prefWidth="1102.0" style="-fx-background-color: #2D75E8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -22,6 +23,11 @@
                   <Font size="30.0" />
                </font>
             </Label>
+            <ImageView fitHeight="45.0" fitWidth="43.0" layoutX="30.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@2038022.png" />
+               </image>
+            </ImageView>
           
          </children>
       </Pane>
@@ -42,12 +48,12 @@
       </TableView>
       
       
-      <ComboBox fx:id="filtrer" layoutX="513.0" layoutY="342.0" onAction="#filter" prefWidth="150.0" promptText="Filtrer par" />
-            <Button fx:id="afficher" layoutX="426.0" layoutY="158.0" mnemonicParsing="false" onAction="#AfficherFormation" text="Plus de détails" />
-            <Button fx:id="accepter" layoutX="644.0" layoutY="441.0" mnemonicParsing="false" onAction="#AccepterFormation" text="Accepter Affectation" />
-            <Button fx:id="refuser" layoutX="423.0" layoutY="448.0" mnemonicParsing="false" onAction="#RefuserFormation" text="Refuser Affectation " />
-      <TextField fx:id="tfnom" layoutX="146.0" layoutY="286.0" />
-      <DatePicker fx:id="tfdebut" layoutX="143.0" layoutY="326.0" />
+      <ComboBox fx:id="filtrer" layoutX="406.0" layoutY="236.0" onAction="#filter" prefWidth="150.0" promptText="Filtrer par" />
+            <JFXButton fx:id="afficher" layoutX="408.0" layoutY="187.0" mnemonicParsing="false" onAction="#AfficherFormation" prefHeight="31.0" prefWidth="155.0" text="Plus de détails" textFill="#687502" />
+            <JFXButton fx:id="accepter" layoutX="406.0" layoutY="134.0" mnemonicParsing="false" onAction="#AccepterFormation" text="Accepter Affectation" textFill="#2ea121" />
+            <JFXButton fx:id="refuser" layoutX="408.0" layoutY="92.0" mnemonicParsing="false" onAction="#RefuserFormation" text="Refuser Affectation " textFill="#ab3232" />
+      <TextField fx:id="tfnom" layoutX="146.0" layoutY="286.0" prefHeight="37.0" prefWidth="206.0" />
+      <DatePicker fx:id="tfdebut" layoutX="143.0" layoutY="326.0" prefHeight="37.0" prefWidth="237.0" />
       <DatePicker fx:id="tffin" layoutX="143.0" layoutY="367.0" />
       <VBox layoutX="48.0" layoutY="286.0" prefHeight="214.0" prefWidth="104.0" spacing="15.0">
          <children>
@@ -79,8 +85,8 @@
          </children>
       </VBox>
       <TextField fx:id="tfdispo" layoutX="146.0" layoutY="410.0" />
-      <Button fx:id="consulterProg" layoutX="152.0" layoutY="448.0" mnemonicParsing="false" onAction="#consulterProg" text="Consulter Programme" />
-      <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="35.0" layoutY="563.0" onAction="#retour" ripplerFill="#c33535" text="&lt;----" textOverrun="CENTER_ELLIPSIS" />
+      <JFXButton fx:id="consulterProg" layoutX="152.0" layoutY="448.0" mnemonicParsing="false" onAction="#consulterProg" text="Consulter Programme" />
+      <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="21.0" layoutY="500.0" onAction="#retour" ripplerFill="#c33535" text="&lt;----" textOverrun="CENTER_ELLIPSIS" />
 
      </children>
 </AnchorPane>

@@ -5,6 +5,11 @@
  */
 package views;
 
+import edu.cmu.sphinx.frontend.util.Microphone;
+import edu.cmu.sphinx.recognizer.Recognizer;
+import edu.cmu.sphinx.result.Result;
+import edu.cmu.sphinx.util.props.ConfigurationManager;
+import ethlete.PIDEVBIS;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,6 +28,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.swing.JOptionPane;
+import t2s.son.LecteurTexte;
 
 /**
  * FXML Controller class
@@ -135,5 +142,4 @@ public class DashboardController implements Initializable {
             stage.setScene(new Scene(root1));  
             stage.show();
     }
-    
 }

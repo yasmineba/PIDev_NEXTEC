@@ -4,7 +4,23 @@
  * and open the template in the editor.
  */
 package ethlete;
-
+import edu.cmu.sphinx.frontend.util.Microphone;
+import edu.cmu.sphinx.recognizer.Recognizer;
+import edu.cmu.sphinx.result.Result;
+import edu.cmu.sphinx.util.props.ConfigurationManager;
+import edu.cmu.sphinx.util.props.PropertyException;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+import edu.cmu.sphinx.api.Configuration;
+import edu.cmu.sphinx.api.SpeechResult;
+import edu.cmu.sphinx.api.StreamSpeechRecognizer;
+import edu.cmu.sphinx.util.props.PropertyException;
 import models.Formation;
 import models.Participation;
 import models.Utilisateur;
@@ -18,11 +34,19 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
+import javax.sound.midi.Synthesizer;
 import models.AffectationFormateur;
 import models.Avis;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Billet;
 import models.Categorie;
 import models.Commentaire;
@@ -43,11 +67,15 @@ import services.ServiceReponseImp;
 import services.ServicesCategorie;
 import services.ServicesProduit;
 
+import t2s.son.LecteurTexte;
+import util.Smsapi;
+
 /**
  *
  * @author pc
  */
 public class PIDEV {
+
 
     /**
      * @param args the command line arguments
@@ -81,16 +109,16 @@ int nbh=0;
         comments=sc.filtrer_par_formation(f);
       for(int i=0;i<=comments.size();i++)
            System.out.println(comments.get(i).getComments());*/
-ServiceParticipation sp=new ServiceParticipation();
+//ServiceParticipation sp=new ServiceParticipation();
 
-Utilisateur u=new Utilisateur(7);
+//Utilisateur u=new Utilisateur(7);
      // System.out.println(sp.consulter_particiapnts_par_formation().values());
-        Map<Formation,List<Utilisateur>> map1=sp.consulter_particiapnts_par_formation();
+       // Map<Formation,List<Utilisateur>> map1=sp.consulter_particiapnts_par_formation();
 
-               Formation f=new Formation(6);
-ServiceFormation s=new ServiceFormation() ;
-                    List <Utilisateur> list=new ArrayList();
-                   System.out.println( map1.get(s.rechercher_formation(f)));
+               //Formation f=new Formation(6);
+//ServiceFormation s=new ServiceFormation() ;
+                 //   List <Utilisateur> list=new ArrayList();
+                  // System.out.println( map1.get(s.rechercher_formation(f)));
 /*List <Utilisateur> list=map1.get(f);
  for(Formation c:map1.keySet())
  System.out.println(map1.get(c));
@@ -143,7 +171,7 @@ Evenement E = new Evenement(1,"lea2gue1",Date.valueOf("2012-02-02"),Date.valueOf
 si.ajouterIntervenant(I);
 //si.modifierIntervenant(I);
 si.supprimerIntervenant(I);*/
- ServiceEquipe us=new ServiceEquipe();
+ /*ServiceEquipe us=new ServiceEquipe();
 
         Equipe u1=new Equipe(1,"lefriki121",1);
         //us.ajouter(u1);
@@ -177,7 +205,70 @@ si.supprimerIntervenant(I);*/
        //System.out.println(sp.afficherProduits());
        
          Produit p2 = new Produit("necklace",78,15);
-         sp1.ajouterProduit(p2);
+         sp1.ajouterProduit(p2);*/
+   //LecteurTexte lecteur = new LecteurTexte("bonjour");
+     //   lecteur.playAll();
+       // lecteur.setTexte("je suis un synthétiseur vocal, qui êtes-vous?");
+        //lecteur.playAll(); 
+ //
+             // */
+      //   ServiceInvitation si=new ServiceInvitation();
+        //Invitation i=new Invitation("non_consulté",2,1);
+       // si.ajouter(i);
+      
+    /*  Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+             
+
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber("+21624030100"),
+                new com.twilio.type.PhoneNumber("+14439032479"),
+                "check your nextec account")
+            .create();
+
+        System.out.println(message.getSid());*/
+    //Smsapi.sendSMS("", "Bienvenue chez nextec");
+    
+      /*  Configuration configuration = new Configuration();
+
+        configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+        configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
+        configuration.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
+
+	StreamSpeechRecognizer recognizer;
+        try {
+            recognizer = new StreamSpeechRecognizer(configuration);
+            InputStream stream = new FileInputStream(new File("‪C:\\Users\\pc\\OneDrive\\Bureau\\moatez.wav"));
+
+        recognizer.startRecognition(stream);
+        SpeechResult result;
+        while ((result = recognizer.getResult()) != null) {
+	    System.out.format("Hypothesis: %s\n", result.getHypothesis());
+	}
+	recognizer.stopRecognition();
+
+        } catch (IOException ex) {
+            Logger.getLogger(PIDEV.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+       
+	/*System.setProperty("mbrola.base", "C:\\Users\\pc\\OneDrive\\Bureau\\java\\Mbrola2");
+
+          try{  final String m="hello";
+        
+       Voice v;
+       VoiceManager vm=VoiceManager.getInstance();
+       v=vm.getVoice(m);
+
+       v.allocate();
+      
+            v.speak("hello");}
+        catch(Exception e)
+        {System.out.println("erreur");
+      
+        }*/
+ //Reconnaisance r=new Reconnaisance();
+   //   r.reconnaitre();   
+  // ServiceFormateur sf=new ServiceFormateur();
+   //System.out.println(sf.afficher());
 
     }
     

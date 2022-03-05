@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import lombok.NoArgsConstructor;
+import models.User;
 
 /**
  *
@@ -39,12 +40,12 @@ import lombok.NoArgsConstructor;
 
 public class ServiceParticipation {
       Connection cnx = DataSource.getInstance().getCnx();
-    public void Participer_Une_Formation(Formation f  , Utilisateur u){
+    public void Participer_Une_Formation(Formation f  , User u){
         
          try {
             String req = "INSERT INTO participation (id_participant,formation_id,date_participation) VALUES (?,?,?)";
                                 PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setInt(1, u.getId());
+            pst.setInt(1, (int) u.getId());
                        pst.setInt(2,f.getId_formation());
         DateFormat df = new SimpleDateFormat("dd/MM/YYYY" );
     SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
@@ -64,11 +65,11 @@ public class ServiceParticipation {
         }
         }
     
-    public void annuler_participation_précise(Utilisateur f,Formation f1)
+    public void annuler_participation_précise(User f,Formation f1)
     {try {
              String req = "DELETE FROM participation WHERE id_participant=? and formation_id=?";
             PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setInt(1,f.getId());            pst.setInt(2,f1.getId_formation());
+            pst.setInt(1, (int) f.getId());            pst.setInt(2,f1.getId_formation());
 
             pst.executeUpdate();
             System.out.println("Participation supprimée de  !"+f.getNom());
@@ -80,7 +81,7 @@ public class ServiceParticipation {
            List<Utilisateur> list = new ArrayList<>();
         
         
-        try{    String req = "SELECT * FROM utilisateur where id in (select id_participant"
+        try{    String req = "SELECT * FROM User where id in (select id_participant"
                 + "from participation where formation_id=?) ";
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setInt(1,f.getId_formation());
@@ -101,14 +102,14 @@ public class ServiceParticipation {
        public int nb_participant(Formation f)
        {return this.consulter_participants(f).size();
        }
-         public List<Formation> consulter_formation(Utilisateur f) {
+         public List<Formation> consulter_formation(User f) {
            List<Formation> list = new ArrayList<>();
         
         
         try{    String req = "SELECT * FROM formation where id_formation in (select formation_id"
                 + "from participation where id_participant=?) ";
             PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setInt(1,f.getId());
+            pst.setInt(1, (int) f.getId());
             ResultSet rs = pst.executeQuery();
             while(rs.next()) {
                 list.add(new Formation(rs.getInt(1),rs.getString(2),rs.getDate(3),rs.getDate(4),rs.getString(5),rs.getString(6)));
@@ -140,8 +141,8 @@ List<Participation> list = new ArrayList<>();
         return list;    }
              
                 
-              public List<Utilisateur> chercher_part_formations_Part(Formation f) {
-           List<Utilisateur> list = new ArrayList<>();
+              public List<User> chercher_part_formations_Part(Formation f) {
+           List<User> list = new ArrayList<>();
            ServiceFormateur sf=new ServiceFormateur();
                 List<Integer> formations_id=this.afficher().stream().filter(e->e.getFormation_id()==f.getId_formation()).map(e->e.getId_participant()).collect(Collectors.toList());
 for (Integer x: formations_id)
@@ -151,7 +152,7 @@ return list;
               }
              
              
-              public List<Formation> consulter_formations_Part(Utilisateur f) {
+              public List<Formation> consulter_formations_Part(User f) {
            List<Formation> list = new ArrayList<>();
            ServiceFormation sf=new ServiceFormation();
                 List<Integer> formations_id=this.afficher().stream().filter(e->e.getId_participant()==f.getId()).map(q->q.getFormation_id()).collect(Collectors.toList());
@@ -162,16 +163,16 @@ return list;
               }
               
               
-              public Map<Formation, List<Utilisateur>> consulter_particiapnts_par_formation()
+              public Map<Formation, List<User>> consulter_particiapnts_par_formation()
               {ServiceFormateur sf1=new ServiceFormateur();
              Map<Integer, List<Participation>> map=this.afficher().stream().collect(Collectors.groupingBy(e -> e.getFormation_id()));
-            Map<Formation, List<Utilisateur>> map1=new HashMap();
+            Map<Formation, List<User>> map1=new HashMap();
                        ServiceFormation sf=new ServiceFormation();
 
 
             for(Integer x:map.keySet())
             {
-                  List<Utilisateur> list = new ArrayList<>();
+                  List<User> list = new ArrayList<>();
                 for(int i=0;i<map.get(x).size();i++)
                 
             {list.add(sf1.findbyId(map.get(x).get(i).getId_participant()));}
@@ -189,7 +190,7 @@ return list;
                
               
               public void fichier_participation()
-         { Map<Formation, List<Utilisateur>> map1=new HashMap();
+         { Map<Formation, List<User>> map1=new HashMap();
 map1=this.consulter_particiapnts_par_formation();
  try{              FileWriter fw=new FileWriter("C:\\Users\\pc\\OneDrive\\Bureau\\partParform.txt");    
 fw.write("Bienvenue \n");
