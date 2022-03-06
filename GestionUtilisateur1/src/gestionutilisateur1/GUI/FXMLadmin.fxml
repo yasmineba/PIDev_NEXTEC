@@ -39,22 +39,27 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="399.0" layoutY="588.0" mnemonicParsing="false" onAction="#modifierUser" text="Modifier">
+      <Button layoutX="327.0" layoutY="588.0" mnemonicParsing="false" onAction="#modifierUser" text="Modifier">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <DatePicker fx:id="dpdate" layoutX="52.0" layoutY="474.0" promptText="Date de naissance" />
-      <Button layoutX="623.0" layoutY="588.0" mnemonicParsing="false" onAction="#supprimerUser" text="Supprimer">
+      <Button layoutX="488.0" layoutY="588.0" mnemonicParsing="false" onAction="#supprimerUser" text="Supprimer">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="878.0" layoutY="588.0" mnemonicParsing="false" onAction="#consulterArticle" text="Consulter article">
+      <Button layoutX="651.0" layoutY="588.0" mnemonicParsing="false" onAction="#consulterArticle" text="Consulter article">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Button fx:id="btntri" layoutX="1005.0" layoutY="22.0" mnemonicParsing="false" onAction="#trilist" text="Tri" />
+      <Button layoutX="862.0" layoutY="588.0" mnemonicParsing="false" onAction="#consulterPosition" text="Consulter la position">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

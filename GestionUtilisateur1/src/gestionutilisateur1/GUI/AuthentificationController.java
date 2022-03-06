@@ -11,6 +11,7 @@ import gestionutilisateur1.entity.User;
 import gestionutilisateur1.service.CryptWithMD5;
 import gestionutilisateur1.service.UserService;
 import gestionutilisateur1.utils.Mailapi;
+import gestionutilisateur1.utils.Smsapi;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -448,6 +449,7 @@ private void resetSignUpTF() {
             u.setUsername(usernametf.getText());
             u.setRole(Role.JOUEUR);
             us.ajouter(u);
+           // Smsapi.sendSMS("", "bievenue chez nextec!!");
             TrayNotification tray = new TrayNotification();
             
             AnimationType type = AnimationType.POPUP;

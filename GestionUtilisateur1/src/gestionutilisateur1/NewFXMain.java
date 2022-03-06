@@ -34,7 +34,8 @@ public class NewFXMain extends Application {
             
             
             
-            primaryStage.setTitle("Nextec app!");
+            
+            primaryStage.setTitle("Nextec app!");  
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
