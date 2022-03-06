@@ -5,13 +5,10 @@
         <group>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/views/GestionAvisController.java</file>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/views/MenuController.java</file>
-            <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/views/InvitationUI.fxml</file>
-            <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/views/ReponseInvitation.fxml</file>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/gestionequipe/test.java</file>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/services/ServiceEquipe.java</file>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/models/Avis.java</file>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/views/GestionAvis.fxml</file>
-            <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/views/menu.fxml</file>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/views/GestionEquipeController.java</file>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/views/ReponseInvitationController.java</file>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/services/ServiceInvitation.java</file>
@@ -19,8 +16,8 @@
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/views/InvitationUIController.java</file>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/gestionequipe/GestionEquipe.java</file>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/services/ServiceAvis.java</file>
-            <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/views/GestionEquipe.fxml</file>
             <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/models/Equipe.java</file>
+            <file>file:/C:/Users/anasl/Desktop/exercice%20java/GestionEquipe/src/views/GestionEquipe.fxml</file>
         </group>
     </open-files>
 </project-private>

@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author anasl
  */
 public class Myconnexion {
-     private final String URL="jdbc:mysql://127.0.0.1:3306/pidev" ;
+     private final String URL="jdbc:mysql://127.0.0.1:3306/ethlete" ;
     private final String USER="root";
     private final String PWD="";
     

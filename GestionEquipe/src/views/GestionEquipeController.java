@@ -7,7 +7,7 @@ package views;
 
 import com.jfoenix.controls.JFXButton;
 import models.Equipe;
-import models.User;
+import models.Utilisateur;
 import services.ServiceEquipe;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +29,7 @@ import javafx.stage.Stage;
  */
 public class GestionEquipeController implements Initializable {
 
-   User u = new User (5);
+   Utilisateur u = new Utilisateur (5);
  ServiceEquipe t = new ServiceEquipe ();
     /**
      * Initializes the controller class.
@@ -51,13 +51,15 @@ public class GestionEquipeController implements Initializable {
 
     @FXML
     private void ajouter_equipe(ActionEvent event) {
-        t.ajouter(new Equipe (nom.getText(),u.getId()));
-        /*             
+        
+                  
         StringBuilder errors=new StringBuilder();
-        if(list.getText().trim().isEmpty()){
+        if(nom.getText().trim().isEmpty()){
             errors.append("- Please enter a  Name equipe\n");
         }
-        */
+        else{
+        t.ajouter(new Equipe (nom.getText(),u.getId()));
+    }
     }
 
     @FXML

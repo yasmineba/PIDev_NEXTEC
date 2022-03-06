@@ -7,7 +7,7 @@ package views;
 
 import com.jfoenix.controls.JFXButton;
 import models.Invitation;
-import models.User;
+import models.Utilisateur;
 import services.ServiceEquipe;
 import services.ServiceInvitation;
 import java.net.URL;
@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  * @author anasl
  */
 public class ReponseInvitationController implements Initializable {
- User u = new User (5);
+ Utilisateur u = new Utilisateur (5);
 ServiceInvitation si=new ServiceInvitation();
     ServiceEquipe se=new ServiceEquipe();
     List<String> list1=new ArrayList();

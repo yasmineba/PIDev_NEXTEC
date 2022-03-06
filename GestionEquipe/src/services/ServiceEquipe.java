@@ -13,11 +13,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import models.Utilisateur;
 
 /**
  *
@@ -98,6 +98,13 @@ public class ServiceEquipe implements IService <Equipe> {
         return lu;
     
     } 
+    public Utilisateur find_responsable(int id){
+    ServiceResponsable sr = new ServiceResponsable();
+    Equipe e = findByID_equipe(id);
+    Utilisateur res = sr.afficher_part().stream().filter(s->s.getId()==e.getId_responsable()).findFirst().get();
+    return res;
+    
+    }
     public Equipe findBynom_equipe(String nom_equipe){
         List<Equipe> equipes=afficher();
         Equipe resultat=equipes.stream().filter(equipe->nom_equipe.equals(equipe.getNom_equipe())).findFirst().get();

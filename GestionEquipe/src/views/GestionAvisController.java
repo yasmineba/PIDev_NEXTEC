@@ -8,7 +8,7 @@ package views;
 import com.jfoenix.controls.JFXButton;
 import models.Avis;
 import models.Invitation;
-import models.User;
+import models.Utilisateur;
 import services.ServiceAvis;
 import java.net.URL;
 import java.util.*;
@@ -67,7 +67,7 @@ public class GestionAvisController implements Initializable {
         	ObservableList<Avis> list4 =FXCollections.observableArrayList( sa.afficher());
 System.out.println(list4);
     }    
-    User u = new User (5);
+    Utilisateur u = new Utilisateur (5);
 
     @FXML
     private void ajouter_avis(ActionEvent event) {
