@@ -65,7 +65,7 @@ public class Produit {
 
     @Override
     public String toString() {
-        return  idp + nomp +  prix +  idcateg ;
+        return  nomp ;
     }
     
     

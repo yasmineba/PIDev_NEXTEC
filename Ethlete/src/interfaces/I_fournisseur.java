@@ -7,8 +7,10 @@ package interfaces;
 
 import java.sql.Connection;
 import java.util.List;
+import models.CommandeProduit;
 import models.Fournisseur;
 import models.Fournisseur;
+import models.FournisseurProduit;
 import util.DataSource;
 
 /**
@@ -17,7 +19,6 @@ import util.DataSource;
  */
 public interface I_fournisseur {
     
-    Connection cnx= DataSource.getInstance().getCnx();
     
     public boolean ajouterfournisseur(Fournisseur f);
 
@@ -26,10 +27,13 @@ public interface I_fournisseur {
     public boolean modifierFournisseur(Fournisseur f);
 
     public boolean supprimerFournisseur(Fournisseur f);
+    public List<FournisseurProduit> afficherFournisseurProduit(); 
     
      public List<Fournisseur> trierFournisseur();
+     public List<FournisseurProduit> trierFournisseurProduit();
     
     public List<Fournisseur> chercherFournisseur(List<Fournisseur> initialList, String input);
+    public List<FournisseurProduit> chercherFournisseurPorduit(String s);
 
 
 }

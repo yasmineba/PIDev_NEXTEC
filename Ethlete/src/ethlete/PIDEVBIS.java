@@ -29,7 +29,7 @@ public class PIDEVBIS extends Application {
 
      Parent root=loader.load();
      Scene scene=new Scene(root);
-     primaryStage.setTitle("moatez");
+     primaryStage.setTitle("NEXTEX ");
      primaryStage.setScene(scene);
      primaryStage.show();
      

@@ -325,7 +325,7 @@ TreeSet<Formation> list = this.afficher().stream()
             e.printStackTrace();
         }
          }
-             public List<Formation> rechercherIntervenant(List<Formation> initialList, String input) {
+             public List<Formation> rechercherFormation(List<Formation> initialList, String input) {
     List<Formation> strList = initialList.stream()
                            .map( Formation::concat )
                            .filter(pt -> pt.toLowerCase().contains(input.toLowerCase()))

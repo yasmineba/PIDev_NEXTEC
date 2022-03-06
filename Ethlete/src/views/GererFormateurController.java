@@ -47,7 +47,7 @@ public class GererFormateurController implements Initializable {
    ServiceAffectationFormateur af=new ServiceAffectationFormateur();
             ServiceFormation sf=new ServiceFormation();
             ServiceFormateur sf1=new ServiceFormateur();
-              User u=new User(1);
+              User u=new User(AuthentificationController.idglobal);
 
       @FXML
     private TableView<Formation> formations;

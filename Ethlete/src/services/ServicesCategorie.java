@@ -20,12 +20,14 @@ import java.util.stream.Collectors;
 import javafx.scene.control.TableColumn;
 import models.Categorie;
 import models.Commande;
+import util.DataSource;
 
 /**
  *
  * @author ASUS
  */
 public class ServicesCategorie implements I_categorie{
+    Connection cnx = DataSource.getInstance().getCnx();
 
     @Override
     public boolean ajouterCategorie(Categorie cg) {
@@ -179,6 +181,34 @@ public class ServicesCategorie implements I_categorie{
         
      return categorie;
 
+    }
+
+    @Override
+    public int getidcateg(String s) {
+         int id = 0;
+
+        String req="select idcateg from categorie where nomcateg='"+s+"'";
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            //SOB HEDHA FI HEDHA
+            while(rs.next()){
+               id=rs.getInt("idcateg");
+               
+                
+            }
+        
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        
+        
+        
+     return id;
     }
    
      

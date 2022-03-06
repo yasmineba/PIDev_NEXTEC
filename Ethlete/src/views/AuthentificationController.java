@@ -326,7 +326,7 @@ private void resetSignUpTF() {
             Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
             
             stageclose.close();
-            Parent root=FXMLLoader.load(getClass().getResource("../views/FXMLadmin.fxml"));
+            Parent root=FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
             Stage stage =new Stage();
             
             Scene scene = new Scene(root);
@@ -361,12 +361,29 @@ private void resetSignUpTF() {
             Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
             
             stageclose.close();
-            Parent root=FXMLLoader.load(getClass().getResource("../views/UpdateProfil.fxml"));
+            Parent root=FXMLLoader.load(getClass().getResource("../views/MenuFormateur.fxml"));
             Stage stage =new Stage();
             
             Scene scene = new Scene(root);
             
-            stage.setTitle("Dashbord Admin");
+            stage.setTitle("Dashbord Formateur");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        } 
+                   else if(u.getRole().equals(Role.RESPONSABLE)){
+                         try {
+            Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+            Parent root=FXMLLoader.load(getClass().getResource("../views/MenuResponsable.fxml"));
+            Stage stage =new Stage();
+            
+            Scene scene = new Scene(root);
+            
+            stage.setTitle("Dashbord Responsable");
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -482,5 +499,8 @@ private void resetSignUpTF() {
             Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    
     
 }

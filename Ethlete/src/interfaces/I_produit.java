@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import models.Categorie;
 import models.Produit;
+import models.ProduitCategorie;
 import util.DataSource;
 
 /**
@@ -18,7 +19,6 @@ import util.DataSource;
  * @author ASUS
  */
 public interface I_produit {
-    Connection cnx= DataSource.getInstance().getCnx();
     
     public boolean ajouterProduit(Produit p);
 
@@ -31,6 +31,11 @@ public interface I_produit {
       
     public List<Produit> chercherProduit(List<Produit> initialList, String input);
      
-
+     public int getidcprod(String s);
+     
+     
+     public List<ProduitCategorie> afficherProduitCateg();
+     public List<ProduitCategorie> chercherProduitCategorie(String s);
+     
     
 }

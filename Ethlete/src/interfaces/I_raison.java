@@ -7,6 +7,7 @@ package interfaces;
 
 import java.sql.Connection;
 import java.util.List;
+import models.Categorie;
 import models.Raison;
 import util.DataSource;
 
@@ -15,7 +16,6 @@ import util.DataSource;
  * @author ASUS
  */
 public interface I_raison {
-    Connection cnx= DataSource.getInstance().getCnx();
     
     public boolean ajouterRaison(Raison rz);
 
@@ -28,5 +28,6 @@ public interface I_raison {
      public List<Raison> trierRaison();
     
     public List<Raison> chercherRaison(List<Raison> initialList, String input);
-    
+    public int getidraison(String s);
+     public List<Raison> afficherNomRaison();
 }

@@ -8,12 +8,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GestionAvisController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="878.0">
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="878.0" stylesheets="@style.css">
          <children>
             <Label layoutX="80.0" layoutY="125.0" prefHeight="21.0" prefWidth="34.0" text="note" />
-            <Button layoutX="165.0" layoutY="185.0" mnemonicParsing="false" onAction="#ajouter_avis" text="envoyer" />
-            <ComboBox fx:id="list" layoutX="141.0" layoutY="120.0" prefWidth="150.0" />
-            <JFXButton fx:id="but" layoutX="565.0" layoutY="170.0" onAction="#stat_avis" text="Consulter statistiques des avis" />
+            <Button layoutX="235.0" layoutY="297.0" mnemonicParsing="false" onAction="#ajouter_avis" text="envoyer" />
+            <Button layoutX="97.0" layoutY="297.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+            <ComboBox fx:id="pwd" layoutX="141.0" layoutY="120.0" prefWidth="150.0" />
+            <JFXButton fx:id="cb" layoutX="787.0" layoutY="355.0" onAction="#retour_menu" text="--&gt;" />
+            <JFXButton layoutX="499.0" layoutY="169.0" onAction="#stat" text="Consulter les statistiques des avis" />
          </children>
       </AnchorPane>
    </children>

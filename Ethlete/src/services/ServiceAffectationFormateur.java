@@ -313,8 +313,7 @@ return map;
       }
       return list;
       }
-      
-      
+ 
       public List<Formation> filtrer_formations_no_consulté(List<AffectationFormateur> list1 )
       {
        

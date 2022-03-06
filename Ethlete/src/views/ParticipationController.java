@@ -6,6 +6,8 @@
 package views;
 
 import com.jfoenix.controls.JFXButton;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
@@ -40,7 +42,7 @@ public class ParticipationController implements Initializable {
             ServiceFormation sf=new ServiceFormation();
 ServiceParticipation sp=new ServiceParticipation();
 ServiceFormateur sf1=new ServiceFormateur();
-User u=new User(1);
+User u=new User(AuthentificationController.idglobal);
 @FXML
     private Button supp;
       @FXML
@@ -84,10 +86,23 @@ nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formati
 		dis.setCellValueFactory(new PropertyValueFactory<Formation, String>("dispositif"));
 		formations.setItems(list);
 	}
+      public static final String ACCOUNT_SID = "AC68d4b1a9a27586d27aa6f9410dde36f5"; 
+    public static final String AUTH_TOKEN = "3cf893f5dadd191a2489feae35d0eb3d"; 
     @FXML
     void participerForm(ActionEvent event) {
         Formation f=formations.getSelectionModel().getSelectedItem();
 sp.Participer_Une_Formation(f, u);
+Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+             
+
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber("+21624030100"),
+                new com.twilio.type.PhoneNumber("+14439032479"),
+                "Vous êtes inscrits à "+f.getNom_formation())
+            .create();
+
+        System.out.println(message.getSid());
+ 
          JOptionPane.showMessageDialog(null,"succés" );
 
     }
