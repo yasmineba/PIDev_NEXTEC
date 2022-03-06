@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="402.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AffichageJourneController">
+     <children>
+      <Button fx:id="sup" layoutX="584.0" layoutY="343.0" mnemonicParsing="false" onAction="#deleteM" text="Supprimer" />
+      <Button fx:id="modif" layoutX="470.0" layoutY="343.0" mnemonicParsing="false" onAction="#modifM" text="Modifier" />   
+      <Label layoutX="348.0" layoutY="121.0" text="Numero de Journée" />
+      <Label layoutX="348.0" layoutY="191.0" text="Date de Journée" />
+      <TextField fx:id="numjA" layoutX="498.0" layoutY="116.0" />
+      <DatePicker fx:id="datejA" layoutX="475.0" layoutY="186.0" />
+      <TableView fx:id="journe" layoutX="-2.0" prefHeight="402.0" prefWidth="349.0">
+        <columns>
+          <TableColumn fx:id="numj" prefWidth="175.0" text="Numero Journe" />
+          <TableColumn fx:id="datej" minWidth="0.0" prefWidth="173.0" text="Date Journée" />
+        </columns>
+      </TableView>
+      <Button layoutX="355.0" layoutY="343.0" mnemonicParsing="false" onAction="#addM" text="Ajouter" />
+   </children>
+    
+</AnchorPane>
