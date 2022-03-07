@@ -9,84 +9,107 @@ package models;
  *
  * @author gaming
  */
-public class Journe {
+public class Match {
+    private int id_match;
+    private String equipe1;
+    private String equipe2;
+    private String etat;
     private int id_journe;
-    private int numJourne;
-    private String date_journe;
-    private int id_competition;
-    public Journe(){
-    }
-    public Journe(int id_journe, int numJourne ,String date_journe,int id_competition){
-        this.id_journe=id_journe;
-        this.numJourne=numJourne;
-        this.date_journe=date_journe;
-        this.id_competition = id_competition;
-        
-    }
 
-    public Journe(int id_journe, int numJourne, String date_journe) {
+    public Match(int id_match, String equipe1, String equipe2, String etat, int id_journe) {
+        this.id_match = id_match;
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
+        this.etat = etat;
         this.id_journe = id_journe;
-        this.numJourne = numJourne;
-        this.date_journe = date_journe;
     }
 
-    public Journe(int numJourne, String date_journe) {
-        this.numJourne = numJourne;
-        this.date_journe = date_journe;
+    public Match(String equipe1, String equipe2, int id_journe) {
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
+        this.id_journe = id_journe;
     }
 
-  
-    public Journe(int numJourne, String date_journe,int id_competition){
-        this.numJourne=numJourne;
-        this.date_journe=date_journe;
-        this.id_competition = id_competition;
+    public Match(String equipe1, String equipe2, String etat, int id_journe) {
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
+        this.etat = etat;
+        this.id_journe = id_journe;
+    }
+
+    public Match(int id_match, String equipe1, String equipe2, String etat) {
+        this.id_match = id_match;
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
+        this.etat = etat;
+    }
+
+    public Match(int id_match) {
+        this.id_match = id_match;
+    }
+
+    
+    public int getId_match() {
+        return id_match;
+    }
+
+    public String getEquipe1() {
+        return equipe1;
+    }
+
+    public String getEquipe2() {
+        return equipe2;
+    }
+
+    public String getEtat() {
+        return etat;
     }
 
     public int getId_journe() {
         return id_journe;
     }
 
-    public int getNumJourne() {
-        return numJourne;
+    public void setId_match(int id_match) {
+        this.id_match = id_match;
     }
 
-    public String getDate_journe() {
-        return date_journe;
+    public void setEquipe1(String equipe1) {
+        this.equipe1 = equipe1;
     }
 
-    public int getId_competition() {
-        return id_competition;
+    public void setEquipe2(String equipe2) {
+        this.equipe2 = equipe2;
     }
-    
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
 
     public void setId_journe(int id_journe) {
         this.id_journe = id_journe;
     }
+    
 
-    public void setNumJourne(int numJourne) {
-        this.numJourne = numJourne;
-    }
 
-    public void setDate_journe(String date_journe) {
-        this.date_journe = date_journe;
-    }
 
-    public void setId_competition(int id_competition) {
-        this.id_competition = id_competition;
-    }
 
-    @Override
-    public String toString() {
-        return "journe{" + "id_journe=" + id_journe + ", numJourne=" + numJourne + ", date_journe=" + date_journe + ", id_competition=" + id_competition + '}';
+
+    
+    
+    
+
     }
     
     
-
-}
-    
     
 
-            
-        
+
+
+
+
+
     
 
+    
+
+    
