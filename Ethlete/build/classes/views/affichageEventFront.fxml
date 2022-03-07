@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="377.0" prefWidth="524.0" stylesheets="@elements/css/styleCSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AffichageEventFrontController">
+   <children>
+      <BorderPane prefHeight="408.0" prefWidth="541.0">
+         <top>
+            <Pane prefHeight="96.0" prefWidth="541.0" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <VBox prefHeight="325.0" prefWidth="541.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="scrollPaneID" maxHeight="574.0" maxWidth="1000.0" prefHeight="307.0" prefWidth="543.0">
+                     <content>
+                        <GridPane fx:id="evGP" onMouseClicked="#onGP_clicked" prefHeight="1000.0" prefWidth="520.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

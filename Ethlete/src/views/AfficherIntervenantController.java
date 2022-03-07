@@ -5,19 +5,39 @@
  */
 package views;
 
+import com.jfoenix.controls.JFXButton;
+import static com.sun.org.apache.xerces.internal.util.FeatureState.is;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import java.net.URL;
+import java.sql.Connection;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -27,6 +47,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import models.Intervenant;
 import services.ServiceIntervenant;
@@ -69,6 +93,19 @@ public class AfficherIntervenantController implements Initializable {
     private TextField telephoneTF;
     @FXML
     private TextField rechercheTF;
+    @FXML
+    private JFXButton closeButton;
+    @FXML
+    private TableColumn<Intervenant, String> imagetbl;
+     
+    
+     void afficherIntervenant(MouseEvent event) throws IOException {
+     Parent root = FXMLLoader.load(getClass().getResource("AjouterIntervenant.fxml"));
+		Scene scene = new Scene(root);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.show();
+    }
 
     /**
      * Initializes the controller class.
@@ -80,30 +117,68 @@ public class AfficherIntervenantController implements Initializable {
             
             Image image1 = new Image(new FileInputStream("C:\\Users\\21624\\Documents\\NetBeansProjects\\Ethlete\\src\\views\\elements\\logo.png"));
             logo.setImage(image1);
+            updateList(si.afficherIntervenant());
+        updateList1(si.afficherIntervenant());
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
-  
-        updateList(si.afficherIntervenant());
-
-    }
-
-    @FXML
-    private void ajouterBTN_clicked(ActionEvent event) {
-        si.ajouterIntervenant(new Intervenant(nomTF.getText(),prenomTF.getText(),emailTF.getText(), Integer.parseInt(telephoneTF.getText()),2));
-        JOptionPane.showMessageDialog(null, "Type Ajouté");
         
-        clearCells();
-        updateList(si.afficherIntervenant());
-    }
+        
 
-    @FXML
+    }
+    
+    private void updateList1(List<Intervenant> theList){
+       Callback<TableColumn<Intervenant, String>, TableCell<Intervenant, String>> cellFactoryU
+        =
+        ( TableColumn<Intervenant, String> param) -> {
+            TableCell<Intervenant, String> cell = new TableCell<Intervenant, String>() {
+
+                ImageView btn = new ImageView();
+
+
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+
+
+                            String im = getTableView().getItems().get(getIndex()).getImage_In(); 
+                            File file = new File(im);
+                            //System.out.println(u.getById(p.getIdUser()).getNom());
+                            System.out.println(im);
+                            btn.setImage(new Image(file.toURI().toString()));
+
+                        ObservableList observableList = FXCollections.observableArrayList(si.afficherIntervenant());
+                        tableInter.setItems(observableList);
+                        // list();
+
+
+                        setGraphic(btn);
+                        setText(null);
+                        btn.setFitWidth(20);
+                        btn.setFitHeight(20);
+
+
+                    }
+                }
+
+
+            };
+
+            return cell;
+        };
+       imagetbl.setCellFactory(cellFactoryU);
+     }
+
+  @FXML
     private void modifierBTN_clicked(ActionEvent event) {
-        si.modifierIntervenant(new Intervenant(Integer.parseInt(idLBL.getText()),nomTF.getText(),prenomTF.getText(),emailTF.getText(), Integer.parseInt(telephoneTF.getText()),2));
+        /*si.modifierIntervenant(new Intervenant(Integer.parseInt(idLBL.getText()),image.getText(),nomTF.getText(),prenomTF.getText(),emailTF.getText(), Integer.parseInt(telephoneTF.getText()),2));
         clearCells();
-        updateList(si.afficherIntervenant());
+        updateList(si.afficherIntervenant());*/
     }
-
     @FXML
     private void deleteBTN_clicked(ActionEvent event) {
         si.supprimerIntervenant(new Intervenant(Integer.parseInt(idLBL.getText())));
@@ -114,7 +189,9 @@ public class AfficherIntervenantController implements Initializable {
     private void updateList(List<Intervenant> theList){
         list.clear();
         theList.stream().forEach(p -> list.add(p));
+        
         idTBL.setCellValueFactory(new PropertyValueFactory<>("id_inter"));
+        imagetbl.setCellValueFactory(new PropertyValueFactory<>("image_In"));
         nomTBL.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenomTBL.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         emailTBL.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -134,6 +211,7 @@ public class AfficherIntervenantController implements Initializable {
     private void rowClicked(MouseEvent event) {
         Intervenant row = tableInter.getSelectionModel().getSelectedItem();
         idLBL.setText(String.valueOf(row.getId_inter()));
+       // urlTF.setText(row.getNom());
         nomTF.setText(row.getNom());
         prenomTF.setText(row.getPrenom());
         emailTF.setText(row.getEmail());
@@ -144,7 +222,13 @@ public class AfficherIntervenantController implements Initializable {
 
     @FXML
     private void rechercheTextChanged(KeyEvent event) {
-        updateList(si.rechercherIntervenant(si.afficherIntervenant(), rechercheTF.getText()));
+      //  updateList(si.rechercherIntervenant(si.afficherIntervenant(), rechercheTF.getText()));
         
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+    stage.close();
     }
 }

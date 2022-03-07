@@ -16,12 +16,9 @@ import services.ServiceEvenement;
 import javax.xml.ws.Service;
 import java.sql.Connection;
 import models.Billet;
-import models.Typee;
-import models.Typeinter;
 import services.ServiceBillet;
 import services.ServiceIntervenant;
-import services.ServiceTypee;
-import services.ServiceTypeint;
+
 
 public class Ethlete {
 
@@ -81,10 +78,10 @@ public class Ethlete {
         System.out.println(si.sortByNom());
 
        
-       Billet B = new Billet(2,6,(float) 4.5,"");
+      // Billet B = new Billet(2,6,(float) 4.5,"");
         ServiceBillet sb = new ServiceBillet();
 
-        System.out.println(sb.ajouterBillet(B));
+  //      System.out.println(sb.ajouterBillet(B));
            
 
         // SERVICE

@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ethlete;
 
 import java.io.IOException;
@@ -24,10 +25,10 @@ public class NewFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader (getClass().getResource("../views/AfficherIntervenant.fxml"));
-        Parent yasmine = loader.load();
+        FXMLLoader loader = new FXMLLoader (getClass().getResource("../views/AjouterEvent.fxml"));
+        Parent yasmine= loader.load();
         Scene scene=new Scene(yasmine);
-        primaryStage.setTitle("ajouter type");
+        primaryStage.setTitle("ajouter Intervenant");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

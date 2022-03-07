@@ -14,7 +14,7 @@ import models.Evenement;
  */
 public interface I_evenement {
      //ajouter
-    public boolean ajouterEvenement(Evenement E);
+    public Evenement ajouterEvenement(Evenement E);
 
     //lister
     public List<Evenement> afficherEvenement();
@@ -24,5 +24,11 @@ public interface I_evenement {
 
     //delete
     public boolean supprimerEvenement(Evenement E);
+    
+    
+     public List<Evenement> rechercherEvenement(List<Evenement> initialList, String input);
+   public List<Evenement> sortByNom();
+   
+   public Evenement retrieveEvent(int id);
 
 }

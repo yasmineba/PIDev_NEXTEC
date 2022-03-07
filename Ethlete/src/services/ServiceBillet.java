@@ -26,7 +26,8 @@ public class ServiceBillet implements I_billet {
         
             Connection cnx = utils.MaConnexion.getInstance().getCnx();
 
-        String request ="INSERT INTO `billets`(`id_event`, `prix`,`date_achat`) VALUES ('"+B.getId_event()+"',"+B.getPrix()+",NOW())";
+        String request ="INSERT INTO `billets`(`id_event`,`nbre_billet`, `prix`, `date_achat`) VALUES "
+                + "('"+B.getId_event()+"',"+B.getNombre_billets()+","+B.getPrix()+",NOW())";
            try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(request) == 1)
@@ -50,7 +51,7 @@ public class ServiceBillet implements I_billet {
 
             //SOB HEDHA FI HEDHA
             while(rs.next()){
-             billets.add(new Billet(rs.getInt("id_billet"),rs.getInt("id_event"),rs.getFloat("prix"),rs.getString("date_achat")));
+             billets.add(new Billet(rs.getInt("id_billet"),rs.getInt("id_event"),rs.getInt("nbr_billet"),rs.getFloat("prix"),rs.getDate("date_achat")));
             }
 
         } catch (SQLException e) {
@@ -62,7 +63,7 @@ public class ServiceBillet implements I_billet {
 
     @Override
     public boolean modifierEvenement(Billet B) {
- String req = "UPDATE `billet` SET `id_event`='"+B.getId_event()+"',`prix`="+B.getPrix()+" ,`date_achat`='"+B.getDate_achat()+"' WHERE id_inter = "+B.getId_billet()+"";
+ String req = "UPDATE `billet` SET `id_event`='"+B.getId_event()+"',`nbr_billet`='"+B.getNombre_billets()+"',`prix`="+B.getPrix()+" ,`date_achat`='"+B.getDate_achat()+"' WHERE id_inter = "+B.getId_billet()+"";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(req) == 1)
@@ -78,4 +79,25 @@ public class ServiceBillet implements I_billet {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public Billet retrieveBillet(int id_billet){
+        Billet billet = null;
+
+        String req="SELECT * FROM billets where id_billet = "+id_billet+"";
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            //SOB HEDHA FI HEDHA
+            if(rs.next()){
+             billet = new Billet(rs.getInt("id_billet"),rs.getInt("id_event"),rs.getInt("nbr_billet"),rs.getFloat("prix"),rs.getDate("date_achat"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return billet;     
+    }
 }

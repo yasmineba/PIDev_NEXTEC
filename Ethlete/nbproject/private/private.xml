@@ -3,29 +3,32 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/interfaces/I_intervenant.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/AfficherType.fxml</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/ServiceBillet.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/ajouterType.fxml</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/ServiceEvenement.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/models/Typee.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/AcheterBilletController.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/evenementFXML.fxml</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/gui/GestionPointDeVenteController.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/interfaces/iservice1.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/AfficherEventController.java</file>
             <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/models/Billet.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/ServiceTypeint.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/ServiceIntervenant.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/ServiceTypee.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/ServiceFormation.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/payment.fxml</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/AfficherIntervenantController.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/models/Formation.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/competitionservice.java</file>
             <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/ethlete/Ethlete.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/interfaces/I_typeinter.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/AfficherTypeController.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/interfaces/I_billet.java</file>
             <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/models/Evenement.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/EvenementFXMLController.java</file>
             <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/interfaces/I_evenement.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/models/Intervenant.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/AjoutIntervenant.fxml</file>
             <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/ethlete/NewFXMain.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/utils/MaConnexion.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/interfaces/I_typee.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/models/Typeinter.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/AjouterTypeController.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/ServiceBillet.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/AjouterIntervenantController.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/ServiceEvenement.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/affichageEventFront.fxml</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/AffichageEventFrontController.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/interfaces/iservice11.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/interfaces/IService.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/services/ServiceIntervenant.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/views/AjouterEventController.java</file>
+            <file>file:/C:/Users/21624/Documents/NetBeansProjects/Ethlete/src/models/Intervenant.java</file>
         </group>
     </open-files>
 </project-private>
