@@ -47,7 +47,15 @@ public class ServiceInvitation implements IService1 <Invitation> {
     public ServiceInvitation() {
         cnx=DataSource.getInstance().getCnx();
     }
+<<<<<<< HEAD
     
+=======
+    public List<Invitation> afficherpares(int ideq)
+    {
+    
+   return this.afficher().stream().filter(e->e.getId_eq()==ideq).collect(Collectors.toList());
+    }
+>>>>>>> moatez
 
     @Override
     public void ajouter(Invitation t) {

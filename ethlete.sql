@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
+<<<<<<< HEAD
 -- Généré le : sam. 05 mars 2022 à 19:14
+=======
+-- Généré le : Dim 06 mars 2022 à 23:09
+>>>>>>> moatez
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.11
 
@@ -38,7 +42,13 @@ CREATE TABLE `affectation_formateur` (
 --
 
 INSERT INTO `affectation_formateur` (`formateur_id`, `formation_id`, `reponse`) VALUES
+<<<<<<< HEAD
 (1, 6, 1);
+=======
+(1, 6, 1),
+(1, 10, 1),
+(2, 10, 1);
+>>>>>>> moatez
 
 -- --------------------------------------------------------
 
@@ -77,6 +87,17 @@ CREATE TABLE `avis` (
   `note` enum('1','2','3','4','5') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+<<<<<<< HEAD
+=======
+--
+-- Déchargement des données de la table `avis`
+--
+
+INSERT INTO `avis` (`id_avis`, `id_user`, `note`) VALUES
+(1, 1, '2'),
+(2, 1, '3');
+
+>>>>>>> moatez
 -- --------------------------------------------------------
 
 --
@@ -107,7 +128,11 @@ CREATE TABLE `categorie` (
 
 INSERT INTO `categorie` (`idcateg`, `nomcateg`) VALUES
 (15, 'accessoires'),
+<<<<<<< HEAD
 (16, 'accessoires');
+=======
+(17, 'pciet');
+>>>>>>> moatez
 
 -- --------------------------------------------------------
 
@@ -344,7 +369,12 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`idp`, `nomp`, `prix`, `idcateg`) VALUES
+<<<<<<< HEAD
 (51, 'necklace', 78, 15);
+=======
+(51, 'necklace', 78, 15),
+(53, 'pc', 20, 17);
+>>>>>>> moatez
 
 -- --------------------------------------------------------
 
@@ -357,6 +387,16 @@ CREATE TABLE `raison` (
   `raisontxt` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
+=======
+--
+-- Déchargement des données de la table `raison`
+--
+
+INSERT INTO `raison` (`idRaison`, `raisontxt`) VALUES
+(5, 'connexion');
+
+>>>>>>> moatez
 -- --------------------------------------------------------
 
 --
@@ -367,10 +407,26 @@ CREATE TABLE `reclamation` (
   `idr` int(11) NOT NULL,
   `contenu` text NOT NULL,
   `id` int(11) NOT NULL,
+<<<<<<< HEAD
   `daterec` date NOT NULL,
   `idRaison` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+=======
+  `daterec` varchar(100) NOT NULL,
+  `idRaison` int(11) NOT NULL,
+  `etat` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `reclamation`
+--
+
+INSERT INTO `reclamation` (`idr`, `contenu`, `id`, `daterec`, `idRaison`, `etat`) VALUES
+(11, 'mm', 1, '2022-03-06', 5, 'Traitee'),
+(15, 'aaa', 4, '2022-03-06', 5, 'Traitee');
+
+>>>>>>> moatez
 -- --------------------------------------------------------
 
 --
@@ -417,9 +473,16 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `adresse`, `date_naissance`, `email`, `nom`, `num_tel`, `password`, `prenom`, `role`, `username`, `genre`, `id_eq`) VALUES
+<<<<<<< HEAD
 (1, 'ariana', '2022-03-14', 'mmm', 'mm', 43434, 'ee11cbb19052e4b7aac0ca6c23ee', 'mm', 'FORMATEUR', 'mm', 'homme', NULL),
 (2, 'ariana', '2022-03-13', 'temanimohameddahmi', 'temani', 5555, '7dc71596b177f323db34eacd63048f7', 'mohamed', 'ADMIN', 'dahh', 'femme', NULL),
 (3, 'bardo', '2022-03-09', 'moatez.oueslati@esprit.tn', 'oueslati', 24030100, '1394f926812e7dbce50d279b6cfef5e', 'oueslati', 'JOUEUR', 'mooo', 'null', NULL);
+=======
+(1, 'ariana', '2022-03-14', 'rmatoussi3@gmail.com', 'moatez.oueslati@esprit.tn', 43434, 'ee11cbb19052e4b7aac0ca6c23ee', 'mm', 'FORMATEUR', 'mm', 'homme', NULL),
+(2, 'ariana', '2022-03-12', 'temanimohameddahmi', 'temani', 24030100, 'd41d8cd98f0b24e980998ecf8427e', 'mohamed', 'FORMATEUR', 'dahh', 'femme', NULL),
+(3, 'bardo', '2022-03-09', 'moatez.oueslati@esprit.tn', 'oueslati', 24030100, '1394f926812e7dbce50d279b6cfef5e', 'oueslati', 'JOUEUR', 'mooo', 'null', NULL),
+(4, 'moatez', '2022-03-02', 'moatez@gmail.com', 'moatez', 24030100, '1394f926812e7dbce50d279b6cfef5e', 'moatez', 'ADMIN', 'moatez', 'null', NULL);
+>>>>>>> moatez
 
 -- --------------------------------------------------------
 
@@ -633,7 +696,11 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
+<<<<<<< HEAD
   MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT;
+=======
+  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+>>>>>>> moatez
 
 --
 -- AUTO_INCREMENT pour la table `billets`
@@ -645,13 +712,21 @@ ALTER TABLE `billets`
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
+<<<<<<< HEAD
   MODIFY `idcateg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+=======
+  MODIFY `idcateg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+>>>>>>> moatez
 
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
+<<<<<<< HEAD
   MODIFY `idcom` int(11) NOT NULL AUTO_INCREMENT;
+=======
+  MODIFY `idcom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> moatez
 
 --
 -- AUTO_INCREMENT pour la table `commentaire`
@@ -717,19 +792,31 @@ ALTER TABLE `match`
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
+<<<<<<< HEAD
   MODIFY `idp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+=======
+  MODIFY `idp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+>>>>>>> moatez
 
 --
 -- AUTO_INCREMENT pour la table `raison`
 --
 ALTER TABLE `raison`
+<<<<<<< HEAD
   MODIFY `idRaison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+=======
+  MODIFY `idRaison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+>>>>>>> moatez
 
 --
 -- AUTO_INCREMENT pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
+<<<<<<< HEAD
   MODIFY `idr` int(11) NOT NULL AUTO_INCREMENT;
+=======
+  MODIFY `idr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+>>>>>>> moatez
 
 --
 -- AUTO_INCREMENT pour la table `reponse`
@@ -741,7 +828,11 @@ ALTER TABLE `reponse`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
+<<<<<<< HEAD
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+=======
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+>>>>>>> moatez
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
@@ -796,7 +887,11 @@ ALTER TABLE `commentaire`
 -- Contraintes pour la table `equipe`
 --
 ALTER TABLE `equipe`
+<<<<<<< HEAD
   ADD CONSTRAINT `fk_Responsable_eq` FOREIGN KEY (`id_responsable`) REFERENCES `utilisateur` (`id`);
+=======
+  ADD CONSTRAINT `fk_Responsable_eq` FOREIGN KEY (`id_responsable`) REFERENCES `user` (`id`);
+>>>>>>> moatez
 
 --
 -- Contraintes pour la table `evenement`
@@ -848,6 +943,7 @@ ALTER TABLE `produit`
 -- Contraintes pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
+<<<<<<< HEAD
   ADD CONSTRAINT `fk_raison` FOREIGN KEY (`idRaison`) REFERENCES `raison` (`idRaison`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_user_rec` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -856,6 +952,10 @@ ALTER TABLE `reclamation`
 --
 ALTER TABLE `utilisateur`
   ADD CONSTRAINT `fk_joueur_equipe` FOREIGN KEY (`id_equipe`) REFERENCES `equipe` (`id_equipe`);
+=======
+  ADD CONSTRAINT `fk_rason1` FOREIGN KEY (`idRaison`) REFERENCES `raison` (`idRaison`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_user_rec` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+>>>>>>> moatez
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

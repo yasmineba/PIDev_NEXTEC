@@ -14,9 +14,18 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+<<<<<<< HEAD
 import models.Fournisseur;
 import models.Fournisseur;
 import models.Fournisseur;
+=======
+import models.CommandeProduit;
+import models.Fournisseur;
+import models.Fournisseur;
+import models.Fournisseur;
+import models.FournisseurProduit;
+import util.DataSource;
+>>>>>>> moatez
 import util.DataSource;
 
 /**
@@ -25,7 +34,11 @@ import util.DataSource;
  */
     public class ServicesFournisseur implements I_fournisseur{
     
+<<<<<<< HEAD
      Connection cnx= DataSource.getInstance().getCnx();
+=======
+            Connection cnx = DataSource.getInstance().getCnx();
+>>>>>>> moatez
      
      
     @Override
@@ -124,6 +137,49 @@ import util.DataSource;
     public List<Fournisseur> chercherFournisseur(List<Fournisseur> initialList, String input) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+<<<<<<< HEAD
+=======
+
+    @Override
+    public List<FournisseurProduit> afficherFournisseurProduit() {
+       List<FournisseurProduit>  listfp = new ArrayList<FournisseurProduit>();
+         String req="SELECT fournisseur.idf,fournisseur.nomf,fournisseur.prenomf,fournisseur.email,fournisseur.telf,fournisseur.adresse,produit.idp,produit.nomp,produit.prix From fournisseur left join produit on fournisseur.idp=produit.idp";
+         try {
+             Statement st = cnx.createStatement();
+             
+             ResultSet rs = st.executeQuery(req);
+             while (rs.next())
+             {
+                FournisseurProduit fp= new FournisseurProduit(rs.getInt("idf"),rs.getString("nomf"),rs.getString("prenomf"),rs.getString("email"),rs.getInt("telf"),rs.getString("adresse"),rs.getInt("idp"),rs.getString("nomp"),rs.getFloat("prix"));
+                listfp.add(fp);
+                
+                
+             }
+             
+             
+         } catch (SQLException ex) {
+             ex.printStackTrace();// twarik mochkla win//
+         }
+         return listfp;
+        
+    }
+
+    @Override
+    public List<FournisseurProduit> trierFournisseurProduit() {
+         List<FournisseurProduit> fournisseurs=afficherFournisseurProduit();
+          List<FournisseurProduit> sortedCateg =fournisseurs.stream().sorted(Comparator.comparing(FournisseurProduit::getAdresse)).collect(Collectors.toList());
+         return sortedCateg;
+    }
+
+    @Override
+    public List<FournisseurProduit> chercherFournisseurPorduit(String s) {
+        FournisseurProduit fournisseur;
+        List<FournisseurProduit> fournisseurs=afficherFournisseurProduit();
+        List<FournisseurProduit> resultat=fournisseurs.stream().filter(FournisseurProduit->s.equals(FournisseurProduit.getNomp())).collect(Collectors.toList());
+        return resultat;
+    
+    }
+>>>>>>> moatez
     
    
     

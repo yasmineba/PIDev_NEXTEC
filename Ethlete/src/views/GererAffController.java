@@ -20,6 +20,10 @@ import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+<<<<<<< HEAD
+=======
+import javafx.scene.control.Alert;
+>>>>>>> moatez
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -121,12 +125,38 @@ nom_f.setCellValueFactory(new PropertyValueFactory<User, String>("nom"));
       User form=formateurs.getSelectionModel().getSelectedItem();
 System.out.println(f.toString());
 System.out.println(form.toString());
+<<<<<<< HEAD
 
  af.affectation_formateur(f, form);
                JOptionPane.showMessageDialog(null,"C BN" );
 
 
     }
+=======
+if(!exist(form,f))
+{af.affectation_formateur(f, form);
+               JOptionPane.showMessageDialog(null,"C BN" );}
+else
+{  Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Affectation Existante");
+            alert.setContentText("Déjà affectée à cette formation");
+            alert.showAndWait();
+}
+
+
+    }
+    public boolean exist(User u,Formation f)
+            
+    { List<AffectationFormateur> list2=new ArrayList();
+    list2=af.afficher();
+        
+        for (int i=0;i<list2.size();i++)
+        if(list2.get(i).getFormateur_idt()==u.getId() && list2.get(i).getFormation_id()==f.getId_formation())
+            return true;
+        return false;
+        
+    }
+>>>>>>> moatez
     
     @FXML
     void afficherAff(ActionEvent event) {

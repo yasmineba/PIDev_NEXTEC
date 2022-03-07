@@ -8,7 +8,13 @@ package interfaces;
 import java.sql.Connection;
 import java.util.List;
 import javafx.scene.chart.BarChart;
+<<<<<<< HEAD
 import models.Reclamation;
+=======
+import models.FournisseurProduit;
+import models.Reclamation;
+import models.ReclamationUtilisateur;
+>>>>>>> moatez
 import util.DataSource;
 
 /**
@@ -16,7 +22,10 @@ import util.DataSource;
  * @author ASUS
  */
 public interface I_reclamation {
+<<<<<<< HEAD
     Connection cnx= DataSource.getInstance().getCnx();
+=======
+>>>>>>> moatez
     
     public boolean ajouterReclamation(Reclamation r);
 
@@ -27,5 +36,17 @@ public interface I_reclamation {
     public boolean supprimerReclamation(Reclamation r);
     
     public int nombreReclamation();
+<<<<<<< HEAD
+=======
+    public List<ReclamationUtilisateur> afficherReclamationUser(); 
+    public boolean ajouterReclamationUser(Reclamation r);
+     public int getiduser(String s);
+     
+     public List<ReclamationUtilisateur> trierReclamationUtilisateur();
+     public List<ReclamationUtilisateur> chercherReclamationUse(String s);
+     
+     
+    
+>>>>>>> moatez
   
 }

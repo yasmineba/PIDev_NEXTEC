@@ -96,16 +96,27 @@
       <Button fx:id="afficher" layoutX="118.0" layoutY="380.0" mnemonicParsing="false" onAction="#AfficherFormation" text="Afficher Formation" />
       <ComboBox fx:id="tftri" layoutX="923.0" layoutY="442.0" onAction="#trierForm" prefWidth="150.0" />
       <Text layoutX="847.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trier par" />
+<<<<<<< HEAD
       <Button fx:id="pdf" layoutX="518.0" layoutY="441.0" mnemonicParsing="false" onAction="#consulterpdf" text="ConsulterPDF" />
       <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="14.0" layoutY="555.0" onAction="#retour" ripplerFill="#c33535" text="&lt;----" textOverrun="CENTER_ELLIPSIS" />
       <JFXTextField fx:id="search" layoutX="866.0" layoutY="64.0" onKeyTyped="#rechercheTextChanged" promptText="Recherche" />
       <Pagination fx:id="paginate" layoutX="671.0" layoutY="415.0" prefHeight="75.0" prefWidth="128.0" />
+=======
+      <Button fx:id="pdf" layoutX="338.0" layoutY="458.0" mnemonicParsing="false" onAction="#consulterpdf" text="ConsulterPDF" />
+      <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="14.0" layoutY="555.0" onAction="#retour" ripplerFill="#c33535" text="&lt;----" textOverrun="CENTER_ELLIPSIS" />
+      <JFXTextField fx:id="search" layoutX="866.0" layoutY="64.0" onKeyTyped="#rechercheTextChanged" promptText="Recherche" />
+      <Pagination fx:id="paginate" layoutX="685.0" layoutY="436.0" onDragDetected="#page" prefHeight="75.0" prefWidth="128.0" />
+>>>>>>> moatez
       <ImageView fitHeight="55.0" fitWidth="128.0" layoutX="959.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@logo.png" />
          </image>
       </ImageView>
       <JFXButton fx:id="test" layoutX="273.0" layoutY="527.0" onAction="#test" text="test" />
+<<<<<<< HEAD
+=======
+      <ComboBox fx:id="pagination1" layoutX="469.0" layoutY="458.0" onAction="#pager" prefHeight="31.0" prefWidth="177.0" promptText="Entrer num page" />
+>>>>>>> moatez
    </children>
    <stylesheets>
       <URL value="@style.css" />

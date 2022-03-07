@@ -15,6 +15,7 @@ import util.DataSource;
  * @author ASUS
  */
 public interface I_categorie {
+<<<<<<< HEAD
     Connection cnx= DataSource.getInstance().getCnx();
     
     public boolean ajouterCategorie(Categorie cg);
@@ -28,6 +29,20 @@ public interface I_categorie {
     
     public List<Categorie> chercherCategorie(List<Categorie> initialList, String input);
      public List<Categorie> afficherNomCategorie();
+=======
+    
+    public boolean ajouterCategorie(Categorie cg);
+    public List<Categorie> afficherCategorie();
+    public boolean modifierCategorie(Categorie cg);
+    public boolean supprimerCategorie(Categorie cg);
+    
+    public List<Categorie> trierCategorie();
+    public List<Categorie> chercherCategorie(List<Categorie> initialList, String input);
+   
+     public List<Categorie> afficherNomCategorie();
+     public int getidcateg(String s);
+     
+>>>>>>> moatez
    }
   
 

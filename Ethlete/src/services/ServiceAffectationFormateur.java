@@ -313,8 +313,12 @@ return map;
       }
       return list;
       }
+<<<<<<< HEAD
       
       
+=======
+ 
+>>>>>>> moatez
       public List<Formation> filtrer_formations_no_consulté(List<AffectationFormateur> list1 )
       {
        

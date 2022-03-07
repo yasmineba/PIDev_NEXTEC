@@ -45,7 +45,11 @@
          </font>
       </Button>
       <DatePicker fx:id="dpdate" layoutX="52.0" layoutY="474.0" promptText="Date de naissance" />
+<<<<<<< HEAD
       <Button layoutX="623.0" layoutY="588.0" mnemonicParsing="false" onAction="#supprimerUser" text="Supprimer">
+=======
+      <Button layoutX="548.0" layoutY="588.0" mnemonicParsing="false" onAction="#supprimerUser" text="Supprimer">
+>>>>>>> moatez
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -56,5 +60,13 @@
          </font>
       </Button>
       <Button fx:id="btntri" layoutX="1005.0" layoutY="22.0" mnemonicParsing="false" onAction="#trilist" text="Tri" />
+<<<<<<< HEAD
+=======
+      <Button layoutX="677.0" layoutY="588.0" mnemonicParsing="false" onAction="#consulterPosition" text="Consulter position">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+>>>>>>> moatez
    </children>
 </AnchorPane>

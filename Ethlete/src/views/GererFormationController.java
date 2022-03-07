@@ -44,6 +44,10 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyEvent;
+<<<<<<< HEAD
+=======
+import javafx.scene.input.MouseEvent;
+>>>>>>> moatez
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javax.swing.JFrame;
@@ -61,6 +65,10 @@ import org.icepdf.ri.common.SwingViewBuilder;
 public class GererFormationController implements Initializable {
  ObservableList<String> dispoStatus=FXCollections.observableArrayList("En_Ligne","Présentiel");
   ObservableList<String> triStatus=FXCollections.observableArrayList("Date de Début","Nom");
+<<<<<<< HEAD
+=======
+  ObservableList<Integer> pageStatus=FXCollections.observableArrayList(1,2,3,4,5);
+>>>>>>> moatez
 
     @FXML
     private TableView<Formation> formations;
@@ -111,15 +119,32 @@ public class GererFormationController implements Initializable {
     private Pagination paginate;
     @FXML
     private JFXButton test;
+<<<<<<< HEAD
+=======
+    @FXML
+    private ComboBox<Integer> pagination1;
+>>>>>>> moatez
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+<<<<<<< HEAD
         tfdispo.setItems(dispoStatus);
                 tftri.setItems(triStatus);
 
         showFormation();
        System.out.println(paginateProducts(2,2)); 
+=======
+int numOfPages = 5;
+        paginate=new Pagination ((numOfPages), 0);
+      //  paginate.setMaxPageIndicatorCount(3);
+        
+pagination1.setItems(pageStatus);
+        tfdispo.setItems(dispoStatus);
+                tftri.setItems(triStatus);
+        showFormation();
+    //   System.out.println(paginateProducts(2,2)); 
+>>>>>>> moatez
         //       paginate.setPageFactory(this::createPage);    
         formations.setEditable(true);
         nom.setEditable(true);
@@ -347,6 +372,7 @@ tffin.setValue(f.getDate_fin().toLocalDate());*/
     }
     
     
+<<<<<<< HEAD
 public List<Formation> paginateProducts( int num,int size) { 
     int SKIP_COUNT = (num - 1) * size;     
     
@@ -357,6 +383,13 @@ public List<Formation> paginateProducts( int num,int size) {
     @FXML
     private void rechercheTextChanged(KeyEvent event) {
                 updateList(sf.rechercherIntervenant(sf.afficher(), search.getText()));
+=======
+
+
+    @FXML
+    private void rechercheTextChanged(KeyEvent event) {
+                updateList(sf.rechercherFormation(sf.afficher(), search.getText()));
+>>>>>>> moatez
 
     }
    private void updateList(List<Formation> theList){
@@ -372,6 +405,7 @@ nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formati
         
         formations.setItems(list);
     }
+<<<<<<< HEAD
     
    
     private Node createPage(int pageIndex) {
@@ -382,6 +416,31 @@ nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formati
         formations.setItems(FXCollections.observableArrayList(list.subList(fromIndex, toIndex)));
         return formations;
     }
+=======
+        private final static int rowsPerPage = 3;    
+
+   
+    private Node createPage(int pageIndex) {
+        int fromIndex = pageIndex * rowsPerPage;
+              ObservableList<Formation> list =FXCollections.observableArrayList(sf.afficher());
+
+        int toIndex = Math.min(fromIndex + rowsPerPage,list.size());
+               List<Formation> list1=list.subList(fromIndex, toIndex);
+                             ObservableList<Formation> list2 =FXCollections.observableArrayList(list1);
+nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formation"));
+		debut.setCellValueFactory(new PropertyValueFactory<Formation, Date>("date_debut"));
+		fin.setCellValueFactory(new PropertyValueFactory<Formation, Date>("date_fin"));
+		prog.setCellValueFactory(new PropertyValueFactory<Formation, String>("programme"));
+		dis.setCellValueFactory(new PropertyValueFactory<Formation, String>("dispositif"));
+        formations.setItems(list2);
+        return formations;
+    }
+    
+    
+    
+  
+    
+>>>>>>> moatez
 
     @FXML
     private void test(ActionEvent event) {
@@ -404,5 +463,36 @@ nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formati
     
     
     }
+<<<<<<< HEAD
+=======
+
+    @FXML
+    private void page(MouseEvent event) {
+        
+        
+                   paginate.setPageFactory(this::createPage);    
+
+    
+    }
+public List<Formation> paginateFormations( int num,int size) { 
+    int SKIP_COUNT = (num - 1) * size;     
+    
+    return sf.afficher()
+            .stream()         .skip(SKIP_COUNT)         .limit(size).collect(Collectors.toList());  
+}    
+    @FXML
+    private void pager(ActionEvent event) {
+        List<Formation> list6=this.paginateFormations(pagination1.getValue(), 3)  ;
+         ObservableList<Formation> list7 =FXCollections.observableArrayList(list6);
+    
+nom.setCellValueFactory(new PropertyValueFactory<Formation, String>("nom_formation"));
+		debut.setCellValueFactory(new PropertyValueFactory<Formation, Date>("date_debut"));
+		fin.setCellValueFactory(new PropertyValueFactory<Formation, Date>("date_fin"));
+		prog.setCellValueFactory(new PropertyValueFactory<Formation, String>("programme"));
+		dis.setCellValueFactory(new PropertyValueFactory<Formation, String>("dispositif"));
+        
+        formations.setItems(list7);
+    }
+>>>>>>> moatez
    
 }

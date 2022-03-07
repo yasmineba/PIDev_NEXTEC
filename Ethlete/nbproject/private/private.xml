@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceAffectationFormateur.java</file>
+<<<<<<< HEAD
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Categorie.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/interfaces/I_raison.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/User.java</file>
@@ -56,12 +57,105 @@
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceInvitation.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServicesFournisseur.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Journe.java</file>
+=======
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/interfaces/I_raison.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/ParticipationController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/DashboardController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/FXMLadminController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Role.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/FXMLajouterarticle.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/Ressources/Icons/fourn.png</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Competition.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/CommandeProduit.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/interfaces/IService1.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/UpdateProfil.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Evenement.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceEvenement.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/FXMLarticleadminController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceParticipation.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/interfaceStyle.css</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/FXMLforgotpassword.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Avis.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Fournisseur.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/ModifierProduitController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/participation.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceResponsable.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Participation.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/util/Mailapi.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Raison.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/interfaces/I_reclamation.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/ReclamationController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/AuthentificationController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/ethlete/PIDEVBIS.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceInvitation.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServicesFournisseur.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/dashboard.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/ReponseInvitation.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/MenuResponsableController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Reponse_Form.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Commentaire.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/FXMLforgotpasswordController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/FournisseurController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/ParticipationAdminController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ArticleService.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererFormateurController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererFormationController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/util/SMSMO.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceReponseImp.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/matchservice.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/interfaces/I_produit.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/interfaces/I_fournisseur.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Utilisateur.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Invitation.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/CryptWithMD5.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/statistiques.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/AceuilStockController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/ReclamationUtilisateur.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/AffectationFormateur.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServicesRaison.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/UpdateProfilController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/util/DataSource.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Categorie.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/User.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/interfaces/I_commande.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Commande.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/ethlete/PIDEV.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/util/Smsapi.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/DashboardMO.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Reclamation.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/MapFxml.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/Produit.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceFormation.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Equipe.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/FXMLajouterarticleController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Match.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/SendEmail.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/StatistiquesController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GestionAvisController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceAvis.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Billet.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Article.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServicesCommande.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/FXMLarticleadmin.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceBillet.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/FXMLarticleController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/logo.png</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererAffController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/MenuResponsable.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/Authentification.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/interfaces/I_categorie.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/MenuFormateurController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/MenuFormateur.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Journe.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GestionEquipeController.java</file>
+>>>>>>> moatez
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererFormation.fxml</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/FXMLadmin.fxml</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererAff.fxml</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Formation.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceIntervenant.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/journeservice.java</file>
+<<<<<<< HEAD
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Reponse_Form.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Commentaire.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/FXMLforgotpasswordController.java</file>
@@ -84,10 +178,26 @@
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/interfaces/I_fournisseur.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Utilisateur.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Invitation.java</file>
+=======
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/ConsulterReclamationController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceCommentaireImp.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceFormateur.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/MapFxmlController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/DashboardStockController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Produit.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/ReponseInvitationController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Intervenant.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GestionAvis.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/MenuAdmin.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServicesCategorie.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/UserService.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServicesProduit.java</file>
+>>>>>>> moatez
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/participationAdmin.fxml</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/competitionservice.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/Impression.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServiceEquipe.java</file>
+<<<<<<< HEAD
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/CryptWithMD5.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/statistiques.fxml</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/style.css</file>
@@ -95,6 +205,13 @@
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/models/AffectationFormateur.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServicesReclamation.java</file>
             <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/UpdateProfilController.java</file>
+=======
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/style.css</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/GererFormateur.fxml</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/DashboardControllerMO.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/views/InvitationUIController.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Bureau/java/Ethlete/src/services/ServicesReclamation.java</file>
+>>>>>>> moatez
         </group>
     </open-files>
 </project-private>

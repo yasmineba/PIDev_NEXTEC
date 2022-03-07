@@ -17,6 +17,10 @@ import com.sun.speech.freetts.VoiceManager;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+<<<<<<< HEAD
+=======
+
+>>>>>>> moatez
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.SpeechResult;
 import edu.cmu.sphinx.api.StreamSpeechRecognizer;
@@ -55,6 +59,10 @@ import models.Evenement;
 import models.Intervenant;
 import models.Invitation;
 import models.Produit;
+<<<<<<< HEAD
+=======
+import models.Reclamation;
+>>>>>>> moatez
 import models.Reponse_Form;
 import services.ServiceAvis;
 import services.ServiceBillet;
@@ -66,6 +74,10 @@ import services.ServiceInvitation;
 import services.ServiceReponseImp;
 import services.ServicesCategorie;
 import services.ServicesProduit;
+<<<<<<< HEAD
+=======
+import services.ServicesReclamation;
+>>>>>>> moatez
 
 import t2s.son.LecteurTexte;
 import util.Smsapi;
@@ -75,12 +87,29 @@ import util.Smsapi;
  * @author pc
  */
 public class PIDEV {
+<<<<<<< HEAD
 
+=======
+    public static final String ACCOUNT_SID = "AC68d4b1a9a27586d27aa6f9410dde36f5"; 
+    public static final String AUTH_TOKEN = "3cf893f5dadd191a2489feae35d0eb3d"; 
+>>>>>>> moatez
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+<<<<<<< HEAD
+=======
+    /*    Twilio.init(ACCOUNT_SID, AUTH_TOKEN); 
+        Message message = Message.creator( 
+              new  PhoneNumber("+21625378713"),  
+              new PhoneNumber( "+14439032479"), 
+                "Bienvenue chez nextec khouk moatez oumour api mayfdhlkch ab3th capture 3ad  khater andi l7a9 f trayef msget")      
+            .create(); 
+        System.out.println(message.getSid()); */
+        
+       // Smsapi.sendSMS("", "123");
+>>>>>>> moatez
         // TODO code application logic here
         //ServiceFormation s=new ServiceFormation() ;
        // Formation f=new Formation(2,"form2",Date.valueOf("2012-02-02"),Date.valueOf("2012-02-02"),"En_Ligne","moatez111111111111111111111111111");
@@ -269,6 +298,11 @@ si.supprimerIntervenant(I);*/
    //   r.reconnaitre();   
   // ServiceFormateur sf=new ServiceFormateur();
    //System.out.println(sf.afficher());
+<<<<<<< HEAD
+=======
+ServicesReclamation sr=new ServicesReclamation();
+sr.ajouterReclamation(new Reclamation("mm",1,5,"en cours"));
+>>>>>>> moatez
 
     }
     

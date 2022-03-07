@@ -14,10 +14,16 @@ public class Reclamation {
     private String contenu;
     private int id;
     private String daterec; 
+<<<<<<< HEAD
+=======
+    private int idRaison;
+    private String etat;
+>>>>>>> moatez
 
     public Reclamation() {
     }
 
+<<<<<<< HEAD
     public Reclamation(String contenu, int id, String daterec) {
         this.contenu = contenu;
         this.id = id;
@@ -25,10 +31,26 @@ public class Reclamation {
     }
 
     public Reclamation(int idr, String contenu, int id, String daterec) {
+=======
+    public Reclamation(String contenu, int id, String daterec, int idRaison, String etat) {
+        this.contenu = contenu;
+        this.id = id;
+        this.daterec = daterec;
+        this.idRaison = idRaison;
+        this.etat = etat;
+    }
+
+    public Reclamation(int idr, String contenu, int id, String daterec, int idRaison, String etat) {
+>>>>>>> moatez
         this.idr = idr;
         this.contenu = contenu;
         this.id = id;
         this.daterec = daterec;
+<<<<<<< HEAD
+=======
+        this.idRaison = idRaison;
+        this.etat = etat;
+>>>>>>> moatez
     }
 
     public int getIdr() {
@@ -63,10 +85,42 @@ public class Reclamation {
         this.daterec = daterec;
     }
 
+<<<<<<< HEAD
     @Override
     public String toString() {
         return "Reclamation{" + "idr=" + idr + ", contenu=" + contenu + ", id=" + id + ", daterec=" + daterec + '}';
     }
+=======
+    public int getIdRaison() {
+        return idRaison;
+    }
+
+    public void setIdRaison(int idRaison) {
+        this.idRaison = idRaison;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    @Override
+    public String toString() {
+        return   idr + " " + contenu + " " + id + " " + daterec + " " + idRaison + "  " + etat ;
+    }
+
+    public Reclamation(String contenu, int id, int idRaison, String etat) {
+        this.contenu = contenu;
+        this.id = id;
+        this.idRaison = idRaison;
+        this.etat = etat;
+    }
+
+   
+>>>>>>> moatez
     
     
     

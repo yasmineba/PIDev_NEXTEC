@@ -65,7 +65,11 @@ public class Produit {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return  idp + nomp +  prix +  idcateg ;
+=======
+        return  nomp ;
+>>>>>>> moatez
     }
     
     

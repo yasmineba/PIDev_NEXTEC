@@ -357,7 +357,13 @@ public class FXMLadminController implements Initializable {
                 
             });
         });
+<<<<<<< HEAD
         
+=======
+        SortedList<User> sorteddata=new SortedList<>(filtereddata);
+        sorteddata.comparatorProperty().bind(tableviewuser.comparatorProperty());
+        tableviewuser.setItems(filtereddata);
+>>>>>>> moatez
         
     }
 
@@ -396,6 +402,29 @@ public class FXMLadminController implements Initializable {
         }
     }
 
+<<<<<<< HEAD
+=======
+    @FXML
+    private void consulterPosition(ActionEvent event) {
+        try {
+            Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+            Parent root=FXMLLoader.load(getClass().getResource("../views/MapFxml.fxml"));
+            Stage stage =new Stage();
+            
+            Scene scene = new Scene(root);
+            
+            stage.setTitle("Dashbord Admin");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+>>>>>>> moatez
   
     
 }

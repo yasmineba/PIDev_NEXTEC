@@ -23,10 +23,18 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+<<<<<<< HEAD
+=======
+import javafx.stage.Stage;
+>>>>>>> moatez
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import models.Avis;
 import models.Formation;
+<<<<<<< HEAD
+=======
+import models.User;
+>>>>>>> moatez
 import models.Utilisateur;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -42,8 +50,16 @@ import services.ServiceAvis;
  */
 public class GestionAvisController implements Initializable {
 
+<<<<<<< HEAD
     @FXML
     private ComboBox<Integer> list;
+=======
+    private ComboBox<Integer> list;
+    @FXML
+    private ComboBox<?> pwd;
+    @FXML
+    private JFXButton cb;
+>>>>>>> moatez
     
   
       void lister()
@@ -70,7 +86,11 @@ public class GestionAvisController implements Initializable {
         lister();
         
     }    
+<<<<<<< HEAD
     Utilisateur u = new Utilisateur (1);
+=======
+    User u = new User (AuthentificationController.idglobal);
+>>>>>>> moatez
 
     @FXML
     private void ajouter_avis(ActionEvent event) {
@@ -84,9 +104,30 @@ public class GestionAvisController implements Initializable {
     ServiceAvis sa=new ServiceAvis();
   
     
+<<<<<<< HEAD
     @FXML
     private void stat_avis(ActionEvent event) throws IOException {
              int nb1=0;
+=======
+    private void stat_avis(ActionEvent event) throws IOException {
+           
+    
+}
+
+    @FXML
+    private void supprimer(ActionEvent event) {
+    }
+
+    @FXML
+    private void retour_menu(ActionEvent event) {
+             Stage stage = (Stage)cb.getScene().getWindow();
+       stage.close(); 
+    }
+
+    @FXML
+    private void stat(ActionEvent event) throws IOException {
+          int nb1=0;
+>>>>>>> moatez
                           int nb2=0;
 
              int nb3=0;
@@ -146,5 +187,10 @@ av=sa.afficher();
             AvisJdialog.pack();
             AvisJdialog.setVisible(true);
 
+<<<<<<< HEAD
     
 }}
+=======
+    }
+}
+>>>>>>> moatez

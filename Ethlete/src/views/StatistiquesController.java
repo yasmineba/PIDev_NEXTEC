@@ -23,7 +23,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+<<<<<<< HEAD
 import javafx.fxml.Initializable;
+=======
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+>>>>>>> moatez
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -181,7 +189,11 @@ DefaultPieDataset pieDataset = new DefaultPieDataset();
         JDialog ratioHommeFemmeJdialog = new JDialog();
             ratioHommeFemmeJdialog.setTitle("Ratio H/F");
  JFreeChart chart2 = ChartFactory.createPieChart(      
+<<<<<<< HEAD
          "Corona",   // chart title 
+=======
+         "HF",   // chart title 
+>>>>>>> moatez
          pieDataset,          // data    
          true,             // include legend   
          true, 
@@ -242,9 +254,15 @@ DefaultPieDataset pieDataset = new DefaultPieDataset();
             pieDataset.setValue("Agée", nbagéé);
             pieDataset.setValue("Jeune", nbjeune);
         JDialog ratioHommeFemmeJdialog = new JDialog();
+<<<<<<< HEAD
             ratioHommeFemmeJdialog.setTitle("Ratio H/F");
  JFreeChart chart2 = ChartFactory.createPieChart(      
          "Statistiques par genre",   // chart title 
+=======
+            ratioHommeFemmeJdialog.setTitle("Ratio AGE");
+ JFreeChart chart2 = ChartFactory.createPieChart(      
+         "Statistiques par age",   // chart title 
+>>>>>>> moatez
          pieDataset,          // data    
          true,             // include legend   
          true, 
@@ -255,7 +273,11 @@ DefaultPieDataset pieDataset = new DefaultPieDataset();
     ChartUtilities.saveChartAsJPEG(file1, chart2, 450, 300);
    // ImageIcon img1=new ImageIcon("./HF.jpeg");
   
+<<<<<<< HEAD
              final JFreeChart pieChart = ChartFactory.createPieChart("Ratio H/F", pieDataset, true, false, false);
+=======
+             final JFreeChart pieChart = ChartFactory.createPieChart("PAR AGE", pieDataset, true, false, false);
+>>>>>>> moatez
             final ChartPanel cPanel = new ChartPanel(pieChart);
     ChartUtilities.saveChartAsJPEG(file1, pieChart, 450, 300);
 
@@ -268,9 +290,18 @@ DefaultPieDataset pieDataset = new DefaultPieDataset();
     }
 
     @FXML
+<<<<<<< HEAD
     private void retour(ActionEvent event) {
        Stage stage = (Stage) closeButton.getScene().getWindow();
     stage.close();}
+=======
+    private void retour(ActionEvent event) throws IOException {
+       Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+		Scene scene = new Scene(root);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.show();}
+>>>>>>> moatez
     
     
 }

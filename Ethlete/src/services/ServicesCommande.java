@@ -6,14 +6,20 @@
 package services;
 
 import interfaces.I_commande;
+<<<<<<< HEAD
 import static interfaces.I_commande.cnx;
 import static java.lang.Integer.parseInt;
+=======
+import static java.lang.Integer.parseInt;
+import java.sql.Connection;
+>>>>>>> moatez
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.stream.Collectors;
 import models.Commande;
 import models.Commande;
@@ -29,6 +35,21 @@ public class ServicesCommande implements I_commande {
     @Override
     public boolean ajouterCommande(Commande c) {
         
+=======
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import models.Categorie;
+import models.Commande;
+import models.CommandeProduit;
+import util.DataSource;
+public class ServicesCommande implements I_commande {
+            Connection cnx = DataSource.getInstance().getCnx();
+
+    @Override
+    public boolean ajouterCommande(Commande c) {
+
+>>>>>>> moatez
         
          String request = "INSERT INTO `commande`(`idp`, `quantite`, `datecom`) VALUES ("+c.getIdp()+","+c.getQuantite()+",NOW())";
         try {
@@ -116,6 +137,62 @@ public class ServicesCommande implements I_commande {
         
         return strList;
     }
+<<<<<<< HEAD
     
     
 }
+=======
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<CommandeProduit> afficherCommandeProduit() {
+        List<CommandeProduit>  listcp = new ArrayList<CommandeProduit>();
+         String req="SELECT produit.idp,produit.nomp,produit.prix,commande.idcom,commande.quantite,commande.datecom From produit left join commande on produit.idp=commande.idp";
+         try {
+             Statement st = cnx.createStatement();
+             
+             ResultSet rs = st.executeQuery(req);
+             while (rs.next())
+             {
+                CommandeProduit cp= new CommandeProduit(rs.getInt("idp"),rs.getString("nomp"),rs.getFloat("prix"),rs.getInt("idcom"),rs.getInt("quantite"),rs.getString("datecom"));
+                listcp.add(cp);
+                
+                
+             }
+             
+             
+         } catch (SQLException ex) {
+             ex.printStackTrace();// twarik mochkla win//
+         }
+         return listcp;
+        
+       
+    }
+
+    @Override
+    public List<CommandeProduit> trierCommandeProduit() {
+          List<CommandeProduit> categories=afficherCommandeProduit();
+          List<CommandeProduit> sortedCateg =categories.stream().sorted(Comparator.comparing(CommandeProduit::getNomp)).collect(Collectors.toList());
+         return sortedCateg;
+         
+    }
+
+    @Override
+    public List<CommandeProduit> chercherCommandePorduit(List<CommandeProduit> initialList, String input) {
+       List<CommandeProduit> strList = initialList.stream()
+                           .map(CommandeProduit::concat )
+                           .filter(pt -> pt.toLowerCase().contains(input.toLowerCase()))
+                           .map(pt -> new CommandeProduit(Integer.parseInt(pt.split(".@.")[0]),pt.split(".@.")[1],Float.parseFloat(pt.split(".@.")[2]),Integer.parseInt(pt.split(".@.")[3]),Integer.parseInt(pt.split(".@.")[4]),pt.split(".@.")[5]))
+                           .collect( Collectors.toList());
+        
+        return strList;
+    }
+
+    
+        
+    }
+        
+>>>>>>> moatez

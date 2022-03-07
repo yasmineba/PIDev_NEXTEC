@@ -19,8 +19,16 @@ import java.util.stream.Collectors;
 import models.Categorie;
 import models.Fournisseur;
 import models.Produit;
+<<<<<<< HEAD
 import util.DataSource;
 
+=======
+import models.ProduitCategorie;
+import util.DataSource;
+
+;
+
+>>>>>>> moatez
 /**
  *
  * @author ASUS
@@ -117,12 +125,84 @@ public class ServicesProduit implements I_produit{
         
         return prodList;
     }
+<<<<<<< HEAD
     
     
     
     
     
     }
+=======
+
+    @Override
+    public int getidcprod(String s) {
+        int id = 0;
+
+        String req="select idp from produit where nomp='"+s+"'";
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            //SOB HEDHA FI HEDHA
+            while(rs.next()){
+               id=rs.getInt("idp");
+               
+                
+            }
+        
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        
+        
+        
+     return id;
+    }
+
+    @Override
+    public List<ProduitCategorie> afficherProduitCateg() {
+        List<ProduitCategorie> produitc = new ArrayList<ProduitCategorie>();
+
+        String req="SELECT * FROM produit left join categorie on produit.idcateg=categorie.idcateg ";
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            //SOB HEDHA FI HEDHA
+            while(rs.next()){
+                produitc.add(new ProduitCategorie(rs.getInt("idp"),rs.getString("nomp"),rs.getFloat("prix"),rs.getInt("idcateg"),rs.getString("nomcateg")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    return produitc;
+    }
+    
+    
+    
+     @Override
+    public List<ProduitCategorie> chercherProduitCategorie(String s) {
+        ProduitCategorie produitcateg;
+        List<ProduitCategorie> products=afficherProduitCateg();
+        List<ProduitCategorie> resultat=products.stream().filter(ProduitCategorie->s.equals(ProduitCategorie.getNomcateg())).collect(Collectors.toList());
+        return resultat;
+    
+    }
+    }
+    
+    
+    
+    
+    
+    
+>>>>>>> moatez
 
 
 
