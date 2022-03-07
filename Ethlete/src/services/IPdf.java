@@ -5,15 +5,13 @@
  */
 package services;
 
-import java.util.List;
-
 /**
  *
- * @author ridha
+ * @author Kernel
  */
-public interface iservice<T> {
-    public void ajouter(T t);
-    public void modifier(T t);
-    public void supprimer(T t);
-    public List<T> find();
+public interface IPdf {
+    
+    void pdfWrite();
+    void pdfsend(String file);
+    
 }
