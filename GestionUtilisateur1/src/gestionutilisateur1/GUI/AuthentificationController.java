@@ -29,6 +29,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -136,9 +137,12 @@ public class AuthentificationController implements Initializable {
     @FXML
     private Button btnfp;
     public static long idglobal;
+    @FXML
+    private ComboBox<Role> comborole1;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        comborole1.getItems().setAll(Role.values());
         varLB.setVisible(false);
         loginTF.setVisible(false);
         passwordTF.setVisible(false);
@@ -238,6 +242,7 @@ private void resetSignUpTF() {
             prenomtf.setVisible(false);
             passwordPF.setVisible(false);
             signupbtn.setVisible(false);
+            comborole1.setVisible(false);
             varLB.setVisible(true);
             helloLB.setVisible(false);
 
@@ -285,6 +290,8 @@ private void resetSignUpTF() {
             dpdate.setVisible(true);
             varLB.setVisible(false);
             helloLB.setVisible(true);
+            comborole1.setVisible(true);
+
 
             
             loginTF.setVisible(false);
@@ -447,7 +454,7 @@ private void resetSignUpTF() {
             u.setPassword(passwordPF.getText());
             u.setPrenom(prenomtf.getText());
             u.setUsername(usernametf.getText());
-            u.setRole(Role.JOUEUR);
+            u.setRole(comborole1.getValue());
             us.ajouter(u);
            // Smsapi.sendSMS("", "bievenue chez nextec!!");
             TrayNotification tray = new TrayNotification();
