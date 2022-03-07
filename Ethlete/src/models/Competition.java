@@ -15,7 +15,8 @@ public class Competition {
     private String nom;
     private String date;
     private String adresse;
-    
+    private static Competition INSTANCE = null;
+
 
     public Competition(){
     }
@@ -68,7 +69,13 @@ public class Competition {
     public String getAdresse() {
         return adresse;
     }
-
+public static Competition getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Competition();
+            
+        }
+        return INSTANCE;
+}
     public void setNom(String nom) {
         this.nom = nom;
     }
