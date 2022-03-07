@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GestionAvisController">
@@ -14,6 +16,11 @@
             <Button layoutX="235.0" layoutY="297.0" mnemonicParsing="false" onAction="#ajouter_avis" text="envoyer" />
             <Button layoutX="97.0" layoutY="297.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
             <ComboBox fx:id="pwd" layoutX="141.0" layoutY="120.0" prefWidth="150.0" />
+            <ImageView fitHeight="232.0" fitWidth="219.0" layoutX="470.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../1754908.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <JFXButton fx:id="cb" layoutX="768.0" layoutY="52.0" onAction="#retour_menu" text="retour" />

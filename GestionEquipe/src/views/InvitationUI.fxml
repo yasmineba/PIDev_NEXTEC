@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.InvitationUIController">
@@ -21,8 +23,14 @@
             </TableView>
             <Button layoutX="97.0" layoutY="297.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
             <ComboBox fx:id="list" layoutX="141.0" layoutY="120.0" prefWidth="150.0" />
+            <ImageView fitHeight="182.0" fitWidth="192.0" layoutX="633.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../inv.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <JFXButton fx:id="cb" layoutX="768.0" layoutY="52.0" onAction="#retour_menu" text="retour" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

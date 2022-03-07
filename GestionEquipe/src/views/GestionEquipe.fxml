@@ -6,6 +6,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="878.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GestionEquipeController">
@@ -24,6 +26,11 @@
       <Button layoutX="109.0" layoutY="210.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
       <Button layoutX="239.0" layoutY="210.0" mnemonicParsing="false" onAction="#modifier" text="modifier" />
       <JFXButton fx:id="cb" layoutX="758.0" layoutY="42.0" onAction="#retour_menu" text="retour" />
+      <ImageView fitHeight="220.0" fitWidth="184.0" layoutX="639.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../equipe.png" />
+         </image>
+      </ImageView>
        
    </children>
     

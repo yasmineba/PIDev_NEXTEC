@@ -72,6 +72,7 @@ ServiceInvitation si=new ServiceInvitation();
     @FXML
     private void ajouter_inv(ActionEvent event) {
         Equipe e=se.findBynom_equipe(list.getValue());
+        
         si.ajouter(new Invitation("non_consulté",e.getId_equipe(),u.getId()));
           afficher();
 
