@@ -24,6 +24,17 @@ public class Journe {
         
     }
 
+    public Journe(int id_journe, int numJourne, String date_journe) {
+        this.id_journe = id_journe;
+        this.numJourne = numJourne;
+        this.date_journe = date_journe;
+    }
+
+    public Journe(int numJourne, String date_journe) {
+        this.numJourne = numJourne;
+        this.date_journe = date_journe;
+    }
+
   
     public Journe(int numJourne, String date_journe,int id_competition){
         this.numJourne=numJourne;
