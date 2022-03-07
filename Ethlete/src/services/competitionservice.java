@@ -19,7 +19,10 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import util.DataSource;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import models.Journe;
+import util.mydb;
 /**
  *
  * @author gaming
@@ -27,7 +30,7 @@ import util.DataSource;
 public class competitionservice implements iservice<Competition>{
 Connection cnx;
      public competitionservice() {
-         cnx = DataSource.getInstance().getCnx();
+         cnx = mydb.getInstance().getConncetion();
     }
          @Override
     public void ajouter(Competition t) {
@@ -56,11 +59,16 @@ Connection cnx;
     @Override
     public void modifier(Competition t) {
          try {
-       String query2="update competition set nb_equipe=?,nom=? ,date=? ,adresse=?, where id_competition=?";
+       String query2="UPDATE `competition` SET  `nb_equipe` = ?, `date` = ?, `adresse` = ?, `nom` = ? WHERE `competition`.`id_competition` = ?";
                 PreparedStatement smt = cnx.prepareStatement(query2);
                 
-                smt.setInt(2, t.getId_competition());
-                smt.setInt(1, t.getNb_equipe());
+                 smt.setInt(1, t.getNb_equipe());  
+                smt.setString(3, t.getDate());
+                    smt.setString(4, t.getAdresse());
+
+                smt.setString(2, t.getNom());
+                smt.setInt(5, t.getId_competition());
+                
                 smt.executeUpdate();
                 System.out.println("modification avec succee");
             } catch (SQLException ex) {
@@ -80,10 +88,39 @@ Connection cnx;
     }}
     @Override
     public List<Competition> find() {
-        ArrayList l=new ArrayList(); 
-        
+     List<Competition> list = new ArrayList<>();        
         try {
        String query2="select * from competition";
+                PreparedStatement smt = cnx.prepareStatement(query2);
+                Competition p;
+                ResultSet rs= smt.executeQuery();
+                while(rs.next()){
+                   p=new Competition(rs.getInt("id_competition"),rs.getInt("nb_equipe"),rs.getString("date"),rs.getString("adresse"),rs.getString("nom"));
+                System.out.println(p);
+                  
+                   list.add(p);
+                }
+                System.out.println(list);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+    }
+
+        return list;
+    
+}
+         public Competition findByID_inv(int id_competition){
+        List<Competition> competition=find();
+        Competition resultat=competition.stream().filter(i->id_competition==i.getId_competition()).findFirst().get();
+        return resultat;    
+    }
+    public TreeSet<Competition> sortByEtat(){
+          TreeSet<Competition> tr=  this.find().stream().collect(Collectors.toCollection(() -> new TreeSet<>((f1, f2) -> f1.getNom().compareTo(f2.getNom()))));
+          return tr;
+}
+ public ObservableList<Competition> getlist1() {
+        ArrayList l=new ArrayList(); 
+        
+        try { String query2="select * from competition";
                 PreparedStatement smt = cnx.prepareStatement(query2);
                 Competition p;
                 ResultSet rs= smt.executeQuery();
@@ -97,17 +134,10 @@ Connection cnx;
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
     }
+        return FXCollections.observableList(l);
 
-        return l;
+        
     
 }
-         public Competition findByID_inv(int id_competition){
-        List<Competition> competition=find();
-        Competition resultat=competition.stream().filter(i->id_competition==i.getId_competition()).findFirst().get();
-        return resultat;    
-    }
-    public TreeSet<Competition> sortByEtat(){
-          TreeSet<Competition> tr=  this.find().stream().collect(Collectors.toCollection(() -> new TreeSet<>((f1, f2) -> f1.getNom().compareTo(f2.getNom()))));
-          return tr;
-}
+ 
 }
