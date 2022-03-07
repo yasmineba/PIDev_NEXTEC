@@ -14,7 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import util.DataSource;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import util.mydb;
 
 /**
  *
@@ -23,7 +25,7 @@ import util.DataSource;
 public class journeservice implements iservice<Journe>{
     Connection cnx;
      public journeservice() {
-         cnx = DataSource.getInstance().getCnx();
+         cnx = mydb.getInstance().getConncetion();
     }
          @Override
     public void ajouter(Journe t) {
@@ -48,12 +50,11 @@ public class journeservice implements iservice<Journe>{
     @Override
     public void modifier(Journe t) {
          try {
-       String query2="update journe set numJourne=?,date_journe=?, where id_journe=?";
+       String query2="UPDATE `journe` SET `numJourne` = ?, `date_journe` = ? WHERE `journe`.`id_journe` = ?";
                 PreparedStatement smt = cnx.prepareStatement(query2);
                 
                 smt.setInt(1, t.getNumJourne());
-                smt.setString(2, t.getDate_journe());
-                
+                smt.setString(2, t.getDate_journe());                
                 smt.setInt(3, t.getId_journe());
                 smt.executeUpdate();
                 System.out.println("modification avec succee");
@@ -81,7 +82,7 @@ public class journeservice implements iservice<Journe>{
                 Journe p;
                 ResultSet rs= smt.executeQuery();
                 while(rs.next()){
-                   p=new Journe(rs.getInt("id_journe"),rs.getInt("numJourne"),rs.getString("date_journe"),rs.getInt("id_competition"));
+                   p=new Journe(rs.getInt("Id_journe"),rs.getInt("numJourne"),rs.getString("date_journe"));
                 System.out.println(p);
                   
                    l.add(p);
@@ -99,5 +100,26 @@ public class journeservice implements iservice<Journe>{
         Journe resultat=invitation.stream().filter(i->id_journe==i.getId_journe()).findFirst().get();
         return resultat;
     }
+ public ObservableList<Journe> getlist() {
+        ArrayList l=new ArrayList(); 
+        
+        try { String query2="select * from journe";
+                PreparedStatement smt = cnx.prepareStatement(query2);
+                Journe p;
+                ResultSet rs= smt.executeQuery();
+                while(rs.next()){
+                   p=new Journe(rs.getInt("Id_journe"),rs.getInt("numJourne"),rs.getString("date_journe"));
+                System.out.println(p);
+                  
+                   l.add(p);
+                }
+                System.out.println(l);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+    }
+        return FXCollections.observableList(l);
 
+        
+    
+}
 }
