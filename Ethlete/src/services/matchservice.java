@@ -13,9 +13,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import util.mydb;
 import java.util.stream.Collectors;
 import java.util.TreeSet;
-import util.DataSource;
 
 
 /**
@@ -25,19 +25,18 @@ import util.DataSource;
 public class matchservice implements iservice<Match>{
     Connection cnx;
      public matchservice() {
-         cnx = DataSource.getInstance().getCnx();
+         cnx = mydb.getInstance().getConncetion();
     }
          @Override
     public void ajouter(Match t) {
         
             try {
           
-           String query="INSERT INTO `match` (`Equipe1`, `Equipe2`) VALUES (?,?);";
+           String query="INSERT INTO `match` (`Equipe1`, `Equipe2`, `id_journe`) VALUES (?,?,?);";
                 PreparedStatement smt = cnx.prepareStatement(query);
-                smt.setInt(1, t.getEquipe1());
-                smt.setInt(2, t.getEquipe2());
-                
-                
+                smt.setString(1, t.getEquipe1());
+                smt.setString(2, t.getEquipe2());
+                smt.setInt(3, t.getId_journe());
                 smt.executeUpdate();
                 System.out.println("ajout avec succee");
             } catch (SQLException ex) {
@@ -51,14 +50,13 @@ public class matchservice implements iservice<Match>{
     @Override
     public void modifier(Match t) {
          try {
-       String query2="update match set equipe1=?,equipe2=?,etat=?, where id_match=?";
+       String query2="UPDATE `match` SET `Equipe1` = ?, `Equipe2` = ?, `etat` = ? WHERE `match`.`id_match` = ?;";
                 PreparedStatement smt = cnx.prepareStatement(query2);
                 
-                smt.setInt(1, t.getEquipe1());
-                smt.setInt(2, t.getEquipe2());
-                smt.setString(3, t.getEtat());
-               
-                smt.setInt(5, t.getId_match());
+                smt.setString(1, t.getEquipe1());
+                smt.setString(2, t.getEquipe2());
+                smt.setString(3, t.getEtat());              
+                smt.setInt(4, t.getId_match());
                 smt.executeUpdate();
                 System.out.println("modification avec succee");
             } catch (SQLException ex) {
@@ -77,25 +75,24 @@ public class matchservice implements iservice<Match>{
     }}
     @Override
     public List<Match> find() {
-        ArrayList l=new ArrayList(); 
-        
+        List<Match> list = new ArrayList<>();
         try {
-       String query2="select * from match";
+       String query2="SELECT * FROM `match`";
                 PreparedStatement smt = cnx.prepareStatement(query2);
                 Match p;
                 ResultSet rs= smt.executeQuery();
                 while(rs.next()){
-                   p=new Match(rs.getInt("id_match"),rs.getInt("equipe1"),rs.getInt("equipe2"),rs.getString("etat"));
+                   p=new Match(rs.getInt("id_match"),rs.getString("equipe1"),rs.getString("equipe2"),rs.getString("etat"));
                 System.out.println(p);
                   
-                   l.add(p);
+                   list.add(p);
                 }
-                System.out.println(l);
+                System.out.println(list);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
     }
 
-        return l;
+        return list;
     
 }
 
