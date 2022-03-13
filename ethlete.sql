@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
-<<<<<<< HEAD
--- Généré le : sam. 05 mars 2022 à 19:14
-=======
--- Généré le : Dim 06 mars 2022 à 23:09
->>>>>>> moatez
+-- Généré le : sam. 12 mars 2022 à 10:05
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.11
 
@@ -42,13 +38,7 @@ CREATE TABLE `affectation_formateur` (
 --
 
 INSERT INTO `affectation_formateur` (`formateur_id`, `formation_id`, `reponse`) VALUES
-<<<<<<< HEAD
-(1, 6, 1);
-=======
-(1, 6, 1),
-(1, 10, 1),
-(2, 10, 1);
->>>>>>> moatez
+(19, 18, 2);
 
 -- --------------------------------------------------------
 
@@ -70,10 +60,9 @@ CREATE TABLE `article` (
 --
 
 INSERT INTO `article` (`idArticle`, `titre`, `contenu`, `description`, `nbrLike`, `idUser`) VALUES
-(2, 'mm', 'hh', 'jj', 0, 2),
-(3, 'derby', 'match', 'match', 0, 2),
-(4, 'kkk', 'kkk', 'kkk', 0, 2),
-(5, 'lll', 'lll', 'lll', 0, 2);
+(11, 'hytgfd', 'juyhtgrfed', 'uytref', 3, 14),
+(12, 'dahmoun', 'dahmoun', 'dahmoun', 0, 12),
+(13, 'flutter', 'avec monsieur abelmonem', 'mobile', 0, 19);
 
 -- --------------------------------------------------------
 
@@ -87,17 +76,6 @@ CREATE TABLE `avis` (
   `note` enum('1','2','3','4','5') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-<<<<<<< HEAD
-=======
---
--- Déchargement des données de la table `avis`
---
-
-INSERT INTO `avis` (`id_avis`, `id_user`, `note`) VALUES
-(1, 1, '2'),
-(2, 1, '3');
-
->>>>>>> moatez
 -- --------------------------------------------------------
 
 --
@@ -107,6 +85,7 @@ INSERT INTO `avis` (`id_avis`, `id_user`, `note`) VALUES
 CREATE TABLE `billets` (
   `id_billet` int(11) NOT NULL,
   `id_event` int(11) NOT NULL,
+  `nbr_billet` int(11) NOT NULL,
   `prix` float NOT NULL,
   `date_achat` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -128,11 +107,7 @@ CREATE TABLE `categorie` (
 
 INSERT INTO `categorie` (`idcateg`, `nomcateg`) VALUES
 (15, 'accessoires'),
-<<<<<<< HEAD
-(16, 'accessoires');
-=======
-(17, 'pciet');
->>>>>>> moatez
+(18, 'cider');
 
 -- --------------------------------------------------------
 
@@ -146,6 +121,14 @@ CREATE TABLE `commande` (
   `quantite` int(11) NOT NULL,
   `datecom` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `commande`
+--
+
+INSERT INTO `commande` (`idcom`, `idp`, `quantite`, `datecom`) VALUES
+(3, 56, 1, '2022-03-07'),
+(4, 55, 34, '2022-03-08');
 
 -- --------------------------------------------------------
 
@@ -165,7 +148,7 @@ CREATE TABLE `commentaire` (
 --
 
 INSERT INTO `commentaire` (`id_commentaire`, `id_formation`, `id_participant`, `contenu`) VALUES
-(1, 6, 1, 'moatez');
+(4, 18, 11, 'tres bien');
 
 -- --------------------------------------------------------
 
@@ -180,6 +163,18 @@ CREATE TABLE `competition` (
   `adresse` varchar(50) NOT NULL,
   `nom` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `competition`
+--
+
+INSERT INTO `competition` (`id_competition`, `nb_equipe`, `date`, `adresse`, `nom`) VALUES
+(2, 10, 'draft', '2022-03-10', 'Esprit'),
+(3, 4, '2022-03-02', 'ghazela', 'ethlete'),
+(4, 15, '2022-03-11', 'Esprit', 'delux'),
+(5, 15, '2022-03-15', 'tunis', 'deulist'),
+(6, 20, '2022-03-22', 'cv', 'danger'),
+(7, 13, 'ligue', '2022-03-08', 'rades');
 
 -- --------------------------------------------------------
 
@@ -198,7 +193,11 @@ CREATE TABLE `equipe` (
 --
 
 INSERT INTO `equipe` (`id_equipe`, `nom_equipe`, `id_responsable`) VALUES
-(2, 'lefriki11', 1);
+(3, 'llll', 13),
+(4, 'mm', 13),
+(5, 'huruhfdn', 13),
+(10, 'qsd', 18),
+(14, 'azergf', 18);
 
 -- --------------------------------------------------------
 
@@ -211,11 +210,21 @@ CREATE TABLE `evenement` (
   `nom_event` varchar(30) NOT NULL,
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL,
-  `id_typeE` varchar(50) NOT NULL,
+  `typeE` enum('Formation','Compétition') NOT NULL,
+  `lieu` varchar(100) NOT NULL,
   `id_formation` int(11) DEFAULT NULL,
   `id_inter` int(11) DEFAULT NULL,
-  `id_compet` int(11) DEFAULT NULL
+  `id_compet` int(11) DEFAULT NULL,
+  `prixU` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `evenement`
+--
+
+INSERT INTO `evenement` (`id_event`, `nom_event`, `date_debut`, `date_fin`, `typeE`, `lieu`, `id_formation`, `id_inter`, `id_compet`, `prixU`) VALUES
+(8, 'event5', '2022-03-08', '2022-03-17', 'Formation', 'esprit', 6, 2, NULL, 12),
+(10, 'tgrv', '2022-03-09', '2022-03-18', 'Formation', 'fe', 6, 2, NULL, 2.6);
 
 -- --------------------------------------------------------
 
@@ -238,7 +247,7 @@ CREATE TABLE `formation` (
 
 INSERT INTO `formation` (`id_formation`, `nom_formation`, `date_debut`, `date_fin`, `dispositif`, `programme`) VALUES
 (6, 'formation33455', '2022-02-03', '2022-02-17', 'En_Ligne', 'qqqq'),
-(10, 'form35', '2012-02-02', '2012-02-02', 'En_Ligne', 'moatez111111111111111111111111111'),
+(10, 'form35666', '2012-02-02', '2012-02-02', 'En_Ligne', 'moatez111111111111111111111111111'),
 (14, 'formation2', '2022-02-03', '2022-02-17', 'Presentiel', 'qqqq'),
 (18, 'java', '2022-03-04', '2022-03-12', 'En_Ligne', 'mm');
 
@@ -266,6 +275,7 @@ CREATE TABLE `fournisseur` (
 
 CREATE TABLE `intervenant` (
   `id_inter` int(11) NOT NULL,
+  `image_In` varchar(100) NOT NULL,
   `nom` varchar(30) NOT NULL,
   `prenom` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -277,9 +287,11 @@ CREATE TABLE `intervenant` (
 -- Déchargement des données de la table `intervenant`
 --
 
-INSERT INTO `intervenant` (`id_inter`, `nom`, `prenom`, `email`, `telephone`, `id_typeint`) VALUES
-(2, 'Ben 55Abda', 'Yasmine', 'benabda@gmail.com', '27156643', 'sponsor'),
-(3, 'Ben 55Abda', 'Yasmine', 'benabda@gmail.com', '27156643', 'sponsor');
+INSERT INTO `intervenant` (`id_inter`, `image_In`, `nom`, `prenom`, `email`, `telephone`, `id_typeint`) VALUES
+(2, '', 'moatez123', '0', '0', '123', 'sponsor'),
+(5, 'aaaa', 'aaaa', 'aaa', 'aaa@gmail.com', '2403010', 'invité'),
+(8, '123', 'oueslati ', 'moatez', 'mo@gmail.com', '24030100', 'invité'),
+(9, 'trfz', 'rgf', 'rgf', 'yasmine@gmail.com', '7522', 'sponsor');
 
 -- --------------------------------------------------------
 
@@ -299,11 +311,8 @@ CREATE TABLE `invitation` (
 --
 
 INSERT INTO `invitation` (`id_invitation`, `etat`, `id_eq`, `id_joueur`) VALUES
-(1, 'non_consulté', 2, 1),
-(2, 'non_consulté', 2, 1),
-(3, 'non_consulté', 2, 1),
-(4, 'non_consulté', 2, 1),
-(5, 'non_consulté', 2, 1);
+(6, 'refusé', 5, 11),
+(7, 'accepté', 10, 11);
 
 -- --------------------------------------------------------
 
@@ -318,6 +327,16 @@ CREATE TABLE `journe` (
   `id_competition` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `journe`
+--
+
+INSERT INTO `journe` (`id_journe`, `numJourne`, `date_journe`, `id_competition`) VALUES
+(1, 6, '2022-03-17', 2),
+(2, 1, '2022-03-15', 5),
+(3, 2, '2022-03-15', 6),
+(5, 6, '2022-03-02', 7);
+
 -- --------------------------------------------------------
 
 --
@@ -326,10 +345,20 @@ CREATE TABLE `journe` (
 
 CREATE TABLE `match` (
   `id_match` int(11) NOT NULL,
-  `Equipe1` int(255) NOT NULL,
-  `Equipe2` int(255) NOT NULL,
-  `etat` enum('en cours','fini','non commencé') NOT NULL DEFAULT 'non commencé'
+  `Equipe1` varchar(255) NOT NULL,
+  `Equipe2` varchar(255) NOT NULL,
+  `etat` enum('en cours','fini','non commencé') NOT NULL DEFAULT 'non commencé',
+  `id_journe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `match`
+--
+
+INSERT INTO `match` (`id_match`, `Equipe1`, `Equipe2`, `etat`, `id_journe`) VALUES
+(15, 'hurt', 'heal', 'fini', 1),
+(16, 'bunzai', 'ethelet', 'non commencé', 2),
+(17, 'css', 'est', 'non commencé', 2);
 
 -- --------------------------------------------------------
 
@@ -348,8 +377,7 @@ CREATE TABLE `participation` (
 --
 
 INSERT INTO `participation` (`id_participant`, `formation_id`, `date_participation`) VALUES
-(1, 6, '2022-03-05'),
-(1, 18, '2022-03-05');
+(11, 6, '2022-03-08');
 
 -- --------------------------------------------------------
 
@@ -369,12 +397,8 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`idp`, `nomp`, `prix`, `idcateg`) VALUES
-<<<<<<< HEAD
-(51, 'necklace', 78, 15);
-=======
-(51, 'necklace', 78, 15),
-(53, 'pc', 20, 17);
->>>>>>> moatez
+(55, 'product', 345, 15),
+(56, 'yasmine', 0.5, 15);
 
 -- --------------------------------------------------------
 
@@ -387,16 +411,15 @@ CREATE TABLE `raison` (
   `raisontxt` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-<<<<<<< HEAD
-=======
 --
 -- Déchargement des données de la table `raison`
 --
 
 INSERT INTO `raison` (`idRaison`, `raisontxt`) VALUES
-(5, 'connexion');
+(5, 'connexion'),
+(8, 'prpoblem'),
+(7, 'yasmine');
 
->>>>>>> moatez
 -- --------------------------------------------------------
 
 --
@@ -407,26 +430,11 @@ CREATE TABLE `reclamation` (
   `idr` int(11) NOT NULL,
   `contenu` text NOT NULL,
   `id` int(11) NOT NULL,
-<<<<<<< HEAD
-  `daterec` date NOT NULL,
-  `idRaison` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-=======
   `daterec` varchar(100) NOT NULL,
   `idRaison` int(11) NOT NULL,
   `etat` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `reclamation`
---
-
-INSERT INTO `reclamation` (`idr`, `contenu`, `id`, `daterec`, `idRaison`, `etat`) VALUES
-(11, 'mm', 1, '2022-03-06', 5, 'Traitee'),
-(15, 'aaa', 4, '2022-03-06', 5, 'Traitee');
-
->>>>>>> moatez
 -- --------------------------------------------------------
 
 --
@@ -446,6 +454,18 @@ INSERT INTO `reponse` (`id_reponse`, `reponse`) VALUES
 (1, 'Pas encore consulté'),
 (2, 'confirmé'),
 (3, 'refusé');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `review`
+--
+
+CREATE TABLE `review` (
+  `id` int(11) NOT NULL,
+  `review` int(1) NOT NULL,
+  `id_match` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -473,48 +493,15 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `adresse`, `date_naissance`, `email`, `nom`, `num_tel`, `password`, `prenom`, `role`, `username`, `genre`, `id_eq`) VALUES
-<<<<<<< HEAD
-(1, 'ariana', '2022-03-14', 'mmm', 'mm', 43434, 'ee11cbb19052e4b7aac0ca6c23ee', 'mm', 'FORMATEUR', 'mm', 'homme', NULL),
-(2, 'ariana', '2022-03-13', 'temanimohameddahmi', 'temani', 5555, '7dc71596b177f323db34eacd63048f7', 'mohamed', 'ADMIN', 'dahh', 'femme', NULL),
-(3, 'bardo', '2022-03-09', 'moatez.oueslati@esprit.tn', 'oueslati', 24030100, '1394f926812e7dbce50d279b6cfef5e', 'oueslati', 'JOUEUR', 'mooo', 'null', NULL);
-=======
-(1, 'ariana', '2022-03-14', 'rmatoussi3@gmail.com', 'moatez.oueslati@esprit.tn', 43434, 'ee11cbb19052e4b7aac0ca6c23ee', 'mm', 'FORMATEUR', 'mm', 'homme', NULL),
-(2, 'ariana', '2022-03-12', 'temanimohameddahmi', 'temani', 24030100, 'd41d8cd98f0b24e980998ecf8427e', 'mohamed', 'FORMATEUR', 'dahh', 'femme', NULL),
-(3, 'bardo', '2022-03-09', 'moatez.oueslati@esprit.tn', 'oueslati', 24030100, '1394f926812e7dbce50d279b6cfef5e', 'oueslati', 'JOUEUR', 'mooo', 'null', NULL),
-(4, 'moatez', '2022-03-02', 'moatez@gmail.com', 'moatez', 24030100, '1394f926812e7dbce50d279b6cfef5e', 'moatez', 'ADMIN', 'moatez', 'null', NULL);
->>>>>>> moatez
-
--- --------------------------------------------------------
-
---
--- Structure de la table `utilisateur`
---
-
-CREATE TABLE `utilisateur` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(50) NOT NULL,
-  `prenom` varchar(50) NOT NULL,
-  `date_naissance` date NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `telephone` varchar(8) NOT NULL,
-  `adresse` varchar(50) NOT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL,
-  `genre` varchar(50) NOT NULL,
-  `role` varchar(50) DEFAULT NULL,
-  `id_equipe` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `email`, `telephone`, `adresse`, `username`, `password`, `genre`, `role`, `id_equipe`) VALUES
-(1, 'moatez', 'moatez', '2022-02-02', 'moatez.oueslati@esprit.tn', '12345678', 'moatez', 'a', NULL, 'homme', 'ROLE_FORMATEUR', NULL),
-(3, 'moatez', 'moatez', '2022-02-09', 'moatez.oueslati@esprit.tn', '12345678', 'moatez', 'a', NULL, 'homme', 'ROLE_FORMATEUR', NULL),
-(6, 'laamiri', 'anas', '2022-02-09', 'moatez@gmail.com', '12345678', 'moatez', 'a', NULL, 'homme', 'ROLE_FORMATEUR', NULL),
-(7, 'yasmine.benabda@esprit.tn', 'yasmine.benabda@esprit.tn', '2022-02-02', 'yasmine.benabda@esprit.tn', '12345678', 'yasmine.benabda@esprit.tn', 'yasmine.benabda@esprit.tn', 'yasmine.benabda@esprit.tn', 'homme', 'ROLE_FORMATEUR', NULL),
-(9, 'dahmoun', 'dahmoun', '1960-02-16', 'dahmoun', '45698721', 'dahmoun', 'a', NULL, 'femme', 'ROLE_FORMATEUR', NULL);
+(10, 'mjezelbeb', '2022-03-03', 'temanimohameddahmani@gmail.com', 'Admin', 55820931, '21232f297a57a5a743894ae4a801fc3', 'Admin', 'ADMIN', 'admin', 'homme', NULL),
+(11, 'mjezelbeb', '2022-03-03', 'temanimohameddahmani@gmail.com', 'Joueur', 55820931, '2713f078ca8aa0d6c921d9921d636', 'joueur', 'JOUEUR', 'joueur', 'femme', NULL),
+(12, 'mjezelbeb', '2022-03-02', 'temanimohameddahmani@gmail.com', 'formatrice', 55820931, '7dfc6d74628885f45b85e3d3ffbb947b', 'formateur', 'FORMATEUR', 'formateur', 'femme', NULL),
+(13, 'mjezelbeb', '2022-03-03', 'temanimohameddahmani@gmail.com', 'resp', 55820931, '98eb56fa798d8631fcc349693ef26d9', 'resp', 'RESPONSABLE', 'responsable', 'femme', NULL),
+(14, 'hjk', '2022-03-10', 'rihem@gmail.com', 'rihem', 345678, '81dc9bdb52d04dc2036dbd8313ed055', 'rihem', 'JOUEUR', 'trfed43', 'null', NULL),
+(15, 'tgvrfd', '2022-03-04', 'rihem@gmail.com', 'tgrfd', 65432543, '1cd3baec9dddb5ee14bacd7cc4e6a2c', 'grfdes', 'JOUEUR', 'tgrfed', 'null', NULL),
+(17, 'ubhfedjknsla', '2022-03-05', 'rihem@gmail.com', 'rihem', 456378920, 'fbbcab8f9a1ebb639f74763417b2572', 'matoussi', 'JOUEUR', 'rfiednjosm', 'null', NULL),
+(18, 'fchgjbkln', '2022-03-02', 'rihemmatoussi2@gmail.com', 'anas', 78453, '76eb649c47cbecad7c36e71374bc9a5', 'anas', 'RESPONSABLE', 'anas', 'homme', NULL),
+(19, 'esprit', '2022-03-02', 'anas.laamiri@esprit.tn', 'teman', 55820931, 'f3132bfe507ee6fd6125831e746850d2', 'moatez', 'FORMATEUR', 'formateur1', 'homme', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -589,7 +576,8 @@ ALTER TABLE `equipe`
 ALTER TABLE `evenement`
   ADD PRIMARY KEY (`id_event`),
   ADD KEY `fk_form_event` (`id_formation`),
-  ADD KEY `fk_comp` (`id_compet`);
+  ADD KEY `fk_comp` (`id_compet`),
+  ADD KEY `fk_intervenantss` (`id_inter`);
 
 --
 -- Index pour la table `formation`
@@ -632,7 +620,8 @@ ALTER TABLE `journe`
 ALTER TABLE `match`
   ADD PRIMARY KEY (`id_match`),
   ADD KEY `fk_eq1` (`Equipe1`),
-  ADD KEY `fk_eq2` (`Equipe2`);
+  ADD KEY `fk_eq2` (`Equipe2`),
+  ADD KEY `fk_journee` (`id_journe`);
 
 --
 -- Index pour la table `participation`
@@ -670,17 +659,17 @@ ALTER TABLE `reponse`
   ADD PRIMARY KEY (`id_reponse`);
 
 --
+-- Index pour la table `review`
+--
+ALTER TABLE `review`
+  ADD KEY `id_ur` (`id`),
+  ADD KEY `fk_rm` (`id_match`);
+
+--
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_joueur_equipe` (`id_equipe`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -690,17 +679,13 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `idArticle` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idArticle` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-<<<<<<< HEAD
-  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT;
-=======
   MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
->>>>>>> moatez
 
 --
 -- AUTO_INCREMENT pour la table `billets`
@@ -712,45 +697,37 @@ ALTER TABLE `billets`
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-<<<<<<< HEAD
-  MODIFY `idcateg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-=======
-  MODIFY `idcateg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
->>>>>>> moatez
+  MODIFY `idcateg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-<<<<<<< HEAD
-  MODIFY `idcom` int(11) NOT NULL AUTO_INCREMENT;
-=======
-  MODIFY `idcom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
->>>>>>> moatez
+  MODIFY `idcom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  MODIFY `id_commentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_commentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `competition`
 --
 ALTER TABLE `competition`
-  MODIFY `id_competition` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_competition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `equipe`
 --
 ALTER TABLE `equipe`
-  MODIFY `id_equipe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_equipe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `formation`
@@ -762,61 +739,49 @@ ALTER TABLE `formation`
 -- AUTO_INCREMENT pour la table `fournisseur`
 --
 ALTER TABLE `fournisseur`
-  MODIFY `idf` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `intervenant`
 --
 ALTER TABLE `intervenant`
-  MODIFY `id_inter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_inter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `invitation`
 --
 ALTER TABLE `invitation`
-  MODIFY `id_invitation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_invitation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `journe`
 --
 ALTER TABLE `journe`
-  MODIFY `id_journe` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_journe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `match`
 --
 ALTER TABLE `match`
-  MODIFY `id_match` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_match` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-<<<<<<< HEAD
-  MODIFY `idp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-=======
-  MODIFY `idp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
->>>>>>> moatez
+  MODIFY `idp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT pour la table `raison`
 --
 ALTER TABLE `raison`
-<<<<<<< HEAD
-  MODIFY `idRaison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-=======
-  MODIFY `idRaison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
->>>>>>> moatez
+  MODIFY `idRaison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
-<<<<<<< HEAD
-  MODIFY `idr` int(11) NOT NULL AUTO_INCREMENT;
-=======
-  MODIFY `idr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
->>>>>>> moatez
+  MODIFY `idr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `reponse`
@@ -828,17 +793,7 @@ ALTER TABLE `reponse`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-<<<<<<< HEAD
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-=======
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
->>>>>>> moatez
-
---
--- AUTO_INCREMENT pour la table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Contraintes pour les tables déchargées
@@ -887,18 +842,15 @@ ALTER TABLE `commentaire`
 -- Contraintes pour la table `equipe`
 --
 ALTER TABLE `equipe`
-<<<<<<< HEAD
-  ADD CONSTRAINT `fk_Responsable_eq` FOREIGN KEY (`id_responsable`) REFERENCES `utilisateur` (`id`);
-=======
-  ADD CONSTRAINT `fk_Responsable_eq` FOREIGN KEY (`id_responsable`) REFERENCES `user` (`id`);
->>>>>>> moatez
+  ADD CONSTRAINT `fk_Responsable_eq` FOREIGN KEY (`id_responsable`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `evenement`
 --
 ALTER TABLE `evenement`
   ADD CONSTRAINT `fk_comp` FOREIGN KEY (`id_compet`) REFERENCES `competition` (`id_competition`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_formationn` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id_formation`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_formationn` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id_formation`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_intervenantss` FOREIGN KEY (`id_inter`) REFERENCES `intervenant` (`id_inter`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `fournisseur`
@@ -910,8 +862,8 @@ ALTER TABLE `fournisseur`
 -- Contraintes pour la table `invitation`
 --
 ALTER TABLE `invitation`
-  ADD CONSTRAINT `fk_equipe` FOREIGN KEY (`id_eq`) REFERENCES `equipe` (`id_equipe`),
-  ADD CONSTRAINT `fk_joueur` FOREIGN KEY (`id_joueur`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `fk_equipe` FOREIGN KEY (`id_eq`) REFERENCES `equipe` (`id_equipe`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_joueur` FOREIGN KEY (`id_joueur`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `journe`
@@ -923,8 +875,7 @@ ALTER TABLE `journe`
 -- Contraintes pour la table `match`
 --
 ALTER TABLE `match`
-  ADD CONSTRAINT `fk_eq1` FOREIGN KEY (`Equipe1`) REFERENCES `equipe` (`id_equipe`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_eq2` FOREIGN KEY (`Equipe2`) REFERENCES `equipe` (`id_equipe`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_journee` FOREIGN KEY (`id_journe`) REFERENCES `journe` (`id_journe`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `participation`
@@ -943,19 +894,15 @@ ALTER TABLE `produit`
 -- Contraintes pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
-<<<<<<< HEAD
-  ADD CONSTRAINT `fk_raison` FOREIGN KEY (`idRaison`) REFERENCES `raison` (`idRaison`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_rason1` FOREIGN KEY (`idRaison`) REFERENCES `raison` (`idRaison`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_user_rec` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `utilisateur`
+-- Contraintes pour la table `review`
 --
-ALTER TABLE `utilisateur`
-  ADD CONSTRAINT `fk_joueur_equipe` FOREIGN KEY (`id_equipe`) REFERENCES `equipe` (`id_equipe`);
-=======
-  ADD CONSTRAINT `fk_rason1` FOREIGN KEY (`idRaison`) REFERENCES `raison` (`idRaison`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_user_rec` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
->>>>>>> moatez
+ALTER TABLE `review`
+  ADD CONSTRAINT `fk_rm` FOREIGN KEY (`id_match`) REFERENCES `match` (`id_match`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `id_ur` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
